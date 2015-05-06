@@ -17,8 +17,12 @@ public class FinalProjectTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        while (true){
-            JOptionPane.showMessageDialog(null, "Ben sucks");
+        String players = JOptionPane.showInputDialog("How many people are playing");
+        int play = Integer.parseInt(players);
+        for (int i = 0; i < play; i++) {
+            String name = JOptionPane.showInputDialog("What is your name?");
+            Person player = new Person(name, play);
+            play--;
         }
     }
     
