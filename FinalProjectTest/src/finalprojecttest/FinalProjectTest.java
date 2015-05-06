@@ -19,10 +19,14 @@ public class FinalProjectTest {
     public static void main(String[] args) {
         String players = JOptionPane.showInputDialog("How many people are playing");
         int play = Integer.parseInt(players);
+        if (play <= 0)
+        {
+            JOptionPane.showMessageDialog(null, "you cant play alone.");
+        }
+        
         for (int i = 0; i < play; i++) {
             String name = JOptionPane.showInputDialog("What is your name?");
-            Person player = new Person(name, play);
-            play--;
+            Person player = new Person(name, i);
         }
         int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
         Map map = new Map(fullscreen);
