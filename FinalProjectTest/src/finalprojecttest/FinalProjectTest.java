@@ -24,6 +24,8 @@ public class FinalProjectTest {
             Person player = new Person(name, play);
             play--;
         }
+        int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
+        Map map = new Map(fullscreen);
     }
     
 }
