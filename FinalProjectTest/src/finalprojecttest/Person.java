@@ -10,9 +10,12 @@ package finalprojecttest;
  * @author Ben
  */
 class Person {
+    String name;
+    int PlayerNumber;
 
-    Person(String name, int play) {
-        
+    Person(String name, int playerNumber) {
+        this.name = name;
+        this.PlayerNumber = playerNumber;
     }
     
 }
