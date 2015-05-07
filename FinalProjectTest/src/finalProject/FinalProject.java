@@ -19,7 +19,7 @@ public class FinalProject {
     public static void main(String[] args) {
         String players = JOptionPane.showInputDialog("How many people are playing");
         int play = Integer.parseInt(players);
-        if (play <= 0)
+        if (play <= -1)//set to two when not testing to see if it runs the menu
         {
             JOptionPane.showMessageDialog(null, "you cant play alone.");
         }
