@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -19,20 +20,26 @@ import javax.swing.JFrame;
  * 
  * A container that will open when the "escape" key is pressed
  */
-class Menu extends Container{
+class Menu extends JFrame{
     
     private JButton btnTest;
+    private Container container;
+    private 
 
     
-    Menu(){
+    public Menu(){
+        container = this.getContentPane();
+        this.setSize(400, 700);
+        this.setLocation(600, 100);
         this.setVisible(false);
         btnTest = new JButton();
         this.setLayout(null);
         btnTest.setBounds(100 ,100, 100, 100);
         this.add(btnTest); 
-        this.setBackground(Color.red);
-        this.setBounds(400, 700, 500, 100);
-
+        this.setAlwaysOnTop(true);
+        this.setTitle("Menu");
+        this.setUndecorated(true);
+        this.setResizable(false);
     }
     public void sout(String text){
         System.out.println(text);

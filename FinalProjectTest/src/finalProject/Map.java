@@ -78,15 +78,11 @@ class Map extends JFrame implements KeyListener{
         if (e.getKeyCode() == 27){
             if (menuOpen == false){
                 menu.setVisible(true);
-                System.out.println("Menu open");
                 menuOpen = true;
-                menu.sout("I work!");
                 
             }
-
             else if (menuOpen == true){
                 menu.setVisible(false);
-                System.out.println("Menu closed");
                 menuOpen = false;
             }
             
