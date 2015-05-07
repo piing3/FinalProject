@@ -79,13 +79,16 @@ class Map extends JFrame implements KeyListener{
             if (menuOpen == false){
                 menu.setVisible(true);
                 menuOpen = true;
+<<<<<<< HEAD
                 
+=======
+                menu.sout("I work!"); 
+>>>>>>> origin/master
             }
             else if (menuOpen == true){
                 menu.setVisible(false);
                 menuOpen = false;
-            }
-            
+            }    
         }
     }
 }

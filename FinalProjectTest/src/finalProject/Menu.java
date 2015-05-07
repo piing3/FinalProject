@@ -36,10 +36,15 @@ class Menu extends JFrame{
         this.setLayout(null);
         btnTest.setBounds(100 ,100, 100, 100);
         this.add(btnTest); 
+<<<<<<< HEAD
         this.setAlwaysOnTop(true);
         this.setTitle("Menu");
         this.setUndecorated(true);
         this.setResizable(false);
+=======
+        this.setBackground(Color.red);
+        this.setBounds(400, 700, 500, 100);
+>>>>>>> origin/master
     }
     public void sout(String text){
         System.out.println(text);
