@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 class Menu extends Container{
     
     private JButton btnTest;
+
     
     Menu(){
         this.setVisible(false);
@@ -33,7 +34,6 @@ class Menu extends Container{
         this.setBounds(400, 700, 500, 100);
 
     }
-    
     public void sout(String text){
         System.out.println(text);
     }
