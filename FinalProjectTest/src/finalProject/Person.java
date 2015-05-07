@@ -22,9 +22,9 @@ class Person {
     {
         //if (playerTurn == PlayerNumber){
         return true;
-        }
+        
     }
     
     
-    
+
 }
