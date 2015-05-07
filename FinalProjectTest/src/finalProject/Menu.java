@@ -5,8 +5,11 @@
  */
 package finalProject;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -25,7 +28,14 @@ class Menu extends Container{
         btnTest = new JButton();
         this.setLayout(null);
         btnTest.setBounds(100 ,100, 100, 100);
-        this.add(btnTest);
+        this.add(btnTest); 
+        this.setBackground(Color.red);
+        this.setBounds(400, 700, 500, 100);
+
+    }
+    
+    public void sout(String text){
+        System.out.println(text);
     }
 
 }
