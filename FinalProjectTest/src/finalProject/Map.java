@@ -80,16 +80,13 @@ class Map extends JFrame implements KeyListener{
                 menu.setVisible(true);
                 System.out.println("Menu open");
                 menuOpen = true;
-                menu.sout("I work!");
-                
+                menu.sout("I work!"); 
             }
-
             else if (menuOpen == true){
                 menu.setVisible(false);
                 System.out.println("Menu closed");
                 menuOpen = false;
-            }
-            
+            }    
         }
     }
 }

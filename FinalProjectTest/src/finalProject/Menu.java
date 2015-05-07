@@ -32,7 +32,6 @@ class Menu extends Container{
         this.add(btnTest); 
         this.setBackground(Color.red);
         this.setBounds(400, 700, 500, 100);
-
     }
     public void sout(String text){
         System.out.println(text);

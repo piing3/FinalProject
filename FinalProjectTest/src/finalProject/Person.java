@@ -13,10 +13,12 @@ class Person {
     String name;
     int PlayerNumber;
     boolean isTurn;
+    int players;
 
-    public Person(String name, int playerNumber) {
+    public Person(String name, int playerNumber, int players) {
         this.name = name;
         this.PlayerNumber = playerNumber;
+        this.players = players;
     }
     public boolean startTurn()
     {
