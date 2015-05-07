@@ -12,10 +12,19 @@ package finalProject;
 class Person {
     String name;
     int PlayerNumber;
+    boolean isTurn;
 
-    Person(String name, int playerNumber) {
+    public Person(String name, int playerNumber) {
         this.name = name;
         this.PlayerNumber = playerNumber;
     }
+    public boolean startTurn()
+    {
+        //if (playerTurn == PlayerNumber){
+        return true;
+        }
+    }
+    
+    
     
 }
