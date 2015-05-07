@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalprojecttest;
+package finalProject;
 
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Davin
+ * @author Davin & Ben
  */
-public class FinalProjectTest {
+public class FinalProject {
 
     /**
      * @param args the command line arguments
