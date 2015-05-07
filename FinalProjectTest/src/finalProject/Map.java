@@ -39,7 +39,7 @@ class Map extends JFrame implements KeyListener{
         
         this.setVisible(true);
         this.setResizable(false);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         container = getContentPane();
         container.setLayout(null);
@@ -80,6 +80,8 @@ class Map extends JFrame implements KeyListener{
                 menu.setVisible(true);
                 System.out.println("Menu open");
                 menuOpen = true;
+                menu.sout("I work!");
+                
             }
 
             else if (menuOpen == true){
