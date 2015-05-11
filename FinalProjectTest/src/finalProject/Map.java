@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicTreeUI;
 
@@ -27,6 +28,7 @@ class Map extends JFrame implements KeyListener{
     private Menu menu = new Menu();
     private JButton btnExit;
     boolean menuOpen = false;
+    private JLabel tile; 
     
     Map(int fullscreen){
         if(fullscreen == 0){
@@ -60,6 +62,16 @@ class Map extends JFrame implements KeyListener{
             }
         };
         btnExit.addActionListener(Exit);
+        
+        Tile[][] grid = new Tile[10][10];
+        
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j > 10; j++){
+                grid[i][j]  = new Tile();
+                int type = grid[i][j].tileType;
+                container.add(grid[i][j]);
+            }
+        }
     }    
 
     @Override
@@ -75,7 +87,7 @@ class Map extends JFrame implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         System.out.println(e.getKeyChar() +" "+ e.getKeyCode());
-        if (e.getKeyCode() == 27){
+        if (e.getKeyCode() == 27){//Fix this & menu later 
             if (menuOpen == false){
                 menu.setVisible(true);
                 menuOpen = true;
@@ -85,5 +97,18 @@ class Map extends JFrame implements KeyListener{
                 menuOpen = false;
             }    
         }
+    }
+
+    private static class Tile extends JLabel{//wasn't working in a seperate class, fix later
+        public int x;
+        public int y;
+        public int tileType;
+        public int owner;
+        public int improvement;
+        public int occupint;  
+        
+        public Tile() {
+        }
+        
     }
 }
