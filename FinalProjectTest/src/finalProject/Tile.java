@@ -5,15 +5,20 @@
  */
 package finalProject;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Davin
  */
-class Tile{
-    int x;
-    int y;
-    int tileType;
-    int owner;
-    int improvement;
-    int occupint; 
+class Tile extends JLabel{//wasn't working in a seperate class, fix later
+        public int x;
+        public int y;
+        public int tileType;
+        public int owner;
+        public int improvement;
+        public int occupint;  
+        
+        public Tile() {
+        }
 }

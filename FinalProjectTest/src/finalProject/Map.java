@@ -98,17 +98,4 @@ class Map extends JFrame implements KeyListener{
             }    
         }
     }
-
-    private static class Tile extends JLabel{//wasn't working in a seperate class, fix later
-        public int x;
-        public int y;
-        public int tileType;
-        public int owner;
-        public int improvement;
-        public int occupint;  
-        
-        public Tile() {
-        }
-        
-    }
 }
