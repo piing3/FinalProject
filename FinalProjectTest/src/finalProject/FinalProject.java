@@ -26,7 +26,22 @@ public class FinalProject {
         
         for (int i = 0; i < play; i++) {
             String name = JOptionPane.showInputDialog("What is your name?");
-            Person player = new Person(name, i++, play);
+            if(i == 0)
+            {
+                Person player1 = new Person(name, i++, play);
+            }
+            if(i == 1)
+            {
+                Person player2 = new Person(name, i++, play);
+            }
+            if(i == 2)
+            {
+                Person player3 = new Person(name, i++, play);
+            }
+            if(i == 3)
+            {
+                Person player4 = new Person(name, i++, play);
+            }
         }
         int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
         Map map = new Map(fullscreen);

@@ -11,14 +11,15 @@ package finalProject;
  */
 class Person {
     String name;
-    int PlayerNumber;
-    boolean isTurn;
-    int players;
+    public int PlayerNumber;
+    public boolean isTurn;
+    public int players;
 
     public Person(String name, int playerNumber, int players) {
         this.name = name;
         this.PlayerNumber = playerNumber;
         this.players = players;
+        TurnOrder TurnOrder = new TurnOrder();
     }
     public boolean startTurn()
     {
