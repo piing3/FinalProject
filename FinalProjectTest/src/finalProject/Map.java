@@ -39,7 +39,7 @@ class Map extends JFrame implements KeyListener{
             this.setSize(1280,720);
         }
         
-        this.setVisible(true);
+        
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
@@ -47,6 +47,17 @@ class Map extends JFrame implements KeyListener{
         container.setLayout(null);
         this.addKeyListener(this);
         
+        
+        Tile[][] grid = new Tile[31][21];
+        
+        for (int i = 0; i < 31; i++){
+            for (int j = 0; j < 21; j++){
+                grid[i][j] = new Tile(i, j);
+                container.add(grid[i][j]);
+                System.out.println( i + ", "+ j);
+                
+            }
+        }
         
         btnExit = new JButton("X");
         btnExit.setBounds(0, 0, 50, 50);
@@ -62,16 +73,8 @@ class Map extends JFrame implements KeyListener{
             }
         };
         btnExit.addActionListener(Exit);
+        this.setVisible(true);
         
-        Tile[][] grid = new Tile[10][10];
-        
-        for (int i = 0; i < 10; i++){
-            for (int j = 0; j > 10; j++){
-                grid[i][j]  = new Tile();
-                int type = grid[i][j].tileType;
-                container.add(grid[i][j]);
-            }
-        }
     }    
 
     @Override

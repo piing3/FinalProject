@@ -5,13 +5,15 @@
  */
 package finalProject;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
  *
  * @author Davin
  */
-class Tile extends JLabel{//wasn't working in a seperate class, fix later
+class Tile extends JLabel{
         public int x;
         public int y;
         public int tileType;
@@ -19,6 +21,11 @@ class Tile extends JLabel{//wasn't working in a seperate class, fix later
         public int improvement;
         public int occupint;  
         
-        public Tile() {
+        public Tile(int i, int j) {
+            x = i; y = j;
+            this.setSize(50, 50);
+            this.setLocation((x * 50), (y * 50));
+            Icon temp = new ImageIcon("C:\\Users\\Davin.DAVIN-PC\\Desktop\\Temp2.png");
+            this.setIcon(temp);
         }
 }
