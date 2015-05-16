@@ -5,6 +5,7 @@
  */
 package finalProject;
 
+import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -25,7 +26,20 @@ class Tile extends JLabel{
             x = i; y = j;
             this.setSize(50, 50);
             this.setLocation((x * 50), (y * 50));
-            Icon temp = new ImageIcon("C:\\Users\\Davin.DAVIN-PC\\Desktop\\Temp2.png");
-            this.setIcon(temp);
         }
+
+    public void setTile(int type) {
+        if (type == 0 ){
+            Icon tile = new ImageIcon("src\\Images\\GrassTile1.png");
+            this.setIcon(tile);
+        }
+        if (type == 1){
+            Icon tile = new ImageIcon("src\\Images\\DessertTile1.png");
+            this.setIcon(tile);
+        }
+        if (type == 2){
+            Icon tile = new ImageIcon("src\\Images\\WaterTile1.png");
+            this.setIcon(tile);
+        }
+    }
 }

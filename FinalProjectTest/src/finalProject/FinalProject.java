@@ -5,6 +5,7 @@
  */
 package finalProject;
 
+import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +17,7 @@ public class FinalProject {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         String players = JOptionPane.showInputDialog("How many people are playing");
         int play = Integer.parseInt(players);
         if (play <= -1)//set to two when not testing to see if it runs the menu

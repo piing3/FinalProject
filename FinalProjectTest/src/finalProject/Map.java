@@ -7,16 +7,17 @@ package finalProject;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.plaf.basic.BasicTreeUI;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
@@ -30,7 +31,9 @@ class Map extends JFrame implements KeyListener{
     boolean menuOpen = false;
     private JLabel tile; 
     
-    Map(int fullscreen){
+    int x = 30,y = 30;
+    
+    Map(int fullscreen) throws FileNotFoundException{
         if(fullscreen == 0){
             this.setExtendedState(Map.MAXIMIZED_BOTH);
             this.setUndecorated(true);
@@ -47,17 +50,29 @@ class Map extends JFrame implements KeyListener{
         container.setLayout(null);
         this.addKeyListener(this);
         
+        int[][] tileType = new int[x][y];
+        File temp = new File("src\\finalProject\\Map.txt");
+        Scanner s = new Scanner(temp);
+        for (int j = 0; j < y; j++){
+            for (int i = 0; i < x; i++){
+                tileType[i][j] = s.nextInt();
+                System.out.println(tileType[i][j]+"");
+            }
+        }
+        s.close(); 
         
-        Tile[][] grid = new Tile[31][21];
+        Tile[][] grid = new Tile[x][y];
         
-        for (int i = 0; i < 31; i++){
-            for (int j = 0; j < 21; j++){
+        for (int i = 0; i < x; i++){
+            for (int j = 0; j < y; j++){
                 grid[i][j] = new Tile(i, j);
+                grid[i][j].setTile(tileType[i][j]);
                 container.add(grid[i][j]);
-                System.out.println( i + ", "+ j);
                 
             }
         }
+        
+        
         
         btnExit = new JButton("X");
         btnExit.setBounds(0, 0, 50, 50);
