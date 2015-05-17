@@ -27,6 +27,7 @@ class Menu extends JFrame{
     private JButton btnTest;
     private Container container;
     private JLabel backround;
+    private JLabel temp;
     
     public Menu(){
         container = this.getContentPane();

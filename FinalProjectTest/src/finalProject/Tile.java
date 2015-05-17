@@ -41,5 +41,9 @@ class Tile extends JLabel{
             Icon tile = new ImageIcon("src\\Images\\WaterTile1.png");
             this.setIcon(tile);
         }
+        if (type == 3){
+            Icon tile = new ImageIcon("src\\Images\\BorderTile1.png");
+            this.setIcon(tile);
+        }
     }
 }
