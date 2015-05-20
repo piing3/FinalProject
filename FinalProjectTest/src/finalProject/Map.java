@@ -7,6 +7,7 @@ package finalProject;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -31,13 +32,11 @@ class Map extends JFrame implements KeyListener{
     private JButton btnExit;
     boolean menuOpen = false;
     private JLabel tile; 
-    
-    int x = 30,y = 30;
     public int downOff = 0, rightOff = 0;//Down and Right offsets, used for moving map.
+    public int x,y;
     
-    public Tile[][] grid = new Tile[x][y];
-    
-    int[][] tileType = new int[x][y];
+    public Tile[][] grid;
+    public int[][] tileType;
     
     public Map(int fullscreen) throws FileNotFoundException{
         if(fullscreen == 0){
@@ -47,9 +46,15 @@ class Map extends JFrame implements KeyListener{
         else{
             this.setSize(1280,720);
         }
+        x = this.getBounds().width/50;
+        y = this.getBounds().height/50;
+        System.out.println(x+", "+y);
+        
+        grid = new Tile[x][y];
+        tileType = new int[x][y];
         
         
-        this.setResizable(false);
+        this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         container = getContentPane();
@@ -65,8 +70,8 @@ class Map extends JFrame implements KeyListener{
         }
         s.close(); 
         
-        for (int i = rightOff; i < x; i++){
-            for (int j = downOff; j < y; j++){
+        for (int i = 0; i < x; i++){
+            for (int j = 0; j < y; j++){
                 grid[i][j] = new Tile(i, j);
                 grid[i][j].setTile(tileType[i][j]);
                 container.add(grid[i][j]);
@@ -124,43 +129,46 @@ class Map extends JFrame implements KeyListener{
         if (e.getKeyCode() == 38){//up
             if (downOff != 0){
                 downOff--;
-            }
-            for (int i = 0; i < x; i++){
-                for (int j = 0; j < y; j++){
-                    grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
+                for (int i = 0; i < x; i++){
+                    for (int j = 0; j < y; j++){
+                        grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
+
+                    }
                 }
             }
         }
         if (e.getKeyCode() == 37){//left
             if (rightOff != 0){
                 rightOff--;
-            }
-            for (int i = 0; i < x; i++){
-                for (int j = 0; j < y; j++){
-                    grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
+                for (int i = 0; i < x; i++){
+                    for (int j = 0; j < y; j++){
+                        grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
+
+                    }
                 }
             }
         }
         if (e.getKeyCode() == 40){//down
             
             if (downOff != y){
-                downOff++;    
-            }
-            for (int i = 0; i < x; i++){
-                for (int j = 0; j < y; j++){
-                    grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
+                downOff++;
+                for (int i = 0; i < x; i++){
+                    for (int j = 0; j < y; j++){
+                        grid[i][j].setTile(tileType[i+rightOff][j+downOff]);
+
+                    }
                 }
+                System.out.println(downOff);
             }
         }
         if (e.getKeyCode() == 39){//right
-            
             if (rightOff != x){
-                rightOff++;    
-            }
-            for (int i = 0; i < x; i++){
-                for (int j = 0; j < y; j++){
-                    grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
+                rightOff++; 
+                for (int i = 0; i < x; i++){
+                    for (int j = 0; j < y; j++){
+                        grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
 
+                    }
                 }
             }
         }
