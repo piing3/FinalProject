@@ -32,12 +32,12 @@ class Map extends JFrame implements KeyListener{
     boolean menuOpen = false;
     private JLabel tile; 
     
-    int x = 30,y = 30;
+    int x,y;
+    final int size = 30;
     public int downOff = 0, rightOff = 0;//Down and Right offsets, used for moving map.
     
-    public Tile[][] grid = new Tile[x][y];
-    
-    int[][] tileType = new int[x][y];
+    public Tile[][] grid;
+    int[][] tileType;
     
     public Map(int fullscreen) throws FileNotFoundException{
         if(fullscreen == 0){
@@ -48,8 +48,15 @@ class Map extends JFrame implements KeyListener{
             this.setSize(1280,720);
         }
         
+        x = this.getWidth()/50;
+        y = this.getHeight()/50;
+        System.out.println(x+", "+y);
         
-        this.setResizable(false);
+        tileType  = new int[128][72];
+        grid  = new Tile[128][72];
+        
+        
+        this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         container = getContentPane();
@@ -58,15 +65,15 @@ class Map extends JFrame implements KeyListener{
         
         File temp = new File("src\\finalProject\\Map.txt");
         Scanner s = new Scanner(temp);
-        for (int j = 0; j < y; j++){
-            for (int i = 0; i < x; i++){
+        for (int j = 0; j <= 71; j++){
+            for (int i = 0; i <= 127; i++){
                 tileType[i][j] = s.nextInt();
             }
         }
         s.close(); 
         
-        for (int i = rightOff; i < x; i++){
-            for (int j = downOff; j < y; j++){
+        for (int i = rightOff; i < 127; i++){
+            for (int j = downOff; j < 71; j++){
                 grid[i][j] = new Tile(i, j);
                 grid[i][j].setTile(tileType[i][j]);
                 container.add(grid[i][j]);
@@ -109,7 +116,6 @@ class Map extends JFrame implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println(e.getKeyChar() +" "+ e.getKeyCode());
         if (e.getKeyCode() == 27){//Fix this & menu later 
             if (menuOpen == false){
                 menu.setVisible(true);
@@ -143,7 +149,7 @@ class Map extends JFrame implements KeyListener{
         }
         if (e.getKeyCode() == 40){//down
             
-            if (downOff != y){
+            if (downOff != (72-y)){
                 downOff++;    
             }
             for (int i = 0; i < x; i++){
@@ -151,10 +157,11 @@ class Map extends JFrame implements KeyListener{
                     grid[i][j].setTile(tileType[i + rightOff][j + downOff]);
                 }
             }
+            System.out.println(downOff);
         }
         if (e.getKeyCode() == 39){//right
             
-            if (rightOff != x){
+            if (rightOff != (128-x)){
                 rightOff++;    
             }
             for (int i = 0; i < x; i++){
@@ -163,6 +170,7 @@ class Map extends JFrame implements KeyListener{
 
                 }
             }
+            System.out.println(rightOff);
         }
     }
 }

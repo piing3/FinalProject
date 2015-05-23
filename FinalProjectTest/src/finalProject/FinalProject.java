@@ -18,7 +18,7 @@ public class FinalProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
-        String players = JOptionPane.showInputDialog("How many people are playing");
+        /*String players = JOptionPane.showInputDialog("How many people are playing");
         int play = Integer.parseInt(players);
         if (play <= -1)//set to two when not testing to see if it runs the menu
         {
@@ -43,7 +43,7 @@ public class FinalProject {
             {
                 Person player4 = new Person(name, i++, play);
             }
-        }
+        }*/
         int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
         Map map = new Map(fullscreen);
     }
