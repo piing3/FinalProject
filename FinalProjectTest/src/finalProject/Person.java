@@ -19,7 +19,7 @@ class Person {
         this.name = name;
         this.PlayerNumber = playerNumber;
         this.players = players;
-        TurnOrder TurnOrder = new TurnOrder();
+        //TurnOrder TurnOrder = new TurnOrder();
     }
     public boolean startTurn()
     {
