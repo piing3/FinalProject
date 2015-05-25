@@ -24,11 +24,8 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author Davin
  */
-class Map extends Visual implements KeyListener{
+class Map implements KeyListener{
     
-    private final Container container;
-    private Menu menu = new Menu();
-    private JButton btnExit;
     boolean menuOpen = false;
     private JLabel tile; 
     
@@ -39,29 +36,24 @@ class Map extends Visual implements KeyListener{
     public Tile[][] grid;
     int[][] tileType;
     
-    public Map(int fullscreen) throws FileNotFoundException{
+    Map(int fullscreen) throws FileNotFoundException{
         if(fullscreen == 0){
-            this.setExtendedState(Map.MAXIMIZED_BOTH);
-            this.setUndecorated(true);
+            //visual.setExtendedState(Map.MAXIMIZED_BOTH);
+            //super.setUndecorated(true);
         }
         else{
-            this.setSize(1280,720);
+            //super.setSize(1280,720);
         }
         
-        x = this.getWidth()/50;
-        y = this.getHeight()/50;
+        x = Visual.WIDTH/50;
+        y = Visual.HEIGHT/50;
         System.out.println(x+", "+y);
         
         tileType  = new int[128][72];
         grid  = new Tile[128][72];
         
-        
-        this.setResizable(true);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
-        container = getContentPane();
-        container.setLayout(null);
-        this.addKeyListener(this);
+        Visual.container.addKeyListener(this);
+        Visual.container.setLayout(null);
         
         File temp = new File("src\\finalProject\\Map.txt");
         Scanner s = new Scanner(temp);
@@ -76,33 +68,11 @@ class Map extends Visual implements KeyListener{
             for (int j = downOff; j < 71; j++){
                 grid[i][j] = new Tile(i, j);
                 grid[i][j].setTile(tileType[i][j]);
-                container.add(grid[i][j]);
+                Visual.container.add(grid[i][j]);
                 
             }
         }
-        
-        
-        UnitType Warrior = new UnitType(0, 2);
-        
-        
-        
-        btnExit = new JButton("X");
-        btnExit.setBounds(0, 0, 50, 50);
-        btnExit.setBackground(Color.red);
-        btnExit.setForeground(Color.white);
-        btnExit.setFocusable(false);
-        container.add(btnExit);
-        ActionListener Exit = new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        };
-        btnExit.addActionListener(Exit);
-        this.setVisible(true);
-        
-    }    
+    }   
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -118,11 +88,11 @@ class Map extends Visual implements KeyListener{
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == 27){//Fix this & menu later 
             if (menuOpen == false){
-                menu.setVisible(true);
+                //menu.setVisible(true);
                 menuOpen = true;
             }
             else if (menuOpen == true){
-                menu.setVisible(false);
+                //menu.setVisible(false);
                 menuOpen = false;
             }    
         }

@@ -44,7 +44,7 @@ public class FinalProject {
                 Person player4 = new Person(name, i++, play);
             }
         }*/
-        Visual BensUnhappyWithMyCode = new Visual();
+        Visual visual = new Visual();
     }
     
 }
