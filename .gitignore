@@ -43,3 +43,4 @@ Temporary Items
 .apdisk
 /FinalProjectTest/build/
 /FinalProjectTest/dist/
+*.properties
