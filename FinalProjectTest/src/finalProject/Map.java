@@ -24,7 +24,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author Davin
  */
-class Map extends JFrame implements KeyListener{
+class Map extends Visual implements KeyListener{
     
     private final Container container;
     private Menu menu = new Menu();

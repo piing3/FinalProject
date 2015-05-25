@@ -44,8 +44,7 @@ public class FinalProject {
                 Person player4 = new Person(name, i++, play);
             }
         }*/
-        int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
-        Map map = new Map(fullscreen);
+        Visual BensUnhappyWithMyCode = new Visual();
     }
     
 }
