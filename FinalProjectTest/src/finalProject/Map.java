@@ -29,12 +29,12 @@ class Map implements KeyListener{
     boolean menuOpen = false;
     private JLabel tile; 
     
-    int x,y;
+    static int x,y;
     final int size = 30;
-    public int downOff = 0, rightOff = 0;//Down and Right offsets, used for moving map.
+    static  int downOff = 0, rightOff = 0;//Down and Right offsets, used for moving map.
     
-    public Tile[][] grid;
-    int[][] tileType;
+    static Tile[][] grid;
+    static int[][] tileType;
     
     Map(int fullscreen) throws FileNotFoundException{
         if(fullscreen == 0){
@@ -45,14 +45,14 @@ class Map implements KeyListener{
             //super.setSize(1280,720);
         }
         
-        x = Visual.WIDTH/50;
-        y = Visual.HEIGHT/50;
+        x = 25;
+        y = 14;
         System.out.println(x+", "+y);
         
         tileType  = new int[128][72];
         grid  = new Tile[128][72];
         
-        Visual.container.addKeyListener(this);
+        //Visual.addKeyListener(this);
         Visual.container.setLayout(null);
         
         File temp = new File("src\\finalProject\\Map.txt");
