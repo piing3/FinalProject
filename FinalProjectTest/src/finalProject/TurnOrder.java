@@ -14,48 +14,48 @@ public class TurnOrder{
     public TurnOrder(int players){
         numberOfPlayers = players;
     }
-    /*public void NextTurn(){
+    public void NextTurn(){
         if(numberOfPlayers == 2){
-            if(player1.isTurn == true)
+            if(Globals.player1.isTurn)
             {
                 
             }
-            if(player2.isTurn == true)
+            if(Globals.player2.isTurn)
             {
                 
             }
         }
         if(numberOfPlayers == 3){
-            if(player1.isTurn == true)
+            if(Globals.player1.isTurn)
             {
                 
             }
-            if(player2.isTurn == true)
+            if(Globals.player2.isTurn)
             {
                 
             }
-            if(player3.isTurn == true)
+            if(Globals.player3.isTurn)
             {
                 
             }
         }
         if(numberOfPlayers == 4){
-            if(player1.isTurn == true)
+            if(Globals.player1.isTurn)
             {
                 
             }
-            if(player2.isTurn == true)
+            if(Globals.player2.isTurn)
             {
                 
             }
-            if(player3.isTurn == true)
+            if(Globals.player3.isTurn)
             {
                 
             }
-            if(player4.isTurn == true)
+            if(Globals.player1.isTurn)
             {
                 
             }
         } 
-    }*/
+    }
 }
