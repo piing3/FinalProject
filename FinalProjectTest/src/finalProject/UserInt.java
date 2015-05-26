@@ -5,7 +5,11 @@
  */
 package finalProject;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicOptionPaneUI;
 
 /**
  *
@@ -13,8 +17,20 @@ import java.io.FileNotFoundException;
  */
 class UserInt {
     
+        public JButton nextTurn;
     
     UserInt() throws FileNotFoundException{
         
+        nextTurn = new JButton("Next Turn");
+        
+        ActionListener actionListener = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TurnOrder.NextTurn();
+            }
+        };
+        
+        nextTurn.addActionListener(actionListener);
     }
 }

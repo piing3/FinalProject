@@ -53,7 +53,7 @@ class Map implements KeyListener{
         grid  = new Tile[128][72];
         
         //Visual.addKeyListener(this);
-        Visual.container.setLayout(null);
+        Visual.tiles.setLayout(null);
         
         File temp = new File("src\\finalProject\\Map.txt");
         Scanner s = new Scanner(temp);
@@ -68,7 +68,7 @@ class Map implements KeyListener{
             for (int j = downOff; j < 71; j++){
                 grid[i][j] = new Tile(i, j);
                 grid[i][j].setTile(tileType[i][j]);
-                Visual.container.add(grid[i][j]);
+                Visual.tiles.add(grid[i][j]);
                 
             }
         }

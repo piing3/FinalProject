@@ -24,7 +24,8 @@ class Visual extends JFrame implements KeyListener{
    
     //UserInt userInt = new UserInt();
     
-    static Container container;
+    static Container tiles;
+    static Container UI;
     static int width; 
     static int hight; 
     
@@ -37,7 +38,8 @@ class Visual extends JFrame implements KeyListener{
         width = this.getX();
         hight = this.getY();
         
-        container = this.getContentPane();
+        tiles = this.getContentPane();
+        UI = this.getContentPane();
         
         this.addKeyListener(this);
         
