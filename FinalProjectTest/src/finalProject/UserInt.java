@@ -5,6 +5,7 @@
  */
 package finalProject;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -30,7 +31,12 @@ class UserInt {
                 //TurnOrder.NextTurn();
             }
         };
-        
         nextTurn.addActionListener(actionListener);
+        
+        nextTurn.setSize(100, 50);
+        nextTurn.setLocation(Visual.width-100, Visual.hight-150);
+        nextTurn.setBackground(Color.pink);
+        nextTurn.setVisible(true);
+        Visual.UI.add(nextTurn);
     }
 }
