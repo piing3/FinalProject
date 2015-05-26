@@ -44,3 +44,4 @@ Temporary Items
 /FinalProjectTest/build/
 /FinalProjectTest/dist/
 *.properties
+FinalProjectTest/nbproject/private/private.xml
