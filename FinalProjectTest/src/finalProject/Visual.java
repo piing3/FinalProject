@@ -37,13 +37,19 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     Point mousePos2;
     
     public Visual() throws FileNotFoundException {
+        int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
+        if(fullscreen == 0){
+            this.setExtendedState(this.MAXIMIZED_BOTH);
+        }
+        else{
+            this.setSize(1280, 720);    
+        }
         
-        this.setSize(1280, 720);
         this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
-        width = this.getX();
-        hight = this.getY();
+        width = this.getWidth();
+        hight = this.getHeight();
         
         tiles = this.getContentPane();
         UI = this.getContentPane();
@@ -51,8 +57,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         this.addKeyListener(this);
         this.addMouseMotionListener(this);
         
-        int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
-        Map map = new Map(fullscreen);
+        Map map = new Map();
         this.setVisible(true);
     }
     

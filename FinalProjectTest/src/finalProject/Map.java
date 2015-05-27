@@ -36,10 +36,10 @@ class Map {
     static Tile[][] grid;
     static int[][] tileType;
     
-    Map(int fullscreen) throws FileNotFoundException{
+    Map() throws FileNotFoundException{
         
-        x = 25;
-        y = 14;
+        x = Visual.width/50;//25;
+        y = Visual.hight/50;//14;
         System.out.println(x+", "+y);
         
         tileType  = new int[128][72];
