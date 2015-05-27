@@ -45,3 +45,4 @@ Temporary Items
 /FinalProjectTest/dist/
 *.properties
 FinalProjectTest/nbproject/private/private.xml
+*.xml

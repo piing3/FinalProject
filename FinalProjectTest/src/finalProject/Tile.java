@@ -25,7 +25,8 @@ class Tile extends JLabel{
         public Tile(int i, int j) {
             x = i; y = j;
             this.setSize(50, 50);
-            this.setLocation((x * 50), (y * 50));
+            if (y%2 == 1) this.setLocation((x * 50 + 25), (y * 50));
+            else this.setLocation((x * 50), (y * 50));
         }
 
     public void setTile(int type) {
