@@ -18,11 +18,18 @@ public class Unit extends JLabel{
     int movement;
     int x;
     int y;
+    int defaultMove;
+    int type;
     
-    public Unit(int x, int y, int type, int movement){
+    public Unit(int x, int y, int type){
        // this.setIcon(unitType.image);
         //movement = unitType.movement;
+        this.x = x;
+        this.y = y;
         this.setSize(50, 50);
         this.setLocation(x*50, y*50);
+    }
+    public int SetMove(int defaultMove){
+        return defaultMove;
     }
 }

@@ -5,6 +5,7 @@
  */
 package finalProject;
 
+import static finalProject.Map.grid;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -15,14 +16,18 @@ import javax.swing.ImageIcon;
 class UnitType {
 
     public static Icon image;
-    public int unitGrid[][];
     
     public  static void CreateUnit(int x, int y, int type){
-        if (type == 0){
+        if (FinalProject.units.isEmpty()){
+            Globals.unitGrid  = new int[128][72];
+        }
+        if (type == 1){
+            int owner = TurnOrder.whoTurn();
             image = new ImageIcon("src\\Images\\WarriorUnit1.png");
-            int movement = 2;
-            FinalProject.units.add(new Unit(x, y, type, movement));
-        } 
+            ResetUnits(owner);
+            FinalProject.units.add(new Unit(x, y, type));
+        }
+        
         
     }
     public static int FindUnit(int x, int y){
@@ -40,6 +45,19 @@ class UnitType {
             }
         }
         return result;
+    } 
+    public static int FindUnit(int owner){
+        int result = -2;
+        for (int i = 0; i < FinalProject.units.size(); i++) {
+            if (FinalProject.units.get(i).player == owner){
+                result = i;
+            }
+            else{
+                result = -1;
+            }
+        }
+        return result;
+        
     }
     public void Move(int index, int newX, int newY){
         int speed = FinalProject.units.get(index).movement;
@@ -49,6 +67,12 @@ class UnitType {
     }
     public void Death(int index){
         FinalProject.units.remove(index);
+    }
+    public static void ResetUnits(int owner){
+        for (int i = 0; i < FinalProject.units.size(); i++) {
+           int index = FindUnit(owner);
+           FinalProject.units.get(index).SetMove(FinalProject.units.get(index).type);
+        }
     }
     
     

@@ -17,12 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class FinalProject {
 public static ArrayList<Unit> units = new ArrayList<Unit>();
+public static int play;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
-        /*String players = JOptionPane.showInputDialog("How many people are playing");
-        int play = Integer.parseInt(players);
+        String players = JOptionPane.showInputDialog("How many people are playing");
+        play = Integer.parseInt(players);
         if (play <= -1)//set to two when not testing to see if it runs the menu
         {
             JOptionPane.showMessageDialog(null, "you cant play alone.");
@@ -46,7 +48,7 @@ public static ArrayList<Unit> units = new ArrayList<Unit>();
             {
                 Person player4 = new Person(name, i++, play);
             }
-        }*/
+        }
         Visual visual = new Visual() {
 
             @Override
