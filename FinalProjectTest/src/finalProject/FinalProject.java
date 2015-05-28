@@ -8,6 +8,7 @@ package finalProject;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Davin & Ben
  */
 public class FinalProject {
-
+public static ArrayList<Unit> units = new ArrayList<Unit>();
     /**
      * @param args the command line arguments
      */
