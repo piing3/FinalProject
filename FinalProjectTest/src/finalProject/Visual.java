@@ -33,8 +33,10 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     Boolean menuOpen = false;
     Menu menu = new Menu();
     
-    Point mousePos1;
-    Point mousePos2;
+    int mouseX1;
+    int mouseX2;
+    int mouseY1;
+    int mouseY2;
     
     public Visual() throws FileNotFoundException {
         int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
@@ -56,6 +58,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         
         this.addKeyListener(this);
         this.addMouseMotionListener(this);
+        this.addMouseListener(this);
         
         Map map = new Map();
         this.setVisible(true);
@@ -123,13 +126,31 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        mousePos2 = getMousePosition();
+        mouseX2 = getMousePosition().x/50;
+        mouseY2 = getMousePosition().y/50;
+        if ((mouseX2 - mouseX1) > 0||Map.rightOff != (128-Map.x)) Map.rightOff++;
+        if ((mouseX2 - mouseX1) < 0/*||Map.rightOff != 0*/) Map.rightOff--;
+        if ((mouseY2 - mouseY1) > 0/*||Map.downOff != (72-Map.y)*/) Map.downOff++;
+        if ((mouseY2 - mouseY1) < 0/*||Map.downOff != 0*/) Map.downOff--;
+        System.out.println("right = "+Map.rightOff+", down = "+Map.downOff);
         
+        for (int i = 0; i < Map.x; i++){
+                for (int j = 0; j < Map.y; j++){
+                    Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
+
+                }
+            }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        mouseX1 = getMousePosition().x/50;
+        mouseY1 = getMousePosition().y/50;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        mousePos1 = getMousePosition();
+
     }
 
     

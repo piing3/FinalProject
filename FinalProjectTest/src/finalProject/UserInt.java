@@ -34,7 +34,7 @@ class UserInt {
         nextTurn.addActionListener(actionListener);
         
         nextTurn.setSize(100, 50);
-        nextTurn.setLocation(Visual.width-100, Visual.hight-150);
+        nextTurn.setLocation(100, 100);
         nextTurn.setBackground(Color.pink);
         nextTurn.setVisible(true);
         Visual.UI.add(nextTurn);

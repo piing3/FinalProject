@@ -20,31 +20,34 @@ class Tile extends JLabel{
         public int tileType;
         public int owner;
         public int improvement;
-        public int occupint;  
+        public int movement;
         
         public Tile(int i, int j) {
             x = i; y = j;
             this.setSize(50, 50);
-            if (y%2 == 1) this.setLocation((x * 50 + 25), (y * 50));
-            else this.setLocation((x * 50), (y * 50));
+            this.setLocation((x * 50), (y * 50));
         }
 
     public void setTile(int type) {
         if (type == 0 ){
             Icon tile = new ImageIcon("src\\Images\\GrassTile1.png");
             this.setIcon(tile);
+            movement = 1;
         }
         if (type == 1){
             Icon tile = new ImageIcon("src\\Images\\DessertTile1.png");
             this.setIcon(tile);
+            movement = 1;
         }
         if (type == 2){
             Icon tile = new ImageIcon("src\\Images\\WaterTile1.png");
             this.setIcon(tile);
+            movement = 1;
         }
         if (type == 3){
             Icon tile = new ImageIcon("src\\Images\\BorderTile1.png");
             this.setIcon(tile);
+            movement = 1000000000;
         }
     }
 }
