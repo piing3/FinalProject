@@ -21,6 +21,7 @@ class UserInt {
         public JButton nextTurn;
     
     UserInt() throws FileNotFoundException{
+        System.out.println("Poop");
         
         nextTurn = new JButton("Next Turn");
         
@@ -29,6 +30,7 @@ class UserInt {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TurnOrder.NextTurn();
+                System.out.println("fjkjsfjkheuhfejhuhfjhdavub gben allen6");
             }
         };
         nextTurn.addActionListener(actionListener);
@@ -37,6 +39,7 @@ class UserInt {
         nextTurn.setLocation(100, 100);
         nextTurn.setBackground(Color.pink);
         nextTurn.setVisible(true);
+        nextTurn.setFocusable(false);
         Visual.UI.add(nextTurn);
     }
 }
