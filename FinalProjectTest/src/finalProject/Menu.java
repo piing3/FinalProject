@@ -42,7 +42,7 @@ class Menu extends JFrame{
         this.setTitle("Menu");
         this.setUndecorated(true);
         this.setResizable(false);
-        this.setBounds(500, 100, 300, 700);
+        this.setBounds(500, 0, 300, 700);
         
         ActionListener exit = new ActionListener() {
 
