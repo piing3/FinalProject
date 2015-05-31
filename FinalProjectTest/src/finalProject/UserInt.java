@@ -30,14 +30,14 @@ class UserInt {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TurnOrder.NextTurn();
-                System.out.println("fjkjsfjkheuhfejhuhfjhdavub gben allen6");
+                System.out.println("Next Turn");
             }
         };
         nextTurn.addActionListener(actionListener);
         
-        nextTurn.setSize(100, 50);
-        nextTurn.setLocation(100, 100);
-        nextTurn.setBackground(Color.pink);
+        nextTurn.setSize(200, 25);
+        nextTurn.setLocation(Visual.width - 200, Visual.hight - 175);
+        nextTurn.setBackground(Color.gray);
         nextTurn.setVisible(true);
         nextTurn.setFocusable(false);
         Visual.UI.add(nextTurn);
