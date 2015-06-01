@@ -13,7 +13,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.FileNotFoundException;
-import javax.swing.JButton;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame; 
 import javax.swing.JOptionPane;
 
@@ -28,8 +29,12 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     
     static Container tiles;
     static Container UI;
+    static Container Cities;
     static int width; 
     static int hight;
+    
+    City[][] temp = new City[5][10];
+    int cityCounter = 0;
     
     Boolean menuOpen = false;
     Menu menu = new Menu();
@@ -56,6 +61,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         
         tiles = this.getContentPane();
         UI = this.getContentPane();
+        Cities = this.getContentPane();
         
         this.addKeyListener(this);
         this.addMouseMotionListener(this);
@@ -101,6 +107,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
         if (e.getKeyCode() == 27){
             if (menuOpen == false){
                 menu.setVisible(true);
@@ -110,6 +117,13 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                 menu.setVisible(false);
                 menuOpen = false;
             }    
+        }
+        
+        if (e.getKeyCode() == 81){
+            temp[0][cityCounter] = new City(getMousePosition());
+            Cities.add(temp[0][cityCounter]);
+            cityCounter++;
+            
         }
         
         if (e.getKeyCode() == 38){//up
