@@ -30,7 +30,7 @@ class UserInt {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TurnOrder.NextTurn();
-                System.out.println("Next Turn");
+                
             }
         };
         nextTurn.addActionListener(actionListener);

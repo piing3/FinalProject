@@ -21,6 +21,7 @@ class Tile extends JLabel{
         public int owner;
         public int improvement;
         public int movement;
+        public Icon tile;
         
         public Tile(int i, int j) {
             x = i; y = j;
@@ -30,22 +31,22 @@ class Tile extends JLabel{
 
     public void setTile(int type) {
         if (type == 0 ){
-            Icon tile = new ImageIcon("src\\Images\\GrassTile1.png");
+            tile = new ImageIcon("src\\Images\\GrassTile1.png");
             this.setIcon(tile);
             movement = 1;
         }
         if (type == 1){
-            Icon tile = new ImageIcon("src\\Images\\DessertTile1.png");
+            tile = new ImageIcon("src\\Images\\DessertTile1.png");
             this.setIcon(tile);
             movement = 1;
         }
         if (type == 2){
-            Icon tile = new ImageIcon("src\\Images\\WaterTile1.png");
+            tile = new ImageIcon("src\\Images\\WaterTile1.png");
             this.setIcon(tile);
             movement = 1;
         }
         if (type == 3){
-            Icon tile = new ImageIcon("src\\Images\\BorderTile1.png");
+            tile = new ImageIcon("src\\Images\\BorderTile1.png");
             this.setIcon(tile);
             movement = 1000000000;
         }

@@ -25,6 +25,7 @@ class City extends JLabel{
         this.setIcon(tile);
         this.setSize(50, 50);
         this.setLocation(x, y);
+        Map.grid[x][y].tile = tile;
         System.out.println("X: "+x+", Y: "+y);
     }
     
