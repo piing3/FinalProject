@@ -5,27 +5,25 @@
  */
 package finalProject;
 
-import static finalProject.Map.grid;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import java.awt.Container;
+
 
 /**
  *
- * @author Deborah
+ * @author Ben Allen
  */
 class UnitType {
 
-    public static Icon image;
     
-    public  static void CreateUnit(int x, int y, int type){
+    public  static void CreateUnit(int x, int y, int type, Container container){
         if (FinalProject.units.isEmpty()){
             Globals.unitGrid  = new int[128][72];
         }
         if (type == 1){
-            int owner = TurnOrder.whoTurn();
-            image = new ImageIcon("src\\Images\\WarriorUnit1.png");
-            ResetUnits(owner);
-            FinalProject.units.add(new Unit(x, y, type));
+           // int owner = TurnOrder.whoTurn();
+            //ResetUnits(owner);
+            FinalProject.units.add(new Unit(x, y, type,container));
+            LoadUnits();
         }
         
         
@@ -47,7 +45,7 @@ class UnitType {
         return result;
     } 
     public static int FindUnit(int owner){
-        int result = -2;
+        int result = -1;
         for (int i = 0; i < FinalProject.units.size(); i++) {
             if (FinalProject.units.get(i).player == owner){
                 result = i;
@@ -74,6 +72,16 @@ class UnitType {
            FinalProject.units.get(index).SetMove(FinalProject.units.get(index).type);
         }
     }
-    
-    
+    public static void LoadUnits(){
+        for (int j = 0; j <= 71; j++){
+            for (int i = 0; i <= 127; i++){
+                if (FindUnit(i,j) >= 0){
+
+                    System.out.println("test");
+                    int index = FindUnit(i, j);
+                    Globals.unitGrid[i][j] = FinalProject.units.get(index).type;
+                }
+            }
+        }
+    }
 }

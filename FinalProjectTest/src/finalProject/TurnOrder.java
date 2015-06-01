@@ -10,8 +10,16 @@ package finalProject;
  * @author Ben
  */
 public class TurnOrder{
-    int numberOfPlayers = FinalProject.play;
-    public void NextTurn(){
+    static int numberOfPlayers = FinalProject.play;
+    public static int whoTurn(){
+        int result = -1;
+            if (Globals.player1.isTurn) result = 1;
+            if (Globals.player2.isTurn) result = 2;
+            if (Globals.player3.isTurn) result = 3;
+            if (Globals.player4.isTurn) result = 4;
+            return result;
+    }
+    public static void NextTurn(){
         if(numberOfPlayers == 2){
             if(Globals.player1.isTurn)
             {
@@ -54,11 +62,6 @@ public class TurnOrder{
                 
             }
         }
-        public static int whoTurn(){
-            if (Globals.player1.isTurn) return 1;
-            if (Globals.player2.isTurn) return 2;
-            if (Globals.player3.isTurn);
-            if (Globals.player4.isTurn);
+        
         }
     }
-}

@@ -96,5 +96,6 @@ public static int play;
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
+        UnitType.CreateUnit(1, 1, 1,Visual.Units);
     }
 }

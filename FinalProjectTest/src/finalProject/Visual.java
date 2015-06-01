@@ -30,6 +30,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     static Container tiles;
     static Container UI;
     static Container Cities;
+    static Container Units;
     static int width; 
     static int hight;
     
@@ -50,7 +51,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             this.setExtendedState(this.MAXIMIZED_BOTH);
         }
         else{
-            this.setSize(1280, 720);    
+            this.setSize(1266, 738);    
         }
         
         this.setResizable(true);
@@ -62,6 +63,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         tiles = this.getContentPane();
         UI = this.getContentPane();
         Cities = this.getContentPane();
+        Units = this.getContentPane();
+        Units.setLayout(null);
         
         this.addKeyListener(this);
         this.addMouseMotionListener(this);

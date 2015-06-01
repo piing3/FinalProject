@@ -5,7 +5,9 @@
  */
 package finalProject;
 
+import java.awt.Container;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -20,14 +22,20 @@ public class Unit extends JLabel{
     int y;
     int defaultMove;
     int type;
+    Icon image; 
     
-    public Unit(int x, int y, int type){
-       // this.setIcon(unitType.image);
-        //movement = unitType.movement;
+    public Unit(int x, int y, int type, Container container){
+        container.add(this);
         this.x = x;
         this.y = y;
         this.setSize(50, 50);
-        this.setLocation(x*50, y*50);
+        this.setLocation(x*50, y*50);     
+        if (type == 1){
+            image = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            this.setIcon(image);
+            this.setVisible(true);
+            UnitType.LoadUnits();
+        }
     }
     public int SetMove(int defaultMove){
         return defaultMove;
