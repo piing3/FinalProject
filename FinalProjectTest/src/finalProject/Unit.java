@@ -40,4 +40,7 @@ public class Unit extends JLabel{
     public int SetMove(int defaultMove){
         return defaultMove;
     }
+    public void Load(int newX, int newY){
+        this.setLocation(newX, newY);
+    }
 }

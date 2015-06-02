@@ -57,10 +57,17 @@ class UnitType {
         return result;
         
     }
-    public void Move(int index, int newX, int newY){
+    public void MoveGround(int index, int newX, int newY){
         int speed = FinalProject.units.get(index).movement;
         if (FindUnit(newX, newY) == -1){
-            
+            if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
+                if (FinalProject.units.get(index).movement != 0){
+                    FinalProject.units.get(index).movement -= 1;
+                    FinalProject.units.get(index).x = newX;
+                    FinalProject.units.get(index).y = newY;
+                    FinalProject.units.get(index).Load(newX, newY);
+                }
+            }
         }
     }
     public void Death(int index){
@@ -76,10 +83,10 @@ class UnitType {
         for (int j = 0; j <= 71; j++){
             for (int i = 0; i <= 127; i++){
                 if (FindUnit(i,j) >= 0){
-
                     System.out.println("test");
                     int index = FindUnit(i, j);
                     Globals.unitGrid[i][j] = FinalProject.units.get(index).type;
+                    FinalProject.units.get(index).setLocation(500, 500);
                 }
             }
         }
