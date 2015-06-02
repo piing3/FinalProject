@@ -29,13 +29,16 @@ class UnitType {
         
     }
     public static int FindUnit(int x, int y){
+        int x2;
+        int y2;
         //System.out.println("" + FinalProject.units.size());
         int result = -2;
         if (FinalProject.units.size() <= 0){
             //System.out.println("oo");
         }
         for (int i = 0; i < FinalProject.units.size(); i++) {
-            if (FinalProject.units.get(i).x == x && FinalProject.units.get(i).y == y){
+            Unit unit = FinalProject.units.get(i);
+            if (unit.x == x && unit.y == y){
                 result = i;
             }
             else {
