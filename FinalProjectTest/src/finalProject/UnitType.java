@@ -38,7 +38,7 @@ class UnitType {
         }
         for (int i = 0; i < FinalProject.units.size(); i++) {
             Unit unit = FinalProject.units.get(i);
-            if (unit.x == x && unit.y == y){
+            if (unit.x == x && unit.y  == y){
                 result = i;
             }
             else {
@@ -60,15 +60,18 @@ class UnitType {
         return result;
         
     }
-    public void MoveGround(int index, int newX, int newY){
+    public static void MoveGround(int index, int newX, int newY){
         int speed = FinalProject.units.get(index).movement;
         if (FindUnit(newX, newY) == -1){
             if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
-                if (FinalProject.units.get(index).movement != 0){
-                    FinalProject.units.get(index).movement -= 1;
-                    FinalProject.units.get(index).x = newX;
-                    FinalProject.units.get(index).y = newY;
-                    FinalProject.units.get(index).Load(newX, newY);
+                System.out.println("gggg");
+                Unit unit = FinalProject.units.get(index);
+                System.out.println("gggg");
+                if (unit.movement == 0){
+                    unit.movement -= 1;
+                    unit.x = newX;
+                    unit.y = newY;
+                    unit.setLocation(newX*50, newY*50);
                 }
             }
         }
