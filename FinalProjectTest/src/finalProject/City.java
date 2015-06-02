@@ -26,14 +26,9 @@ class City extends JLabel{
             this.setIcon(tile);
             this.setSize(50, 50);
             this.setLocation(x*50, y*50);
-            Map.grid[x][y].setIcon(null);
-            System.out.println("X: "+x+", Y: "+y);
-            System.out.println(this.getLocation());
+            Map.grid[x][y].setTile(100);
+            Map.tileType[x][y] = 100;
+            Visual.redrawMap();
         }
-    }
-    
-    //static public Point getXY(){
-    //return new Point(x*50, y*50);
-    //}
-    
+    }    
 }

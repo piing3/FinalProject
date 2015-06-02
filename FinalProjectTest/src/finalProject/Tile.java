@@ -52,6 +52,10 @@ class Tile extends JLabel{
             tile = new ImageIcon("src\\Images\\BorderTile1.png");
             this.setIcon(tile);
         }
+        if (type == 100){
+            tile = new ImageIcon("src\\Images\\CityTile1.png");
+            this.setIcon(tile);
+        }
     }
    static int getTileType(Tile tile) {
       return tile.tileType;

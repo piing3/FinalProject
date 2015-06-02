@@ -28,6 +28,7 @@ class Map {
     
     Map() throws FileNotFoundException{
         
+
         x = Visual.width/50;//25;
         y = Visual.hight/50;//14;
         System.out.println(x+", "+y);

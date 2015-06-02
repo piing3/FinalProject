@@ -73,6 +73,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         UserInt userInt = new UserInt();
         Map map = new Map();
         
+        
+        
 //        
 //        this.addMouseListener(new MouseAdapter() { 
 ////            public void mousePressed(MouseEvent e) {
@@ -132,6 +134,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                 index = FindCity(cityX, cityY);
                 if (index >= 0) citiesContainer.add(FinalProject.cities.get(index));
             } 
+            int temp = FindCity(cityX, cityY);
+            System.out.println(temp);
             
         }
         
@@ -139,47 +143,37 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             if (Map.downOff != 0){
                 Map.downOff--;
             }
-            for (int i = 0; i < Map.x; i++){
-                for (int j = 0; j < Map.y; j++){
-                    Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
-                }
-            }
+            redrawMap();
         }
         if (e.getKeyCode() == 37){//left
             if (Map.rightOff != 0){
                 Map.rightOff--;
             }
-            for (int i = 0; i < Map.x; i++){
-                for (int j = 0; j < Map.y; j++){
-                    Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
-                }
-            }
+            redrawMap();
         }
         if (e.getKeyCode() == 40){//down
             
             if (Map.downOff != (72-Map.y)){
                 Map.downOff++;    
             }
-            for (int i = 0; i < Map.x; i++){
-                for (int j = 0; j < Map.y; j++){
-                    Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
-                }
-            }
-            System.out.println(Map.downOff);
+            redrawMap();
         }
         if (e.getKeyCode() == 39){//right
             
             if (Map.rightOff != (128-Map.x)){
                 Map.rightOff++;    
             }
-            for (int i = 0; i < Map.x; i++){
+            redrawMap();
+        }
+    }
+    
+    public static void redrawMap(){
+        for (int i = 0; i < Map.x; i++){
                 for (int j = 0; j < Map.y; j++){
                     Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
 
                 }
             }
-            System.out.println(Map.rightOff);
-        }
     }
 
 //    /*@Override
@@ -245,8 +239,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             //System.out.println("oo");
         }
         for (int i = 0; i < FinalProject.cities.size(); i++) {
-            System.out.println(FinalProject.cities.size() + "");
-            if (FinalProject.cities.get(i).x == x && FinalProject.units.get(i).y == y){
+            City city = FinalProject.cities.get(i);
+            if (city.x == x && city.y == y){
                 result = i;
             }
             else {
