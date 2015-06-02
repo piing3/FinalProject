@@ -23,10 +23,6 @@ import javax.swing.JOptionPane;
  * @author d.holmberg
  */
 abstract class Visual extends JFrame implements KeyListener, MouseMotionListener, MouseListener  {
-    
-   
-    //UserInt userInt = new UserInt();
-    
     static Container tiles;
     static Container UI;
     static Container citiesContainer;
@@ -131,11 +127,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             if (index == -1)
             {
                 FinalProject.cities.add(new City(cityX, cityY));
-                index = FindCity(cityX, cityY);
-                if (index >= 0) citiesContainer.add(FinalProject.cities.get(index));
             } 
-            int temp = FindCity(cityX, cityY);
-            System.out.println(temp);
             
         }
         
@@ -202,35 +194,37 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
 //            }
 //    }
 //
-//    @Override
-//    public void mousePressed(MouseEvent e) {
-//        
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
 //        int rawPos = getMousePosition().x;
 //        double intpos = ((double)rawPos)/50;
 //        int pos = (int)intpos;
 //        mouseX1 = pos;
 //        
-////        mouseX1 = getMousePosition().x/50;
-//        //mouseY1 = getMousePosition().y/50;
-//    }
-//
-//    @Override
-//    public void mouseClicked(MouseEvent e) {
-//            
+//        mouseX1 = getMousePosition().x/50;
+//        mouseY1 = getMousePosition().y/50;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+            
+        int tileX = getMousePosition().x/50+Map.rightOff;
+        int tileY = getMousePosition().y/50+Map.downOff;
+        int index = FindCity(tileX, tileY);
+        if (index != -1)
+        {
+            System.out.println("poop");
+        } 
+    }
+    
+     @Override
+    public void mouseReleased(MouseEvent e) {
 //        int rawPos = getMousePosition().x;
 //        double intpos = ((double)rawPos)/50;
 //        int pos = (int)intpos;
 //        mouseX1 = pos;
-//        
-//    }
-//    
-//     @Override
-//    public void mouseReleased(MouseEvent e) {
-//         int rawPos = getMousePosition().x;
-//        double intpos = ((double)rawPos)/50;
-//        int pos = (int)intpos;
-//        mouseX1 = pos;
-//    }
+    }
 
      public static int FindCity(int x, int y){
         //System.out.println("" + FinalProject.units.size());

@@ -91,11 +91,6 @@ public static int play;
             public void mouseDragged(MouseEvent e) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
         };
         UnitType.CreateUnit(1, 1, 1,Visual.Units);
     }
