@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class FinalProject {
 public static ArrayList<Unit> units = new ArrayList<Unit>();
+public static ArrayList<City> cities = new ArrayList<City>();
 public static int play;
 
     /**

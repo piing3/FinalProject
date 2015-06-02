@@ -51,7 +51,6 @@ class Tile extends JLabel{
         if (type == 3){
             tile = new ImageIcon("src\\Images\\BorderTile1.png");
             this.setIcon(tile);
-            movement = 1000000000;
         }
     }
    static int getTileType(Tile tile) {

@@ -5,7 +5,7 @@
  */
 package finalProject;
 
-import static finalProject.Visual.menuOpen;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -90,7 +90,7 @@ class Menu extends JFrame implements KeyListener{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         if (e.getKeyCode() == 27){
             Visual.menu.setVisible(false);
-            menuOpen = false; 
+            Visual.menuOpen = false; 
         }
     }
 

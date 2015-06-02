@@ -29,16 +29,15 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     
     static Container tiles;
     static Container UI;
-    static Container Cities;
+    static Container citiesContainer;
     static Container Units;
     static int width; 
     static int hight;
-    
-    City[][] temp = new City[5][10];
+   
     int cityCounter = 0;
     
-    Boolean menuOpen = false;
-    Menu menu = new Menu();
+    static Boolean menuOpen = false;
+    static Menu menu = new Menu();
     
     int mouseX1;
     int mouseX2;
@@ -60,9 +59,10 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         width = this.getWidth();
         hight = this.getHeight();
         
+        
         tiles = this.getContentPane();
         UI = this.getContentPane();
-        Cities = this.getContentPane();
+        citiesContainer = this.getContentPane();
         Units = this.getContentPane();
         Units.setLayout(null);
         
@@ -123,9 +123,15 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         }
         
         if (e.getKeyCode() == 81){
-            temp[0][cityCounter] = new City(getMousePosition());
-            Cities.add(temp[0][cityCounter]);
-            cityCounter++;
+            int cityX = getMousePosition().x/50+Map.rightOff;
+            int cityY = getMousePosition().y/50+Map.downOff;
+            int index = FindCity(cityX, cityY);
+            if (index == -1)
+            {
+                FinalProject.cities.add(new City(cityX, cityY));
+                index = FindCity(cityX, cityY);
+                if (index >= 0) citiesContainer.add(FinalProject.cities.get(index));
+            } 
             
         }
         
@@ -232,7 +238,23 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
 //        mouseX1 = pos;
 //    }
 
-     
+     public static int FindCity(int x, int y){
+        //System.out.println("" + FinalProject.units.size());
+        int result = -1;
+        if (FinalProject.cities.size() <= 0){
+            //System.out.println("oo");
+        }
+        for (int i = 0; i < FinalProject.cities.size(); i++) {
+            System.out.println(FinalProject.cities.size() + "");
+            if (FinalProject.cities.get(i).x == x && FinalProject.units.get(i).y == y){
+                result = i;
+            }
+            else {
+                result = -1;
+            }
+        }
+        return result;
+    } 
      
     
 }
