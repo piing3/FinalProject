@@ -15,6 +15,8 @@ import javax.swing.JLabel;
  * @author Davin
  */
 class Tile extends JLabel{
+
+    
         public int x;
         public int y;
         public int tileType;
@@ -30,6 +32,7 @@ class Tile extends JLabel{
         }
 
     public void setTile(int type) {
+        tileType = type;
         if (type == 0 ){
             tile = new ImageIcon("src\\Images\\GrassTile1.png");
             this.setIcon(tile);
@@ -51,4 +54,7 @@ class Tile extends JLabel{
             movement = 1000000000;
         }
     }
+   static int getTileType(Tile tile) {
+      return tile.tileType;
+   }
 }
