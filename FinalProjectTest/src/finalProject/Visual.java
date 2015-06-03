@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 abstract class Visual extends JFrame implements KeyListener, MouseMotionListener, MouseListener  {
     static Container tiles;
     static Container UI;
+    static Container CityUI;
     static Container citiesContainer;
     static Container Units;
     static int width; 
@@ -55,12 +56,15 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         width = this.getWidth();
         hight = this.getHeight();
         
-        
+        CityUI = this.getContentPane();
+        Units = this.getContentPane();
         tiles = this.getContentPane();
         UI = this.getContentPane();
         citiesContainer = this.getContentPane();
-        Units = this.getContentPane();
-        Units.setLayout(null);
+        
+        CityUI.setVisible(false);
+        tiles.setVisible(true);
+        
         
         this.addKeyListener(this);
         this.addMouseMotionListener(this);
@@ -214,7 +218,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         int index = FindCity(tileX, tileY);
         if (index != -1)
         {
-            System.out.println("poop");
+            UserInt.CityUI(FinalProject.cities.get(index));
         } 
     }
     

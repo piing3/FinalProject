@@ -19,6 +19,8 @@ import javax.swing.plaf.basic.BasicOptionPaneUI;
 class UserInt {
     
         public JButton nextTurn;
+        static public JButton cityTest = new JButton();
+        static public City city;
     
     UserInt() throws FileNotFoundException{
         System.out.println("Poop");
@@ -41,5 +43,33 @@ class UserInt {
         nextTurn.setVisible(true);
         nextTurn.setFocusable(false);
         Visual.UI.add(nextTurn);
+        
+        cityTest.setText("Test");
+        cityTest.setSize(100,50);
+        cityTest.setLocation(0,0);
+        cityTest.setVisible(false);
+        ActionListener test = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                city.setGold(city, 10);
+                System.out.println(city.getGold(city));
+                
+            }
+        };
+        cityTest.addActionListener(test);
+        Visual.CityUI.add(cityTest);
+    }
+    
+    public static void CityUI(City newCity)
+    {
+        Visual.UI.setVisible(false);
+        Visual.CityUI.setVisible(true);
+        
+        cityTest.setVisible(true);
+        city = newCity;
+        
+        
+        
+        
     }
 }
