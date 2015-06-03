@@ -61,13 +61,10 @@ class UnitType {
         
     }
     public static void MoveGround(int index, int newX, int newY){
-        int speed = FinalProject.units.get(index).movement;
+        Unit unit = FinalProject.units.get(index);
         if (FindUnit(newX, newY) == -1){
             if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
-                System.out.println("gggg");
-                Unit unit = FinalProject.units.get(index);
-                System.out.println("gggg");
-                if (unit.movement == 0){
+                if (unit.movement > 0){
                     unit.movement -= 1;
                     unit.x = newX;
                     unit.y = newY;
@@ -92,7 +89,7 @@ class UnitType {
                     System.out.println("test");
                     int index = FindUnit(i, j);
                     Globals.unitGrid[i][j] = FinalProject.units.get(index).type;
-                    FinalProject.units.get(index).setLocation(500, 500);
+                    FinalProject.units.get(index).setLocation(FinalProject.units.get(index).x*50, FinalProject.units.get(index).y*50);
                 }
             }
         }

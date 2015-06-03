@@ -17,24 +17,27 @@ import javax.swing.JLabel;
 public class Unit extends JLabel{
 
     int player;
-    int movement;
+    public int  movement;
     int x;
     int y;
     int defaultMove;
     int type;
+    public int health;
     Icon image; 
     
     public Unit(int x, int y, int type, Container container){
-        container.add(this);
+        container.add(this,0);
         this.x = x;
         this.y = y;
         this.setSize(50, 50);
-        this.setLocation(x*50, y*50);     
+        this.setLocation(x*50, y*50);
         if (type == 1){
             image = new ImageIcon("src\\Images\\WarriorUnit1.png");
             this.setIcon(image);
             this.setVisible(true);
-            UnitType.LoadUnits();
+            this.defaultMove = 2;
+            movement = SetMove(defaultMove);
+            //UnitType.LoadUnits();
         }
     }
     public int SetMove(int defaultMove){
@@ -43,4 +46,7 @@ public class Unit extends JLabel{
     public void Load(int newX, int newY){
         this.setLocation(newX, newY);
     }
+    //public int getHit(){
+        
+    //}
 }
