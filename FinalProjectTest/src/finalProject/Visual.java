@@ -61,10 +61,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         tiles = this.getContentPane();
         UI = this.getContentPane();
         citiesContainer = this.getContentPane();
-        
-        CityUI.setVisible(false);
-        tiles.setVisible(true);
-        
+              
         
         this.addKeyListener(this);
         this.addMouseMotionListener(this);

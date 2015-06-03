@@ -61,10 +61,7 @@ class UserInt {
     }
     
     public static void CityUI(City newCity)
-    {
-        Visual.UI.setVisible(false);
-        Visual.CityUI.setVisible(true);
-        
+    {        
         cityTest.setVisible(true);
         city = newCity;
         
