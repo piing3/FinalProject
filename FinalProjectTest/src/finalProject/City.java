@@ -18,10 +18,11 @@ class City extends JLabel{
     
     public int x;
     public int y;
-    public int production;
-    public int gold;
-    public int population;
-    public int science;
+    public int production = 0;
+    public int gold = 0;
+    public int population = 0;
+    public int food = 0;
+    public int science = 0;
     
     City(int x, int y) {
         this.x = x;
@@ -36,6 +37,8 @@ class City extends JLabel{
             Visual.redrawMap();
         }
     }
+     City() {
+    }
     
     public void setGold(City city, int newGold){
         city.gold = newGold;
@@ -49,6 +52,9 @@ class City extends JLabel{
     public void setPopulation(City city, int newPopulation){
         city.population = newPopulation;
     }  
+    public void setFood(City city, int newFood){
+        city.food = newFood;
+    }  
     
     public int getGold(City city){
         return city.gold;
@@ -61,5 +67,8 @@ class City extends JLabel{
     }  
     public int getPopulation(City city){
         return city.population;
+    }  
+    public int getFood(City city){
+        return city.food;
     }  
 }

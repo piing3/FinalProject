@@ -30,8 +30,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     static Container Units;
     static int width; 
     static int hight;
-   
-    int cityCounter = 0;
+    static boolean moveEnabled = true;
     
     static Boolean menuOpen = false;
     static Menu menu = new Menu();
@@ -131,32 +130,34 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             } 
             
         }
-        
-        if (e.getKeyCode() == 38){//up
-            if (Map.downOff != 0){
-                Map.downOff--;
-            }
-            redrawMap();
-        }
-        if (e.getKeyCode() == 37){//left
-            if (Map.rightOff != 0){
-                Map.rightOff--;
-            }
-            redrawMap();
-        }
-        if (e.getKeyCode() == 40){//down
+        if(moveEnabled){
             
-            if (Map.downOff != (72-Map.y)){
-                Map.downOff++;    
+            if (e.getKeyCode() == 38){//up
+                if (Map.downOff != 0){
+                    Map.downOff--;
+                }
+                redrawMap();
             }
-            redrawMap();
-        }
-        if (e.getKeyCode() == 39){//right
-            
-            if (Map.rightOff != (128-Map.x)){
-                Map.rightOff++;    
+            if (e.getKeyCode() == 37){//left
+                if (Map.rightOff != 0){
+                    Map.rightOff--;
+                }
+                redrawMap();
             }
-            redrawMap();
+            if (e.getKeyCode() == 40){//down
+
+                if (Map.downOff != (72-Map.y)){
+                    Map.downOff++;    
+                }
+                redrawMap();
+            }
+            if (e.getKeyCode() == 39){//right
+
+                if (Map.rightOff != (128-Map.x)){
+                    Map.rightOff++;    
+                }
+                redrawMap();
+            }
         }
     }
     
@@ -213,8 +214,9 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         int tileX = getMousePosition().x/50+Map.rightOff;
         int tileY = getMousePosition().y/50+Map.downOff;
         int index = FindCity(tileX, tileY);
-        if (index != -1) UserInt.CityUI(FinalProject.cities.get(index));
-        if (index == -1) UserInt.NormalUI();
+        if (index != -1) {UserInt.CityUI(FinalProject.cities.get(index)); moveEnabled = false;}
+        if (index == -1) {UserInt.NormalUI(); moveEnabled = true;}
+        System.out.println(getMousePosition());
     }
     
      @Override
@@ -225,7 +227,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
 //        mouseX1 = pos;
     }
 
-     public static int FindCity(int x, int y){
+    public static int FindCity(int x, int y){
         //System.out.println("" + FinalProject.units.size());
         int result = -1;
         if (FinalProject.cities.size() <= 0){
@@ -242,7 +244,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         }
         return result;
     } 
-     
+    
     
 }
 

@@ -6,6 +6,7 @@
 package finalProject;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -23,8 +24,12 @@ class UserInt {
     
         public JButton nextTurn;
         static public JButton cityTest = new JButton();
-        static public City city;
+        static public City city = new City();
         static public JLabel cityLeft;
+        static public JLabel cityGold;
+        static public JLabel cityFood;
+        static public JLabel cityScience;
+        static public JLabel cityProduction;
     
     UserInt() throws FileNotFoundException{
         System.out.println("Poop");
@@ -49,49 +54,95 @@ class UserInt {
         Visual.UI.add(nextTurn);
         
         cityTest.setText("Test");
-        cityTest.setSize(500,500);
+        cityTest.setSize(100,50);
         cityTest.setLocation(0,0);
-        cityTest.setVisible(true);
+        cityTest.setVisible(false);
         cityTest.setFocusable(false);
         ActionListener test = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                city.setGold(city, 10);
+                city.gold = 10;
                 System.out.println(city.getGold(city));
+                updateGold();
                 
             }
         };
         cityTest.addActionListener(test);
         Visual.CityUI.add(cityTest);
         
-//        Icon leftBack = new ImageIcon("src\\Images\\CityLeft.png");
-        
-        
-        //getClass().getResource("/Images/CityTile1.png")
-        Icon leftBack = new ImageIcon(getClass().getResource("/Images/CityTile1.png"));
-        
-        cityTest.setIcon(leftBack);
-        
+        Icon leftBack = new ImageIcon("src\\Images\\CityLeft.png");
         cityLeft = new JLabel(leftBack);
-        cityLeft.setSize(481,906);
+        cityLeft.setSize(394,734);
         cityLeft.setLocation(0,0);
         cityLeft.setVisible(false);
-        cityLeft.setFocusable(true);
+        cityLeft.setFocusable(false);
         Visual.CityUI.add(cityLeft);
-        System.out.println(leftBack.getIconWidth()+" X "+leftBack.getIconHeight());
-    }
-    
+        
+        cityFood = new JLabel();
+        cityFood.setSize(100,20);
+        cityFood.setLocation(350,55);
+        cityFood.setFont(new Font(null, Font.PLAIN, 20));
+        cityFood.setForeground(Color.green);
+        cityFood.setText(city.getFood(city)+"");
+        cityFood.setVisible(false);
+        cityFood.setFocusable(false);
+        Visual.CityUI.add(cityFood, 0);
+        
+        cityProduction = new JLabel();
+        cityProduction.setSize(100,20);
+        cityProduction.setLocation(350,90);
+        cityProduction.setFont(new Font(null, Font.PLAIN, 20));
+        cityProduction.setForeground(Color.orange);
+        cityProduction.setText(city.getProduction(city)+"");
+        cityProduction.setVisible(false);
+        cityProduction.setFocusable(false);
+        Visual.CityUI.add(cityProduction, 0);
+        
+        cityScience = new JLabel();
+        cityScience.setSize(100,20);
+        cityScience.setLocation(350,120);
+        cityScience.setFont(new Font(null, Font.PLAIN, 20));
+        cityScience.setForeground(Color.blue);
+        cityScience.setText(city.getScience(city)+"");
+        cityScience.setVisible(false);
+        cityScience.setFocusable(false);
+        Visual.CityUI.add(cityScience, 0);
+        
+        cityGold = new JLabel();
+        cityGold.setSize(100,20);
+        cityGold.setLocation(350,155);
+        cityGold.setFont(new Font(null, Font.PLAIN, 20));
+        cityGold.setForeground(Color.yellow);
+        cityGold.setText(city.getGold(city)+"");
+        cityGold.setVisible(false);
+        cityGold.setFocusable(false);
+        Visual.CityUI.add(cityGold, 0);
+        
+        }
     public static void CityUI(City newCity)
     {        
         cityTest.setVisible(true);
         cityLeft.setVisible(true);
+        cityFood.setVisible(true);
+        cityGold.setVisible(true);
+        cityProduction.setVisible(true);
+        cityScience.setVisible(true);
         city = newCity; 
-        System.out.println(cityLeft.isVisible());
         
     }
     public static void NormalUI()
     {        
         cityTest.setVisible(false);
         cityLeft.setVisible(false);
+         cityFood.setVisible(false);
+        cityGold.setVisible(false);
+        cityProduction.setVisible(false);
+        cityScience.setVisible(false);
     }
+    
+    public static void updateGold() {cityGold.setText(city.gold+"");}
+    public static void updateScience() {cityScience.setText(city.science+"");}
+    public static void updateFood() {cityFood.setText(city.food+"");}
+    public static void updateProduction() {cityProduction.setText(city.production+"");}
+
 }
