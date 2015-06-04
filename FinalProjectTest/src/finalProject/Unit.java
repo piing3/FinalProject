@@ -24,8 +24,9 @@ public class Unit extends JLabel{
     int type;
     public int health;
     Icon image; 
+    public int Damage;
     
-    public Unit(int x, int y, int type, Container container){
+    Unit(int x, int y, int type, Container container, int owner) {
         container.add(this,0);
         this.x = x;
         this.y = y;
@@ -37,7 +38,7 @@ public class Unit extends JLabel{
             this.setVisible(true);
             this.defaultMove = 2;
             movement = SetMove(defaultMove);
-            //UnitType.LoadUnits();
+            UnitType.LoadUnits();
         }
     }
     public int SetMove(int defaultMove){
@@ -46,7 +47,4 @@ public class Unit extends JLabel{
     public void Load(int newX, int newY){
         this.setLocation(newX, newY);
     }
-    //public int getHit(){
-        
-    //}
 }

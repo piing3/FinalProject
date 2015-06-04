@@ -18,15 +18,19 @@ class UnitType {
     public  static void CreateUnit(int x, int y, int type, Container container){
         if (FinalProject.units.isEmpty()){
             Globals.unitGrid  = new int[128][72];
+            for (int i = 0; i < Globals.unitGrid.length; i++) {
+                for (int j = 0; j < Globals.unitGrid[i].length; j++) {
+                    Globals.unitGrid[i][j] = 0;
+                }
+            }
         }
         if (type == 1){
-           // int owner = TurnOrder.whoTurn();
-            //ResetUnits(owner);
-            FinalProject.units.add(new Unit(x, y, type,container));
+            int owner = TurnOrder.whoTurn();
+            ResetUnits(owner);
+            FinalProject.units.add(new Unit(x, y, type,container, owner));
+            Globals.unitGrid[x][y] = type;
             LoadUnits();
         }
-        
-        
     }
     public static int FindUnit(int x, int y){
         int x2;
@@ -75,6 +79,7 @@ class UnitType {
     }
     public void Death(int index){
         FinalProject.units.remove(index);
+        LoadUnits();
     }
     public static void ResetUnits(int owner){
         for (int i = 0; i < FinalProject.units.size(); i++) {
@@ -92,6 +97,28 @@ class UnitType {
                     FinalProject.units.get(index).setLocation(FinalProject.units.get(index).x*50, FinalProject.units.get(index).y*50);
                 }
             }
+        }
+    }
+    public void AttackMelee(int unitOneIndex, int unitTwoIndex){
+        Unit unitOne = FinalProject.units.get(unitOneIndex);
+        Unit unitTwo = FinalProject.units.get(unitOneIndex);
+        unitTwo.health -= unitOne.Damage;
+        
+        if (unitTwo.health <= 0) Death(unitTwoIndex);
+        else {
+            FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
+            unitOne.health -= unitTwo.Damage;
+            FinalProject.units.get(unitOneIndex).health = unitOne.health;
+            if (unitOne.health <= 0) Death(unitOneIndex);
+        }
+        
+    }
+    public void AttackRange(int unitTwoIndex){
+        Unit unitTwo = FinalProject.units.get(unitTwoIndex);
+        unitTwo.health -= unitTwo.Damage;
+        if (unitTwo.health <= 0) Death(unitTwoIndex);
+        else{
+            FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
         }
     }
 }
