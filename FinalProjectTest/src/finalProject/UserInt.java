@@ -9,7 +9,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
 
 /**
@@ -21,6 +24,7 @@ class UserInt {
         public JButton nextTurn;
         static public JButton cityTest = new JButton();
         static public City city;
+        static public JLabel cityLeft;
     
     UserInt() throws FileNotFoundException{
         System.out.println("Poop");
@@ -45,9 +49,10 @@ class UserInt {
         Visual.UI.add(nextTurn);
         
         cityTest.setText("Test");
-        cityTest.setSize(100,50);
+        cityTest.setSize(500,500);
         cityTest.setLocation(0,0);
-        cityTest.setVisible(false);
+        cityTest.setVisible(true);
+        cityTest.setFocusable(false);
         ActionListener test = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,15 +63,35 @@ class UserInt {
         };
         cityTest.addActionListener(test);
         Visual.CityUI.add(cityTest);
+        
+//        Icon leftBack = new ImageIcon("src\\Images\\CityLeft.png");
+        
+        
+        //getClass().getResource("/Images/CityTile1.png")
+        Icon leftBack = new ImageIcon(getClass().getResource("/Images/CityTile1.png"));
+        
+        cityTest.setIcon(leftBack);
+        
+        cityLeft = new JLabel(leftBack);
+        cityLeft.setSize(481,906);
+        cityLeft.setLocation(0,0);
+        cityLeft.setVisible(false);
+        cityLeft.setFocusable(true);
+        Visual.CityUI.add(cityLeft);
+        System.out.println(leftBack.getIconWidth()+" X "+leftBack.getIconHeight());
     }
     
     public static void CityUI(City newCity)
     {        
         cityTest.setVisible(true);
-        city = newCity;
+        cityLeft.setVisible(true);
+        city = newCity; 
+        System.out.println(cityLeft.isVisible());
         
-        
-        
-        
+    }
+    public static void NormalUI()
+    {        
+        cityTest.setVisible(false);
+        cityLeft.setVisible(false);
     }
 }

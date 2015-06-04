@@ -35,19 +35,19 @@ public static int play;
             String name = JOptionPane.showInputDialog("What is your name?");
             if(i == 0)
             {
-                Person player1 = new Person(name, i++, play);
+                Person player1 = new Person(name, i+1, play);
             }
-            if(i == 1)
+            else if(i == 1)
             {
-                Person player2 = new Person(name, i++, play);
+                Person player2 = new Person(name, i+1, play);
             }
-            if(i == 2)
+            else if(i == 2)
             {
-                Person player3 = new Person(name, i++, play);
+                Person player3 = new Person(name, i+1, play);
             }
-            if(i == 3)
+            else if(i == 3)
             {
-                Person player4 = new Person(name, i++, play);
+                Person player4 = new Person(name, i+1, play);
             }
         }
         Visual visual = new Visual() {
@@ -92,6 +92,6 @@ public static int play;
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
-        UnitType.CreateUnit(1, 1, 1,Visual.Units);
+       // UnitType.CreateUnit(1, 1, 1,Visual.Units);
     }
 }
