@@ -26,11 +26,14 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     static Container tiles;
     static Container UI;
     static Container CityUI;
+    static Container UnitUI;
     static Container citiesContainer;
     static Container Units;
     static int width; 
     static int hight;
     static boolean moveEnabled = true;
+    static boolean diselectEnabled = true;
+    static boolean movingUnit = false;
     
     static Boolean menuOpen = false;
     static Menu menu = new Menu();
@@ -56,6 +59,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         hight = this.getHeight();
         
         CityUI = this.getContentPane();
+        UnitUI = this.getContentPane();
         Units = this.getContentPane();
         tiles = this.getContentPane();
         UI = this.getContentPane();
@@ -127,7 +131,6 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             {
                 FinalProject.cities.add(new City(cityX, cityY));
             } 
-            System.out.println(index);
             
         }
         if(moveEnabled){
@@ -214,10 +217,26 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         int tileX = getMousePosition().x/50+Map.rightOff;
         int tileY = getMousePosition().y/50+Map.downOff;
         int cityIndex = FindCity(tileX, tileY);
-        int unitIndex = UnitType.FindUnit(tileX, tileY);
-        if (cityIndex != -1) {UserInt.CityUI(FinalProject.cities.get(cityIndex)); moveEnabled = false;}
-        else if (unitIndex != -1) {UserInt.UnitUI(FinalProject.units.get(unitIndex)); moveEnabled = true;}
-        if (cityIndex == -1 && unitIndex == -1) {UserInt.NormalUI(); moveEnabled = true;}
+        int unitIndex = -1; 
+        if (movingUnit == false){
+            unitIndex = UnitType.FindUnit(tileX, tileY);
+            if (cityIndex != -1 && diselectEnabled) {
+                UserInt.CityUI(FinalProject.cities.get(cityIndex));
+                moveEnabled = false;
+            }
+            else if (unitIndex != -1 && diselectEnabled) {
+                UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                moveEnabled = true;
+            }
+            if (cityIndex == -1 && unitIndex == -1 && diselectEnabled) {
+                UserInt.NormalUI(); 
+                moveEnabled = true;
+            }
+        }
+        if (movingUnit){
+            UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
+            UserInt.updateMoves();
+        }
     }
     
      @Override

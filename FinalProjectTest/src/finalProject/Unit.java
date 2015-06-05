@@ -22,7 +22,7 @@ public class Unit extends JLabel{
     int y;
     int defaultMove;
     int type;
-    public int health;
+    int health;
     Icon image; 
     public int Damage;
     
