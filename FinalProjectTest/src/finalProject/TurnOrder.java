@@ -19,6 +19,16 @@ public class TurnOrder{
             if (Globals.player4.isTurn) result = 4;
             return result;
     }
+    
+    public static Person player(int number){
+        Person result = FinalProject.player1; 
+        if (Globals.player1.isTurn) result = FinalProject.player1;
+        if (Globals.player2.isTurn) result = FinalProject.player2;
+        if (Globals.player3.isTurn) result = FinalProject.player3;
+        if (Globals.player4.isTurn) result = FinalProject.player4;
+        return result;
+    }
+    
     public static void NextTurn(){
         if(numberOfPlayers == 2){
             if(Globals.player1.isTurn)

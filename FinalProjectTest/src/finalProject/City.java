@@ -6,6 +6,7 @@
 package finalProject;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -24,11 +25,14 @@ class City extends JLabel{
     public int population = 0;
     public int food = 0;
     public int science = 0;
-    public String name = ""; 
+    public String name = "";
+    public Person owner;
+    public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();
     
-    City(int x, int y) {
+    City(int x, int y, int owner) {
         this.x = x;
         this.y = y;
+        this.owner = TurnOrder.player(owner);
         if(Tile.getTileType(Map.grid[x][y]) != 2 && Tile.getTileType(Map.grid[x][y]) != 3){
             Icon tile = new ImageIcon("src\\Images\\CityTile1.png");
             this.setIcon(tile);
@@ -37,12 +41,16 @@ class City extends JLabel{
             Map.grid[x][y].setTile(100);
             Map.tileType[x][y] = 100;
             Visual.redrawMap();
-        }    
-        name = JOptionPane.showInputDialog("Name this city");
-        
+            name = JOptionPane.showInputDialog("Name this city");
+        } 
+        for (int i = 0; i < this.owner.buildObjects.size(); i++) {
+            this.cityBuildObjects.add(this.owner.buildObjects.get(i));
+        }
     }
-     City() {
+    City() {
     }
+    
+    
     
     public void setGold(City city, int newGold){
         city.gold = newGold;

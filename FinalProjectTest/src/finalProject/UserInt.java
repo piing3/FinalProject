@@ -75,7 +75,7 @@ class UserInt {
             }
         };
         cityTest.addActionListener(test);
-        Visual.CityUI.add(cityTest);
+        //Visual.CityUI.add(cityTest);
         
         Icon leftBack = new ImageIcon("src\\Images\\CityLeft.png");
         cityLeft = new JLabel(leftBack);
@@ -169,7 +169,8 @@ class UserInt {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Visual.movingUnit = true;
+                if (!Visual.movingUnit)Visual.movingUnit = true;
+                else Visual.movingUnit = false;
                 
             }
         };

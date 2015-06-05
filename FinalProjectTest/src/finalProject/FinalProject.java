@@ -20,6 +20,11 @@ public static ArrayList<Unit> units = new ArrayList<Unit>();
 public static ArrayList<City> cities = new ArrayList<City>();
 public static int play;
 
+static Person player1;
+static Person player2;
+static Person player3;
+static Person player4;
+
     /**
      * @param args the command line arguments
      */
@@ -35,19 +40,19 @@ public static int play;
             String name = JOptionPane.showInputDialog("What is your name?");
             if(i == 0)
             {
-                Person player1 = new Person(name, i+1, play);
+                player1 = new Person(name, i+1, play);
             }
             else if(i == 1)
             {
-                Person player2 = new Person(name, i+1, play);
+                player2 = new Person(name, i+1, play);
             }
             else if(i == 2)
             {
-                Person player3 = new Person(name, i+1, play);
+                player3 = new Person(name, i+1, play);
             }
             else if(i == 3)
             {
-                Person player4 = new Person(name, i+1, play);
+                player4 = new Person(name, i+1, play);
             }
         }
         

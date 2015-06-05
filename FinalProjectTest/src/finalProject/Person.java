@@ -5,6 +5,8 @@
  */
 package finalProject;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Ben
@@ -14,12 +16,14 @@ class Person {
     public int PlayerNumber;
     public boolean isTurn;
     public int players;
-
+    public ArrayList<Integer> buildObjects = new ArrayList<Integer>();
+    
     public Person(String name, int playerNumber, int players) {
         this.name = name;
         this.PlayerNumber = playerNumber;
         this.players = players;
         //TurnOrder TurnOrder = new TurnOrder();
+        buildObjects.add(0);
     }
     public boolean startTurn()
     {
@@ -27,6 +31,7 @@ class Person {
         return true;
         
     }
+
     
     
 
