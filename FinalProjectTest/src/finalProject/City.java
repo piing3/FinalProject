@@ -9,6 +9,7 @@ import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,7 @@ class City extends JLabel{
     public int population = 0;
     public int food = 0;
     public int science = 0;
+    public String name = ""; 
     
     City(int x, int y) {
         this.x = x;
@@ -36,6 +38,8 @@ class City extends JLabel{
             Map.tileType[x][y] = 100;
             Visual.redrawMap();
         }
+        
+        name = JOptionPane.showInputDialog("Name this city");
     }
      City() {
     }

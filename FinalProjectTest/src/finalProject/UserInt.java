@@ -14,6 +14,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
 
 /**
@@ -30,6 +31,7 @@ class UserInt {
         static public JLabel cityFood;
         static public JLabel cityScience;
         static public JLabel cityProduction;
+        static public JLabel cityName;
     
     UserInt() throws FileNotFoundException{
         System.out.println("Poop");
@@ -118,6 +120,17 @@ class UserInt {
         cityGold.setFocusable(false);
         Visual.CityUI.add(cityGold, 0);
         
+        cityName = new JLabel();
+        cityName.setSize(384,40);
+        cityName.setLocation(0,10);
+        cityName.setFont(new Font(null, Font.PLAIN, 40));
+        cityName.setForeground(Color.BLACK);
+        cityName.setText(city.name);
+        cityName.setVisible(false);
+        cityName.setFocusable(false);
+        cityName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Visual.CityUI.add(cityName, 0);
+        
         }
     public static void CityUI(City newCity)
     {        
@@ -127,7 +140,15 @@ class UserInt {
         cityGold.setVisible(true);
         cityProduction.setVisible(true);
         cityScience.setVisible(true);
-        city = newCity; 
+        cityName.setVisible(true);
+        city = newCity;
+        
+        updateFood();
+        updateGold();
+        updateProduction();
+        updateScience();
+        cityName.setText(city.name);
+        
         
     }
     public static void NormalUI()
@@ -138,6 +159,7 @@ class UserInt {
         cityGold.setVisible(false);
         cityProduction.setVisible(false);
         cityScience.setVisible(false);
+        cityName.setVisible(false);
     }
     
     public static void updateGold() {cityGold.setText(city.gold+"");}

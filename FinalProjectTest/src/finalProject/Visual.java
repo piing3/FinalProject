@@ -128,6 +128,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             {
                 FinalProject.cities.add(new City(cityX, cityY));
             } 
+            System.out.println(index);
             
         }
         if(moveEnabled){
@@ -216,7 +217,6 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         int index = FindCity(tileX, tileY);
         if (index != -1) {UserInt.CityUI(FinalProject.cities.get(index)); moveEnabled = false;}
         if (index == -1) {UserInt.NormalUI(); moveEnabled = true;}
-        System.out.println(getMousePosition());
     }
     
      @Override
@@ -237,9 +237,6 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             City city = FinalProject.cities.get(i);
             if (city.x == x && city.y == y){
                 result = i;
-            }
-            else {
-                result = -1;
             }
         }
         return result;
