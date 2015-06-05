@@ -29,7 +29,7 @@ class UnitType {
             ResetUnits(owner);
             FinalProject.units.add(new Unit(x, y, type,container, owner));
             Globals.unitGrid[x][y] = type;
-            LoadUnits();
+            Visual.LoadUnits();
         }
     }
     public static int FindUnit(int x, int y){
@@ -69,6 +69,8 @@ class UnitType {
         if (FindUnit(newX, newY) == -1){
             if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
                 if (unit.movement > 0){
+                    Globals.unitGrid[unit.x][unit.y] = 0;
+                    Globals.unitGrid[unit.x][unit.y] = unit.type;
                     unit.movement -= 1;
                     unit.x = newX;
                     unit.y = newY;
@@ -79,24 +81,12 @@ class UnitType {
     }
     public void Death(int index){
         FinalProject.units.remove(index);
-        LoadUnits();
+        Visual.LoadUnits();
     }
     public static void ResetUnits(int owner){
         for (int i = 0; i < FinalProject.units.size(); i++) {
            int index = FindUnit(owner);
-           FinalProject.units.get(index).SetMove(FinalProject.units.get(index).type);
-        }
-    }
-    public static void LoadUnits(){
-        for (int j = 0; j <= 71; j++){
-            for (int i = 0; i <= 127; i++){
-                if (FindUnit(i,j) >= 0){
-                    System.out.println("test");
-                    int index = FindUnit(i, j);
-                    Globals.unitGrid[i][j] = FinalProject.units.get(index).type;
-                    FinalProject.units.get(index).setLocation(FinalProject.units.get(index).x*50, FinalProject.units.get(index).y*50);
-                }
-            }
+          // FinalProject.units.get(index).SetMove(FinalProject.units.get(index).type);
         }
     }
     public void AttackMelee(int unitOneIndex, int unitTwoIndex){

@@ -14,4 +14,5 @@ public class Globals {
     public static Person player3;
     public static Person player4;
     public static int unitGrid[][];
+    public static int unitLocation[][];
 }

@@ -23,7 +23,7 @@ public class Unit extends JLabel{
     int defaultMove;
     int type;
     int health;
-    Icon image; 
+    Icon Unit; 
     public int Damage;
     
     Unit(int x, int y, int type, Container container, int owner) {
@@ -32,13 +32,12 @@ public class Unit extends JLabel{
         this.y = y;
         this.setSize(50, 50);
         this.setLocation(x*50, y*50);
+        Visual.LoadUnits();
+        movement = defaultMove;
+        this.setVisible(true);
         if (type == 1){
-            image = new ImageIcon("src\\Images\\WarriorUnit1.png");
-            this.setIcon(image);
-            this.setVisible(true);
+            Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
             this.defaultMove = 2;
-            movement = SetMove(defaultMove);
-            UnitType.LoadUnits();
         }
     }
     public int SetMove(int defaultMove){
@@ -46,5 +45,23 @@ public class Unit extends JLabel{
     }
     public void Load(int newX, int newY){
         this.setLocation(newX, newY);
+    }
+    public  void setUnit(int type) {
+        if (type == 1){
+            Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            this.setIcon(Unit);
+        }
+        if (type == 2){
+            Unit = new ImageIcon("src\\Images\\WaterTile1.png");
+            this.setIcon(Unit);
+        }
+        if (type == 3){
+            Unit = new ImageIcon("src\\Images\\BorderTile1.png");
+            this.setIcon(Unit);
+        }
+        if (type == 4){
+            Unit = new ImageIcon("src\\Images\\CityTile1.png");
+            this.setIcon(Unit);
+        }
     }
 }
