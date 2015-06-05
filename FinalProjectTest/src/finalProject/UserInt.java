@@ -151,6 +151,16 @@ class UserInt {
         
         
     }
+    public static void UnitUI(Unit newUnit)
+    {        
+        cityTest.setVisible(false);
+        cityLeft.setVisible(false);
+         cityFood.setVisible(false);
+        cityGold.setVisible(false);
+        cityProduction.setVisible(false);
+        cityScience.setVisible(false);
+        cityName.setVisible(false);
+    }
     public static void NormalUI()
     {        
         cityTest.setVisible(false);

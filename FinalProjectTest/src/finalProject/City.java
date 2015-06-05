@@ -37,9 +37,9 @@ class City extends JLabel{
             Map.grid[x][y].setTile(100);
             Map.tileType[x][y] = 100;
             Visual.redrawMap();
-        }
-        
+        }    
         name = JOptionPane.showInputDialog("Name this city");
+        
     }
      City() {
     }

@@ -25,7 +25,7 @@ class UnitType {
             }
         }
         if (type == 1){
-            int owner = TurnOrder.whoTurn();
+            int owner = 1;//TurnOrder.whoTurn();
             ResetUnits(owner);
             FinalProject.units.add(new Unit(x, y, type,container, owner));
             Globals.unitGrid[x][y] = type;

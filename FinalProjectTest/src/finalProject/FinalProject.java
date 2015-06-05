@@ -50,6 +50,7 @@ public static int play;
                 Person player4 = new Person(name, i+1, play);
             }
         }
+        
         Visual visual = new Visual() {
 
             @Override
@@ -92,6 +93,7 @@ public static int play;
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
-       // UnitType.CreateUnit(1, 1, 1,Visual.Units);
+        UnitType.CreateUnit(15, 10, 1,Visual.Units);
+        visual.setVisible(true);
     }
 }

@@ -85,7 +85,6 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
 //        });
         
         
-        this.setVisible(true);
     }
     
 //    private void mouseDown(MouseEvent e)  {
@@ -214,9 +213,11 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             
         int tileX = getMousePosition().x/50+Map.rightOff;
         int tileY = getMousePosition().y/50+Map.downOff;
-        int index = FindCity(tileX, tileY);
-        if (index != -1) {UserInt.CityUI(FinalProject.cities.get(index)); moveEnabled = false;}
-        if (index == -1) {UserInt.NormalUI(); moveEnabled = true;}
+        int cityIndex = FindCity(tileX, tileY);
+        int unitIndex = UnitType.FindUnit(tileX, tileY);
+        if (cityIndex != -1) {UserInt.CityUI(FinalProject.cities.get(cityIndex)); moveEnabled = false;}
+        else if (unitIndex != -1) {UserInt.UnitUI(FinalProject.units.get(unitIndex)); moveEnabled = true;}
+        if (cityIndex == -1 && unitIndex == -1) {UserInt.NormalUI(); moveEnabled = true;}
     }
     
      @Override
