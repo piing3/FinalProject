@@ -140,12 +140,14 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                     Map.downOff--;
                 }
                 redrawMap();
+                LoadUnits();
             }
             if (e.getKeyCode() == 37){//left
                 if (Map.rightOff != 0){
                     Map.rightOff--;
                 }
                 redrawMap();
+                LoadUnits();
             }
             if (e.getKeyCode() == 40){//down
 
@@ -153,6 +155,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                     Map.downOff++;    
                 }
                 redrawMap();
+                LoadUnits();
             }
             if (e.getKeyCode() == 39){//right
 
@@ -160,6 +163,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                     Map.rightOff++;    
                 }
                 redrawMap();
+                LoadUnits();
             }
         }
     }
@@ -171,6 +175,18 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
 
                 }
             }
+    }
+    public static void LoadUnits(){
+        for (int i = 0; i <= 71; i++){
+            for (int j = 0; j <= 127; j++){
+                if (UnitType.FindUnit(i,j) > 0){
+                    System.out.println("test");
+                    int index = UnitType.FindUnit(i, j);
+                    Unit unit = FinalProject.units.get(index);
+                    unit.setUnit(Globals.unitGrid[i + Map.downOff][j + Map.rightOff]);
+                }
+            }
+        }
     }
 
 //    /*@Override
