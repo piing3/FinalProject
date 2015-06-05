@@ -21,11 +21,11 @@ public class TurnOrder{
     }
     
     public static Person player(int number){
-        Person result = FinalProject.player1; 
-        if (Globals.player1.isTurn) result = FinalProject.player1;
-        if (Globals.player2.isTurn) result = FinalProject.player2;
-        if (Globals.player3.isTurn) result = FinalProject.player3;
-        if (Globals.player4.isTurn) result = FinalProject.player4;
+        Person result = Globals.player1; 
+        if (number == 1) result = Globals.player1;
+        if (number == 2) result = Globals.player2;
+        if (number == 3) result = Globals.player3;
+        if (number == 4) result = Globals.player4;
         return result;
     }
     

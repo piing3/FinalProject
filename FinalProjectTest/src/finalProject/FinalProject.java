@@ -20,11 +20,6 @@ public static ArrayList<Unit> units = new ArrayList<Unit>();
 public static ArrayList<City> cities = new ArrayList<City>();
 public static int play;
 
-static Person player1;
-static Person player2;
-static Person player3;
-static Person player4;
-
     /**
      * @param args the command line arguments
      */
@@ -40,19 +35,19 @@ static Person player4;
             String name = JOptionPane.showInputDialog("What is your name?");
             if(i == 0)
             {
-                player1 = new Person(name, i+1, play);
+                Person player1 = new Person(name, i+1, play);
             }
             else if(i == 1)
             {
-                player2 = new Person(name, i+1, play);
+                Person player2 = new Person(name, i+1, play);
             }
             else if(i == 2)
             {
-                player3 = new Person(name, i+1, play);
+                Person player3 = new Person(name, i+1, play);
             }
             else if(i == 3)
             {
-                player4 = new Person(name, i+1, play);
+                Person player4 = new Person(name, i+1, play);
             }
         }
         
@@ -98,7 +93,8 @@ static Person player4;
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
-        UnitType.CreateUnit(15, 10, 1,Visual.Units);
+        UnitType.CreateUnit(15, 9, 1,Visual.Units);
+        UnitType.CreateUnit(15, 15, 1,Visual.Units);
         visual.setVisible(true);
     }
 }

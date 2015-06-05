@@ -33,12 +33,13 @@ public class Unit extends JLabel{
         this.setSize(50, 50);
         this.setLocation(x*50, y*50);
         Visual.LoadUnits();
-        movement = defaultMove;
+        
         this.setVisible(true);
         if (type == 1){
             Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
             this.defaultMove = 2;
         }
+        movement = defaultMove;
     }
     public int SetMove(int defaultMove){
         return defaultMove;
@@ -47,20 +48,14 @@ public class Unit extends JLabel{
         this.setLocation(newX, newY);
     }
     public  void setUnit(int type) {
+        this.type = type;
+        if (type == -1){
+            Unit = null;
+            this.setIcon(Unit);
+        }
+
         if (type == 1){
             Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
-            this.setIcon(Unit);
-        }
-        if (type == 2){
-            Unit = new ImageIcon("src\\Images\\WaterTile1.png");
-            this.setIcon(Unit);
-        }
-        if (type == 3){
-            Unit = new ImageIcon("src\\Images\\BorderTile1.png");
-            this.setIcon(Unit);
-        }
-        if (type == 4){
-            Unit = new ImageIcon("src\\Images\\CityTile1.png");
             this.setIcon(Unit);
         }
     }

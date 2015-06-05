@@ -26,6 +26,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     static Container tiles;
     static Container UI;
     static Container CityUI;
+    static Container ProdutionUI;
     static Container UnitUI;
     static Container citiesContainer;
     static Container Units;
@@ -59,6 +60,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         hight = this.getHeight();
         
         CityUI = this.getContentPane();
+        ProdutionUI = this.getContentPane();
         UnitUI = this.getContentPane();
         Units = this.getContentPane();
         tiles = this.getContentPane();
@@ -111,7 +113,6 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyCode());
         if (e.getKeyCode() == 27){
             if (menuOpen == false){
                 menu.setVisible(true);
@@ -129,7 +130,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             int index = FindCity(cityX, cityY);
             if (index == -1)
             {
-                FinalProject.cities.add(new City(cityX, cityY));
+                FinalProject.cities.add(new City(cityX, cityY, 1));
             } 
             
         }
@@ -177,13 +178,16 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             }
     }
     public static void LoadUnits(){
-        for (int i = 0; i <= 71; i++){
-            for (int j = 0; j <= 127; j++){
-                if (UnitType.FindUnit(i,j) > 0){
-                    System.out.println("test");
-                    int index = UnitType.FindUnit(i, j);
+        for (int i = 0; i <= 127; i++){
+            for (int j = 0; j <= 71; j++){
+                if (UnitType.FindUnit(i,j) > -1){
+                    int index = UnitType.FindUnit(i,j);
                     Unit unit = FinalProject.units.get(index);
-                    unit.setUnit(Globals.unitGrid[i + Map.downOff][j + Map.rightOff]);
+                    //System.out.println((i+Map.rightOff)+" , "+(j+Map.downOff));
+                    if (unit.x == i&& unit.y == j){
+                        unit.setLocation((i- Map.rightOff)*50, (j- Map.downOff)*50);
+                        unit.setUnit(Globals.unitGrid[i/* + Map.downOff*/][j/* + Map.rightOff*/]);
+                    }
                 }
             }
         }

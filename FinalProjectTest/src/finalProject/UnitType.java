@@ -36,7 +36,7 @@ class UnitType {
         int x2;
         int y2;
         //System.out.println("" + FinalProject.units.size());
-        int result = -2;
+        int result = -1;
         if (FinalProject.units.size() <= 0){
             //System.out.println("oo");
         }
@@ -44,9 +44,6 @@ class UnitType {
             Unit unit = FinalProject.units.get(i);
             if (unit.x == x && unit.y  == y){
                 result = i;
-            }
-            else {
-                result = -1;
             }
         }
         return result;
@@ -75,6 +72,7 @@ class UnitType {
                     unit.x = newX;
                     unit.y = newY;
                     unit.setLocation(newX*50, newY*50);
+                    Visual.LoadUnits();                                                                                                                                                                                                                                                                                                                                                                                                                     
                 }
             }
         }
