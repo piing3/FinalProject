@@ -29,10 +29,11 @@ class City extends JLabel{
     public Person owner;
     public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();
     
-    City(int x, int y, int owner) {
+    City(int x, int y, int Owner) {
         this.x = x;
         this.y = y;
-        this.owner = TurnOrder.player(owner);
+        this.owner = TurnOrder.Player(Owner);
+        cityBuildObjects = new ArrayList<Integer>();
         if(Tile.getTileType(Map.grid[x][y]) != 2 && Tile.getTileType(Map.grid[x][y]) != 3){
             Icon tile = new ImageIcon("src\\Images\\CityTile1.png");
             this.setIcon(tile);
@@ -43,7 +44,7 @@ class City extends JLabel{
             Visual.redrawMap();
             name = JOptionPane.showInputDialog("Name this city");
         } 
-        for (int i = 0; i < this.owner.buildObjects.size(); i++) {
+        for (int i = 0; i < this.owner.buildObjects.size(); i++) {//Outputs lots of errors if FinalProject.play = 0
             this.cityBuildObjects.add(this.owner.buildObjects.get(i));
         }
     }

@@ -20,7 +20,7 @@ public class TurnOrder{
             return result;
     }
     
-    public static Person player(int number){
+    public static Person Player(int number){
         Person result = Globals.player1; 
         if (number == 1) result = Globals.player1;
         if (number == 2) result = Globals.player2;

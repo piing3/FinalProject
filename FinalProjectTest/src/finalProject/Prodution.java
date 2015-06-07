@@ -17,12 +17,14 @@ class Prodution {
     int productionCost;
     String name;
     Icon icon;
+    String discription;
     Prodution(int object){
         if (object == 0){
             name = "warrior";
             productionCost = 1;
             goldCost = 1;
             icon = new ImageIcon("src\\Images\\WarriorIcon.png");
+            discription = "The basic melee unit. Avalable from the start.";
         }
     }
 }

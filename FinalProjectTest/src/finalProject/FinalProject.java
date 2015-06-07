@@ -35,19 +35,19 @@ public static int play;
             String name = JOptionPane.showInputDialog("What is your name?");
             if(i == 0)
             {
-                Person player1 = new Person(name, i+1, play);
+                Globals.player1 = new Person(name, i+1, play);
             }
             else if(i == 1)
             {
-                Person player2 = new Person(name, i+1, play);
+                Globals.player2 = new Person(name, i+1, play);
             }
             else if(i == 2)
             {
-                Person player3 = new Person(name, i+1, play);
+                Globals.player3 = new Person(name, i+1, play);
             }
             else if(i == 3)
             {
-                Person player4 = new Person(name, i+1, play);
+                Globals.player4 = new Person(name, i+1, play);
             }
         }
         
