@@ -33,12 +33,8 @@ class UnitType {
         }
     }
     public static int FindUnit(int x, int y){
-        int x2;
-        int y2;
-        //System.out.println("" + FinalProject.units.size());
         int result = -1;
         if (FinalProject.units.size() <= 0){
-            //System.out.println("oo");
         }
         for (int i = 0; i < FinalProject.units.size(); i++) {
             Unit unit = FinalProject.units.get(i);
@@ -63,20 +59,20 @@ class UnitType {
     }
     public static void MoveGround(int index, int newX, int newY){
         Unit unit = FinalProject.units.get(index);
-        if (FindUnit(newX, newY) == -1){
-            if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
-                if (unit.movement > 0){
-                    if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
-                        if(unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY){
-                            Globals.unitGrid[unit.x][unit.y] = 0;
-                    Globals.unitGrid[unit.x][unit.y] = unit.type;
-                    unit.movement -= 1;
-                    unit.x = newX;
-                    unit.y = newY;
-                    unit.setLocation(newX*50, newY*50);
-                    Visual.LoadUnits(); 
-                    }                      
-                        }                                                                                                                                                                                                                                                                                                                                                                                             
+    if (FindUnit(newX, newY) == -1){
+    if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
+    if (unit.movement > 0){
+    if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
+    if (unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY){
+        Globals.unitGrid[unit.x][unit.y] = 0;
+        Globals.unitGrid[unit.x][unit.y] = unit.type;
+        FinalProject.units.get(index).movement -= 1;
+        FinalProject.units.get(index).x = newX;
+        FinalProject.units.get(index).y = newY;
+        FinalProject.units.get(index).setLocation(newX*50, newY*50);
+        Visual.LoadUnits(); 
+                        }                      
+                    }                                                                                                                                                                                                                                                                                                                                                                                             
                 }
             }
         }
@@ -87,8 +83,7 @@ class UnitType {
     }
     public static void ResetUnits(int owner){
         for (int i = 0; i < FinalProject.units.size(); i++) {
-           int index = FindUnit(owner);
-          // FinalProject.units.get(index).SetMove(FinalProject.units.get(index).type);
+            if (FinalProject.units.get(i).player == owner) FinalProject.units.get(i).SetMove(); 
         }
     }
     public void AttackMelee(int unitOneIndex, int unitTwoIndex){

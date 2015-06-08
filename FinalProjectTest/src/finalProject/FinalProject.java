@@ -35,7 +35,6 @@ public static int play;
             else if(i == 1) FinalProject.Players.add(new Person(name, i+1, play));
             else if(i == 2) FinalProject.Players.add(new Person(name, i+1, play));
             else if(i == 3) FinalProject.Players.add(new Person(name, i+1, play));
-             }
         }
         Visual visual = new Visual() {
 
@@ -85,4 +84,5 @@ public static int play;
         UnitType.CreateUnit(15, 15, 1,Visual.Units);
         visual.setVisible(true);
     }
+}
 }

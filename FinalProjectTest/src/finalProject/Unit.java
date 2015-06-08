@@ -36,17 +36,13 @@ public class Unit extends JLabel{
         
         this.setVisible(true);
         if (type == 1){
-            Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            Unit = new ImageIcon("src\\Images\\WarriorIcon.png");
             this.defaultMove = 2;
         }
         movement = defaultMove;
     }
-    public int SetMove(int defaultMove){
-        return defaultMove;
-    }
-    public void Load(int newX, int newY){
-        this.setLocation(newX, newY);
-    }
+    public int SetMove(){return this.defaultMove;}
+    public void Load(int newX, int newY){this.setLocation(newX, newY);}
     public  void setUnit(int type) {
         this.type = type;
         if (type == -1){
