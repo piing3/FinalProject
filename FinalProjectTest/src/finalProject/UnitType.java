@@ -24,13 +24,11 @@ class UnitType {
                 }
             }
         }
-        if (type == 1){
             int owner = TurnOrder.whoTurn();
-            ResetUnits(owner);
             FinalProject.units.add(new Unit(x, y, type,container, owner));
             Globals.unitGrid[x][y] = type;
             Visual.LoadUnits();
-        }
+        
     }
     public static int FindUnit(int x, int y){
         int result = -1;
