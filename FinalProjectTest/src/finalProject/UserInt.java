@@ -36,7 +36,8 @@ class UserInt {
         static public JLabel cityScience;
         static public JLabel cityProduction;
         static public JLabel cityName; 
-        static public JPanel jPanel = new JPanel();
+        static public JPanel productionBackrounds = new JPanel();
+        static public JPanel productionInfo = new JPanel();
         static public JScrollPane jsp = new JScrollPane();
         
         static public JLabel unitBack;
@@ -94,6 +95,7 @@ class UserInt {
         
         visableCityUI(true);
         visableUnitUI(false);
+        updateProductionList();
         
         updateFood();
         updateGold();
@@ -260,19 +262,14 @@ class UserInt {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         jsp.setSize(new Dimension(384, 500));
         jsp.setLocation(0, 200);
-        jsp.setViewportView(jPanel);
+        jsp.setViewportView(productionBackrounds);
         Visual.CityUI.add(jsp,0);
         jsp.setVisible(false);
-        jPanel.setBackground(Color.BLACK);
-        jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
-        for (int i = 0; i < 100; i++) {
-            Icon backroundImage = new ImageIcon("src\\Images\\ProductionBack.png");
-            JLabel backround = new JLabel(backroundImage);
-            backround.setPreferredSize(new Dimension(384, 150));
-            backround.setVisible(false);
-            jPanel.add(backround, 0);
-            productionList.add(backround);
-        }
+        productionBackrounds.setBackground(Color.BLACK);
+        productionBackrounds.setLayout(new BoxLayout(productionBackrounds, BoxLayout.Y_AXIS));
+        
+        productionInfo.setSize(384, 500);
+        productionInfo.setLocation(0, 200);
     }
     
     public static void visableCityUI(boolean visable){
@@ -299,5 +296,24 @@ class UserInt {
         unitMove.setVisible(visable);
         unitName.setVisible(visable);
         unitIcon.setVisible(visable);
+    }
+    
+    public static void updateProductionList(){
+        for (int i = 0; i < city.cityBuildObjects.size(); i++) {
+            Icon backroundImage = new ImageIcon("src\\Images\\ProductionBack.png");
+            JLabel backround = new JLabel(backroundImage);
+            backround.setPreferredSize(new Dimension(384, 150));
+            backround.setVisible(false);
+            productionBackrounds.add(backround, 0);
+            productionList.add(backround);
+            
+            Prodution thing = new Prodution(city.cityBuildObjects.get(i));
+            JLabel title = new JLabel(thing.name);
+            title.setSize(100, 30);
+            title.setLocation(220, 10);
+            title.setFont(new Font(null, Font.PLAIN, 30));
+            productionInfo.add(title, 0);
+            productionList.add(title);
+        }
     }
 }

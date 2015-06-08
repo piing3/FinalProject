@@ -130,7 +130,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             int index = FindCity(cityX, cityY);
             if (index == -1)
             {
-                FinalProject.cities.add(new City(cityX, cityY, 1));
+                FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()));
             } 
             
         }
