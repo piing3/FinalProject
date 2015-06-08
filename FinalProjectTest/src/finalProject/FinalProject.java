@@ -79,10 +79,10 @@ public static int play;
             }
         };
         TurnOrder turnorder = new TurnOrder();
-        turnorder.StartTurns();
+        turnorder.StartTurnOrder();
         UnitType.CreateUnit(15, 9, 1,Visual.Units);
         UnitType.CreateUnit(15, 15, 1,Visual.Units);
         visual.setVisible(true);
+        }
     }
-}
 }

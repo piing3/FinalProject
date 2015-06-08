@@ -19,16 +19,6 @@ public class TurnOrder{
             else  if (FinalProject.Players.get(3).isTurn) result = 4;
             return result;
     }
-    
-    public static Person Player(int number){
-        Person           result = FinalProject.Players.get(0); 
-        if (number == 1) result = FinalProject.Players.get(0);
-        if (number == 2) result = FinalProject.Players.get(1);
-        if (number == 3) result = FinalProject.Players.get(2);
-        if (number == 4) result = FinalProject.Players.get(3);
-        return result;
-    }
-    
     public static void NextTurn(){
         if(numberOfPlayers == 2){
              Person player1 =       FinalProject.Players.get(0);
@@ -55,7 +45,12 @@ public class TurnOrder{
             else if(player4.isTurn) FinalProject.Players.get(3).isTurn = true;
         }
     }
-    public void StartTurns(){
+    public void StartTurnOrder(){
         FinalProject.Players.get(0).isTurn = true;
+    }
+    public void StarNextTurn(){
+        int player = whoTurn();
+        UnitType.ResetUnits(player);
+        //Davin add the rest of stuff for production and stuff.
     }
 }

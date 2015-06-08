@@ -39,10 +39,22 @@ public class Unit extends JLabel{
         
         this.setVisible(true);
         if (type == 1){
-            this.unitIcon = new ImageIcon("src\\Images\\WarriorIcon.png");
+            this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\WarriorPink.png");
+            this.defaultMove = 2;
+            this.health = 60;
+            this.Damage = 10;
+        }
+        if (type == 2){
+            this.unitIcon = null;
+            this.defaultMove = 2;
+            this.health = 40;
+            this.Damage = 0;
+        }
+        if (type == 3){
+            this.unitIcon = null;
             this.defaultMove = 2;
             this.health = 50;
-            this.Damage = 10;
+            this.Damage = 15;
         }
         movement = defaultMove;
     }
@@ -56,7 +68,7 @@ public class Unit extends JLabel{
         }
 
         if (type == 1){
-            Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            Unit = new ImageIcon("src\\Images\\UnitIcons\\WarriorPink.png");
             this.setIcon(Unit);
         }
     }
