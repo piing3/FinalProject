@@ -8,8 +8,6 @@ package finalProject;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
-import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -20,12 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import static javax.swing.SwingConstants.CENTER;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
-import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
  *
@@ -50,7 +43,9 @@ class UserInt {
         static public JLabel unitHealth; 
         static public JLabel unitStrength; 
         static public JLabel unitMoves; 
+        static public JLabel unitName; 
         static public JButton unitMove;
+        static public JLabel unitIcon;
         
         static public ArrayList<JLabel> productionList = new ArrayList<JLabel>();
     
@@ -61,7 +56,7 @@ class UserInt {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TurnOrder.NextTurn();
+                TurnOrder.NextTurn();
                 
             }
         };
@@ -95,24 +90,10 @@ class UserInt {
 
         }
     public static void CityUI(City newCity){        
-        cityTest.setVisible(true);
-        cityLeft.setVisible(true);
-        cityFood.setVisible(true);
-        cityGold.setVisible(true);
-        cityProduction.setVisible(true);
-        cityScience.setVisible(true);
-        cityName.setVisible(true);
         city = newCity;
-        jsp.setVisible(true);
-        for (int i = 0; i < productionList.size(); i++) {
-                productionList.get(i).setVisible(true);
-            }
         
-        unitBack.setVisible(false);
-        unitHealth.setVisible(false);
-        unitStrength.setVisible(false);
-        unitMoves.setVisible(false);
-        unitMove.setVisible(false);
+        visableCityUI(true);
+        visableUnitUI(false);
         
         updateFood();
         updateGold();
@@ -124,47 +105,18 @@ class UserInt {
     public static void UnitUI(Unit newUnit){   
         unit = newUnit;
         
-        cityTest.setVisible(false);
-        cityLeft.setVisible(false);
-        cityFood.setVisible(false);
-        cityGold.setVisible(false);
-        cityProduction.setVisible(false);
-        cityScience.setVisible(false);
-        cityName.setVisible(false);
-        jsp.setVisible(false);
-        for (int i = 0; i < productionList.size(); i++) {
-                productionList.get(i).setVisible(false);
-            }
-        
-        
-        unitBack.setVisible(true);
-        unitHealth.setVisible(true);
-        unitStrength.setVisible(true);
-        unitMoves.setVisible(true);
-        unitMove.setVisible(true);
+        visableCityUI(false);        
+        visableUnitUI(true);
         
         updateHealth();
         updateStength();
         updateMoves();
+        updateIcon();
+        unitName.setText(unit.name);
     }
     public static void NormalUI(){        
-        cityTest.setVisible(false);
-        cityLeft.setVisible(false);
-        cityFood.setVisible(false);
-        cityGold.setVisible(false);
-        cityProduction.setVisible(false);
-        cityScience.setVisible(false);
-        cityName.setVisible(false);
-        jsp.setVisible(false);
-        for (int i = 0; i < productionList.size(); i++) {
-                productionList.get(i).setVisible(false);
-            }
-        
-        unitBack.setVisible(false);
-        unitHealth.setVisible(false);
-        unitStrength.setVisible(false);
-        unitMoves.setVisible(false);
-        unitMove.setVisible(false);
+        visableCityUI(false);
+        visableUnitUI(false);
         
     }
     
@@ -176,8 +128,9 @@ class UserInt {
     public static void updateHealth() {unitHealth.setText(unit.health+"");}
     public static void updateStength(){unitStrength.setText(unit.Damage+"");}
     public static void updateMoves(){unitMoves.setText(unit.movement+"");}
+    public static void updateIcon(){unitIcon.setIcon(unit.unitIcon);}
 
-    private void MakeCityUI(){
+    public void MakeCityUI(){
         
         Icon leftBack = new ImageIcon("src\\Images\\CityLeft.png");
         cityLeft = new JLabel(leftBack);
@@ -234,8 +187,7 @@ class UserInt {
         Visual.CityUI.add(cityName, 0);
         MakeProductionUI();
     }
-
-    private void MakeUnitUI(){
+    public void MakeUnitUI(){
         Icon unitBackround = new ImageIcon("src\\Images\\UnitBackround.png");
         unitBack = new JLabel(unitBackround);
         unitBack.setSize(600,220);
@@ -244,9 +196,16 @@ class UserInt {
         unitBack.setFocusable(false);
         Visual.UnitUI.add(unitBack);
         
+        unitIcon = new JLabel();
+        unitIcon.setSize(200,200);
+        unitIcon.setLocation(20, 500);
+        unitIcon.setVisible(false);
+        unitIcon.setFocusable(false);
+        Visual.UnitUI.add(unitIcon,0);
+        
         unitHealth = new JLabel();
         unitHealth.setSize(100, 20);
-        unitHealth.setLocation(450, 530);
+        unitHealth.setLocation(450, 540);
         unitHealth.setVisible(false);
         unitHealth.setFocusable(false);
         unitHealth.setFont(new Font(null, Font.PLAIN, 20));
@@ -254,7 +213,7 @@ class UserInt {
         
         unitStrength = new JLabel();
         unitStrength.setSize(100, 20);
-        unitStrength.setLocation(450, 570);
+        unitStrength.setLocation(450, 575);
         unitStrength.setVisible(false);
         unitStrength.setFocusable(false);
         unitStrength.setFont(new Font(null, Font.PLAIN, 20));
@@ -267,6 +226,15 @@ class UserInt {
         unitMoves.setFocusable(false);
         unitMoves.setFont(new Font(null, Font.PLAIN, 20));
         Visual.UnitUI.add(unitMoves,0);
+        
+        unitName = new JLabel();
+        unitName.setSize(390, 30);
+        unitName.setLocation(210, 500);
+        unitName.setVisible(false);
+        unitName.setFocusable(false);
+        unitName.setFont(new Font(null, Font.PLAIN, 30));
+        unitName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Visual.UnitUI.add(unitName,0);
         
         Icon imgMove = new ImageIcon("src\\Images\\unitMove.png");
         unitMove = new JButton(imgMove);
@@ -288,25 +256,48 @@ class UserInt {
         unitMove.setFocusable(false);
         Visual.UnitUI.add(unitMove);
     }
-
-    private static void MakeProductionUI() {
-        productionList.clear();
+    public void MakeProductionUI() {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        jsp.setSize(new Dimension(384, 550));
+        jsp.setSize(new Dimension(384, 500));
         jsp.setLocation(0, 200);
         jsp.setViewportView(jPanel);
         Visual.CityUI.add(jsp,0);
         jsp.setVisible(false);
         jPanel.setBackground(Color.BLACK);
         jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.Y_AXIS));
-        for (int i = 0; i < city.cityBuildObjects.size(); i++) {
+        for (int i = 0; i < 100; i++) {
             Icon backroundImage = new ImageIcon("src\\Images\\ProductionBack.png");
             JLabel backround = new JLabel(backroundImage);
             backround.setPreferredSize(new Dimension(384, 150));
-            backround.setVisible(true);
+            backround.setVisible(false);
             jPanel.add(backround, 0);
             productionList.add(backround);
-            System.out.println("test");
         }
+    }
+    
+    public static void visableCityUI(boolean visable){
+        cityTest.setVisible(visable);
+        cityLeft.setVisible(visable);
+        cityFood.setVisible(visable);
+        cityGold.setVisible(visable);
+        cityProduction.setVisible(visable);
+        cityScience.setVisible(visable);
+        cityName.setVisible(visable);
+        jsp.setVisible(visable);
+        for (int i = 0; i < productionList.size(); i++) {
+            productionList.get(i).setVisible(false);
+        }
+        for (int i = 0; i < city.cityBuildObjects.size(); i++) {
+            productionList.get(i).setVisible(visable);
+        }
+    }
+    public static void visableUnitUI(boolean visable){
+        unitBack.setVisible(visable);
+        unitHealth.setVisible(visable);
+        unitStrength.setVisible(visable);
+        unitMoves.setVisible(visable);
+        unitMove.setVisible(visable);
+        unitName.setVisible(visable);
+        unitIcon.setVisible(visable);
     }
 }

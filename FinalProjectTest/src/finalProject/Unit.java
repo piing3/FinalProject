@@ -24,6 +24,8 @@ public class Unit extends JLabel{
     int type;
     int health;
     Icon Unit; 
+    Icon unitIcon; 
+    String name;
     public int Damage;
     
     Unit(int x, int y, int type, Container container, int owner) {
@@ -32,12 +34,15 @@ public class Unit extends JLabel{
         this.y = y;
         this.setSize(50, 50);
         this.setLocation(x*50, y*50);
+        this.name = "Warrior";
         Visual.LoadUnits();
         
         this.setVisible(true);
         if (type == 1){
-            Unit = new ImageIcon("src\\Images\\WarriorIcon.png");
+            this.unitIcon = new ImageIcon("src\\Images\\WarriorIcon.png");
             this.defaultMove = 2;
+            this.health = 50;
+            this.Damage = 10;
         }
         movement = defaultMove;
     }

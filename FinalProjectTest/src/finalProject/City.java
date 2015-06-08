@@ -32,7 +32,7 @@ class City extends JLabel{
     City(int x, int y, int Owner) {
         this.x = x;
         this.y = y;
-        this.owner = TurnOrder.Player(Owner);
+        this.owner = FinalProject.Players.get(Owner);
         cityBuildObjects = new ArrayList<Integer>();
         if(Tile.getTileType(Map.grid[x][y]) != 2 && Tile.getTileType(Map.grid[x][y]) != 3){
             Icon tile = new ImageIcon("src\\Images\\CityTile1.png");
