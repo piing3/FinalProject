@@ -183,7 +183,6 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                 if (UnitType.FindUnit(i,j) > -1){
                     int index = UnitType.FindUnit(i,j);
                     Unit unit = FinalProject.units.get(index);
-                    //System.out.println((i+Map.rightOff)+" , "+(j+Map.downOff));
                     if (unit.x == i&& unit.y == j){
                         unit.setLocation((i- Map.rightOff)*50, (j- Map.downOff)*50);
                         unit.setUnit(Globals.unitGrid[i/* + Map.downOff*/][j/* + Map.rightOff*/]);

@@ -25,7 +25,7 @@ class UnitType {
             }
         }
         if (type == 1){
-            int owner = 1;//TurnOrder.whoTurn();
+            int owner = TurnOrder.whoTurn();
             ResetUnits(owner);
             FinalProject.units.add(new Unit(x, y, type,container, owner));
             Globals.unitGrid[x][y] = type;
@@ -66,13 +66,17 @@ class UnitType {
         if (FindUnit(newX, newY) == -1){
             if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
                 if (unit.movement > 0){
-                    Globals.unitGrid[unit.x][unit.y] = 0;
+                    if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
+                        if(unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY){
+                            Globals.unitGrid[unit.x][unit.y] = 0;
                     Globals.unitGrid[unit.x][unit.y] = unit.type;
                     unit.movement -= 1;
                     unit.x = newX;
                     unit.y = newY;
                     unit.setLocation(newX*50, newY*50);
-                    Visual.LoadUnits();                                                                                                                                                                                                                                                                                                                                                                                                                     
+                    Visual.LoadUnits(); 
+                    }                      
+                        }                                                                                                                                                                                                                                                                                                                                                                                             
                 }
             }
         }

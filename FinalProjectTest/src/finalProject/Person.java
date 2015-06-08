@@ -22,17 +22,6 @@ class Person {
         this.name = name;
         this.PlayerNumber = playerNumber;
         this.players = players;
-        //TurnOrder TurnOrder = new TurnOrder();
         buildObjects.add(0);
     }
-    public boolean startTurn()
-    {
-        //if (playerTurn == PlayerNumber){
-        return true;
-        
-    }
-
-    
-    
-
 }
