@@ -93,9 +93,9 @@ class UserInt {
     public static void CityUI(City newCity){        
         city = newCity;
         
+        updateProductionList();
         visableCityUI(true);
         visableUnitUI(false);
-        updateProductionList();
         
         updateFood();
         updateGold();
@@ -140,7 +140,7 @@ class UserInt {
         cityLeft.setLocation(-5,0);
         cityLeft.setVisible(false);
         cityLeft.setFocusable(false);
-        Visual.CityUI.add(cityLeft);
+        Visual.CityUI.add(cityLeft,0);
         
         cityFood = new JLabel();
         cityFood.setSize(100,20);
@@ -259,7 +259,7 @@ class UserInt {
         Visual.UnitUI.add(unitMove);
     }
     public void MakeProductionUI() {
-        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jsp.setSize(new Dimension(384, 500));
         jsp.setLocation(0, 200);
         jsp.setViewportView(productionBackrounds);
@@ -302,7 +302,7 @@ class UserInt {
         for (int i = 0; i < city.cityBuildObjects.size(); i++) {
             Icon backroundImage = new ImageIcon("src\\Images\\ProductionBack.png");
             JLabel backround = new JLabel(backroundImage);
-            backround.setPreferredSize(new Dimension(384, 150));
+            backround.setPreferredSize(new Dimension(365, 150));
             backround.setVisible(false);
             productionBackrounds.add(backround, 0);
             productionList.add(backround);
@@ -313,7 +313,6 @@ class UserInt {
             title.setLocation(220, 10);
             title.setFont(new Font(null, Font.PLAIN, 30));
             productionInfo.add(title, 0);
-            productionList.add(title);
         }
     }
 }

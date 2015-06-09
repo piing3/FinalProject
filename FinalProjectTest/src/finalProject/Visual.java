@@ -125,8 +125,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         }
         
         if (e.getKeyCode() == 81){
-            int cityX = getMousePosition().x/50+Map.rightOff;
-            int cityY = getMousePosition().y/50+Map.downOff;
+            int cityX = (getMousePosition().x-25)/50+Map.rightOff;
+            int cityY = (getMousePosition().y-25)/50+Map.downOff;
             int index = FindCity(cityX, cityY);
             if (index == -1)
             {
@@ -233,8 +233,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     @Override
     public void mouseClicked(MouseEvent e) {
             
-        int tileX = getMousePosition().x/50+Map.rightOff;
-        int tileY = getMousePosition().y/50+Map.downOff;
+        int tileX = (getMousePosition().x-25)/50+Map.rightOff;
+        int tileY = (getMousePosition().y-25)/50+Map.downOff;
         int cityIndex = FindCity(tileX, tileY);
         int unitIndex = -1; 
         if (movingUnit == false){
