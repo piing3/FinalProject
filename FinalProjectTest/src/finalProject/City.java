@@ -39,6 +39,7 @@ class City extends JLabel{
             Icon tile = new ImageIcon("src\\Images\\CityTile1.png");
             this.setIcon(tile);
             this.setSize(50, 50);
+            this.setSize(50, 50);
             this.setLocation(x*50, y*50);
             Map.grid[x][y].setTile(100);
             Map.tileType[x][y] = 100;

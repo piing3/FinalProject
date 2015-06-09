@@ -13,6 +13,8 @@ class Buildings {
     public int foodBonus;
     public int GoldChange;
     public int Science;
+    public int CityIndex;
+    public int Type;
     Buildings(int CityIndex, int Type){
 }
             
