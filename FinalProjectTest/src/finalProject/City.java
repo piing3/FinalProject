@@ -28,6 +28,7 @@ class City extends JLabel{
     public String name = "";
     public Person owner;
     public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();
+    public ArrayList<Buildings> Buildings = new ArrayList<Buildings>();
     
     City(int x, int y, int Owner) {
         this.x = x;

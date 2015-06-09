@@ -13,11 +13,17 @@ import java.awt.Container;
  * @author Ben Allen
  */
 class UnitType {
+    final static int WATER = 2;
+    final static int CITY = 100;
+    final static int EMPTY = -1;
+    final static int YLENGTH = 128;
+    final static int XWIDTH = 72;
+    final static int BORDER = 3;
 
     
     public  static void CreateUnit(int x, int y, int type, Container container){
         if (FinalProject.units.isEmpty()){
-            Globals.unitGrid  = new int[128][72];
+            Globals.unitGrid  = new int[YLENGTH][XWIDTH];
             for (int i = 0; i < Globals.unitGrid.length; i++) {
                 for (int j = 0; j < Globals.unitGrid[i].length; j++) {
                     Globals.unitGrid[i][j] = 0;
@@ -31,7 +37,7 @@ class UnitType {
         
     }
     public static int FindUnit(int x, int y){
-        int result = -1;
+        int result = EMPTY;
         if (FinalProject.units.size() <= 0){
         }
         for (int i = 0; i < FinalProject.units.size(); i++) {
@@ -43,28 +49,25 @@ class UnitType {
         return result;
     } 
     public static int FindUnit(int owner){
-        int result = -1;
+        int result = EMPTY;
         for (int i = 0; i < FinalProject.units.size(); i++) {
             if (FinalProject.units.get(i).player == owner){
                 result = i;
-            }
-            else{
-                result = -1;
             }
         }
         return result;
         
     }
     public static void MoveGround(int index, int newX, int newY){
-        Unit unit = FinalProject.units.get(index);
-    if (FindUnit(newX, newY) == -1){
-        if (Tile.getTileType(Map.grid[newX][newY]) != 2 && Tile.getTileType(Map.grid[newX][newY]) != 3){
+    Unit unit = FinalProject.units.get(index);
+    if (FindUnit(newX, newY) == EMPTY){
+        if (Tile.getTileType(Map.grid[newX][newY]) != WATER && Tile.getTileType(Map.grid[newX][newY]) != BORDER){
             if (unit.movement > 0){
                 if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
                      if (unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY){
                         Globals.unitGrid[unit.x][unit.y] = 0;
                         Globals.unitGrid[unit.x][unit.y] = unit.type;
-                        FinalProject.units.get(index).movement -= 1;
+                        FinalProject.units.get(index).movement--;
                         FinalProject.units.get(index).x = newX;
                         FinalProject.units.get(index).y = newY;
                         FinalProject.units.get(index).setLocation(newX*50, newY*50);
@@ -74,6 +77,26 @@ class UnitType {
                 }
             }
         }
+    }
+    public static void MoveWater(int index, int newX, int newY){
+        Unit unit = FinalProject.units.get(index);
+        if (FindUnit(newX, newY) == EMPTY){
+            if (Tile.getTileType(Map.grid[newX][newY]) == WATER || Tile.getTileType(Map.grid[newX][newY]) == CITY) {
+                if (unit.movement > 0){
+                    if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
+                        if (unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY) {
+                            Globals.unitGrid[unit.x][unit.y] = 0;
+                            Globals.unitGrid[unit.x][unit.y] = unit.type;
+                            FinalProject.units.get(index).movement -= 1;
+                            FinalProject.units.get(index).x = newX;
+                            FinalProject.units.get(index).y = newY;
+                            FinalProject.units.get(index).setLocation(newX*50, newY*50);
+                            Visual.LoadUnits(); 
+                        } 
+                    }
+                }
+            }
+    }
     }
     public void Death(int index){
         FinalProject.units.remove(index);
@@ -105,5 +128,8 @@ class UnitType {
         else{
             FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
         }
+    }
+    public void AttackCity(){
+        
     }
 }

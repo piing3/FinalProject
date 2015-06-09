@@ -29,7 +29,7 @@ public class Unit extends JLabel{
     public int Damage;
     
     Unit(int x, int y, int type, Container container, int owner) {
-        container.add(this,0);
+        container.add(this,7);
         this.x = x;
         this.y = y;
         this.setSize(50, 50);
@@ -40,10 +40,7 @@ public class Unit extends JLabel{
         this.setVisible(true);
         if (type == 1){
             this.name = "Warrior";
-                 if (owner == 1) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\SettlerPink.png");
-            else if (owner == 3) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\WarriorRed.png");
-            else if (owner == 3) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\WarriorGreen.png");
-            else if (owner == 4) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\WarriorBlue.png");
+            this.unitIcon = new ImageIcon("src\\Images\\WarriorIcon.png");
             this.defaultMove = 2;
             this.health = 60;
             this.Damage = 10;
@@ -70,6 +67,13 @@ public class Unit extends JLabel{
             this.health = 50;
             this.Damage = 15;
             System.out.println("arch");
+        }
+        if (type == 4) {
+            this.unitIcon = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            this.defaultMove = 4;
+            this.health = 60;
+            this.Damage = 15;
+            System.out.println("boat");
         }
         movement = defaultMove;
     }
