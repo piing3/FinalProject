@@ -91,7 +91,7 @@ class UnitType {
                             FinalProject.units.get(index).x = newX;
                             FinalProject.units.get(index).y = newY;
                             FinalProject.units.get(index).setLocation(newX*50, newY*50);
-                            Visual.LoadUnits(); 
+                            Visual.LoadUnits();        
                         } 
                     }
                 }
@@ -99,6 +99,8 @@ class UnitType {
     }
     }
     public void Death(int index){
+        Unit unit = FinalProject.units.get(index);
+        Globals.unitGrid[unit.x][unit.y] = 0;
         FinalProject.units.remove(index);
         Visual.LoadUnits();
     }

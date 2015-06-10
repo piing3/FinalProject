@@ -54,4 +54,14 @@ public class TurnOrder{
         //Davin add the rest of stuff for production and stuff.
         
     }
+    public void CheckCitys(){
+        for (int i = 0; i < Map.grid.length; i++) {
+            for (int j = 0; j < Map.grid[i].length; j++) {
+                int cityIndex = Visual.FindCity(i, j);
+                if (cityIndex != -1) {
+                    
+                }
+            }
+        }
+    }
 }
