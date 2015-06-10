@@ -5,7 +5,6 @@
  */
 package finalProject;
 
-import static finalProject.Visual.FindCity;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -47,7 +46,6 @@ class UserInt {
         static public JLabel unitMoves; 
         static public JLabel unitName; 
         static public JButton unitMove;
-        static public JButton unitSettle;
         static public JLabel unitIcon;
         
         static public ArrayList<JLabel> productionList = new ArrayList<JLabel>();
@@ -259,29 +257,6 @@ class UserInt {
         unitMove.setVisible(false);
         unitMove.setFocusable(false);
         Visual.UnitUI.add(unitMove);
-        
-        Icon imgSettle = new ImageIcon("src\\Images\\unitSettle.png");
-        unitSettle = new JButton(imgSettle);
-        ActionListener settle = new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int index = FindCity(unit.x, unit.y);
-                if (index == -1)
-                {
-                    FinalProject.cities.add(new City(unit.x, unit.y, TurnOrder.whoTurn()));
-                    int UnitIndex = UnitType.FindUnit(unit.x, unit.y);
-                    UnitType.Death(UnitIndex);
-                } 
-                
-            }
-        };
-        unitSettle.addActionListener(settle);
-        unitSettle.setSize(50, 50);
-        unitSettle.setLocation(0, 380);
-        unitSettle.setVisible(false);
-        unitSettle.setFocusable(false);
-        Visual.UnitUI.add(unitSettle);
     }
     public void MakeProductionUI() {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -321,7 +296,6 @@ class UserInt {
         unitMove.setVisible(visable);
         unitName.setVisible(visable);
         unitIcon.setVisible(visable);
-        if (unit.type == 2) unitSettle.setVisible(visable);
     }
     
     public static void updateProductionList(){
