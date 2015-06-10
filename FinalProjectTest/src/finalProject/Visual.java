@@ -5,6 +5,7 @@
 package finalProject;
 
 import java.awt.Container;
+import java.awt.Dialog;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -131,6 +132,18 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             if (index == -1)
             {
                 FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()));
+            } 
+            
+        }
+        
+        if (e.getKeyCode() == 87){
+            int unitX = (getMousePosition().x-25)/50+Map.rightOff;
+            int unitY = (getMousePosition().y-25)/50+Map.downOff;
+            int index = UnitType.FindUnit(unitX, unitY);
+            if (index == -1)
+            {
+                int type = Integer.parseInt(JOptionPane.showInputDialog("Enter Unit Type"));
+                UnitType.CreateUnit(unitX, unitY, type, Units);
             } 
             
         }

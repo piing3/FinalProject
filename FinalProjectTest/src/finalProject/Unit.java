@@ -21,7 +21,7 @@ public class Unit extends JLabel{
     int x;
     int y;
     int defaultMove;
-    int type;
+    int type = -1;
     int health;
     Icon Unit; 
     Icon unitIcon; 
@@ -107,5 +107,10 @@ public class Unit extends JLabel{
             else if (this.player == 4) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherBlue.png");
             this.setIcon(Unit);
         }
+        
+        
+    }
+    Unit(){
+        //used for making blank units
     }
 }

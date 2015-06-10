@@ -29,7 +29,7 @@ class UserInt {
         public JButton nextTurn;
         static public JButton cityTest = new JButton();
         static public City city = new City();
-        static public Unit unit;
+        static public Unit unit = new Unit(); 
         static public JLabel cityLeft;
         static public JLabel cityGold;
         static public JLabel cityFood;
