@@ -20,8 +20,7 @@ class UnitType {
     final static int XWIDTH = 72;
     final static int BORDER = 3;
 
-    
-    public  static void CreateUnit(int x, int y, int type, Container container){
+     public  static void CreateUnit(int x, int y, int type, Container container){
         if (FinalProject.units.isEmpty()){
             Globals.unitGrid  = new int[YLENGTH][XWIDTH];
             for (int i = 0; i < Globals.unitGrid.length; i++) {
@@ -35,6 +34,7 @@ class UnitType {
             Globals.unitGrid[x][y] = type;
             Visual.LoadUnits();
         
+   
     }
     public static int FindUnit(int x, int y){
         int result = EMPTY;
