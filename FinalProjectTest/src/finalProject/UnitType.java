@@ -99,6 +99,9 @@ class UnitType {
     }
     }
     public static void Death(int index){
+        Unit unit =/*>:(*/ FinalProject.units.get(index);
+        Globals.unitGrid[unit.x][unit.y] = -1;
+        unit.setUnit(Globals.unitGrid[unit.x][unit.y]);
         FinalProject.units.remove(index);
         Visual.LoadUnits();
     }

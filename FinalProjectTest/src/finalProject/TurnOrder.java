@@ -13,7 +13,8 @@ public class TurnOrder{
     static int numberOfPlayers = FinalProject.play;
     public static int whoTurn(){
         int result = -1;
-            if (FinalProject.Players.get(0).isTurn) result = 1;
+
+        if (FinalProject.Players.get(0).isTurn) result = 1;
             else  if (FinalProject.Players.get(1).isTurn) result = 2;
             else  if (FinalProject.Players.get(2).isTurn) result = 3;
             else  if (FinalProject.Players.get(3).isTurn) result = 4;

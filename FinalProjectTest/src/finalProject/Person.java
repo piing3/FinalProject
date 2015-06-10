@@ -6,6 +6,7 @@
 package finalProject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -17,8 +18,14 @@ class Person {
     public boolean isTurn;
     public int players;
     public ArrayList<Integer> buildObjects = new ArrayList<Integer>();
+    public int startX;
+    public int startY;
     
     public Person(String name, int playerNumber, int players) {
+        //Random spawn = new Random();
+        //startX = spawn.nextInt(126)+1;
+        
+        UnitType.CreateUnit(14, 9, playerNumber,Visual.Units);
         this.name = name;
         this.PlayerNumber = playerNumber;
         this.players = players;

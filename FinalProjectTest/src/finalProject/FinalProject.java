@@ -25,7 +25,10 @@ public static int play;
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException { //LOOK DAVIN I FIXED MAIN! xD
+        
+        
         play = Integer.parseInt(JOptionPane.showInputDialog("How many people are playing"));
+        TurnOrder turnorder = new TurnOrder();
         if (play < 2)JOptionPane.showMessageDialog(null, "you cant play alone."); //Please dont change, will cause choas with players. Program will crash
         else if (play > 4) JOptionPane.showMessageDialog(null, "You can only have up to 4 players");
         else {
@@ -36,8 +39,9 @@ public static int play;
             else if(i == 2) FinalProject.Players.add(new Person(name, i+1, play));
             else if(i == 3) FinalProject.Players.add(new Person(name, i+1, play));
         }
+        turnorder.StartTurnOrder();
         Visual visual = new Visual() {
-
+        
             @Override
             public void keyTyped(KeyEvent e) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -78,13 +82,6 @@ public static int play;
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
-        TurnOrder turnorder = new TurnOrder();
-        turnorder.StartTurnOrder();
-        UnitType.CreateUnit(14, 9, 2,Visual.Units);
-        UnitType.CreateUnit(15, 9, 2,Visual.Units);
-        UnitType.CreateUnit(16, 9, 2,Visual.Units);
-        UnitType.CreateUnit(18, 9, 2,Visual.Units);
-        UnitType.CreateUnit(19, 9, 2,Visual.Units);
         visual.setVisible(true);
         }
     }

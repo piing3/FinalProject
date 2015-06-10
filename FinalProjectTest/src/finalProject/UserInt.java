@@ -271,6 +271,7 @@ class UserInt {
                     FinalProject.cities.add(new City(unit.x, unit.y, TurnOrder.whoTurn()));
                     int UnitIndex = UnitType.FindUnit(unit.x, unit.y);
                     UnitType.Death(UnitIndex);
+                    CityUI(FinalProject.cities.get(Visual.FindCity(unit.x, unit.y)));
                 } 
                 
             }
@@ -320,6 +321,8 @@ class UserInt {
         unitMove.setVisible(visable);
         unitName.setVisible(visable);
         unitIcon.setVisible(visable);
+        if (unit.type == 2) unitSettle.setVisible(visable);
+        else unitSettle.setVisible(false);
     }
     
     public static void updateProductionList(){
