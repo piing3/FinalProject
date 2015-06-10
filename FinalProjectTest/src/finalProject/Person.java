@@ -20,6 +20,8 @@ class Person {
     public ArrayList<Integer> buildObjects = new ArrayList<Integer>();
     public int startX;
     public int startY;
+    final static int YLENGTH = 128;
+    final static int XWIDTH = 72;
     
     public Person(String name, int playerNumber, int players) {
         //Random spawn = new Random();
@@ -36,5 +38,24 @@ class Person {
         buildObjects.add(25);
         buildObjects.add(24);
         buildObjects.add(23);
+    }
+    
+    public static void MakeSettlers(){
+        if (FinalProject.units.isEmpty()){
+            Globals.unitGrid  = new int[YLENGTH][XWIDTH];
+            for (int i = 0; i < Globals.unitGrid.length; i++) {
+                for (int j = 0; j < Globals.unitGrid[i].length; j++) {
+                    Globals.unitGrid[i][j] = 0;
+                }
+            }
+        }
+        for (int i = 0; i < FinalProject.play; i++) {
+            Random r = new Random();
+            int x = r.nextInt()
+            FinalProject.units.add(new Unit(x, y, 2,Visual.Units, i+1));
+            Globals.unitGrid[x][y] = 2;
+            Visual.LoadUnits();
+        }
+
     }
 }
