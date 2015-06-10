@@ -98,7 +98,7 @@ class UnitType {
             }
     }
     }
-    public void Death(int index){
+    public static void Death(int index){
         FinalProject.units.remove(index);
         Visual.LoadUnits();
     }
