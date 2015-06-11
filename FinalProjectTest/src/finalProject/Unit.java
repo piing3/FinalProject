@@ -88,21 +88,21 @@ public class Unit extends JLabel{
 
         if (type == 1){
                  if (this.player == 1) Unit = new ImageIcon("src\\Images\\UnitIcons\\WarriorPink.png");
-            else if (this.player == 3) Unit = new ImageIcon("src\\Images\\UnitIcons\\WarriorRed.png");
+            else if (this.player == 2) Unit = new ImageIcon("src\\Images\\UnitIcons\\WarriorRed.png");
             else if (this.player == 3) Unit = new ImageIcon("src\\Images\\UnitIcons\\WarriorGreen.png");
             else if (this.player == 4) Unit = new ImageIcon("src\\Images\\UnitIcons\\WarriorBlue.png");
             this.setIcon(Unit);
         }
         if (type == 2) {
                  if (this.player == 1) Unit = new ImageIcon("src\\Images\\UnitIcons\\SettlerPink.png");
-            else if (this.player == 3) Unit = new ImageIcon("src\\Images\\UnitIcons\\SettlerRed.png");
+            else if (this.player == 2) Unit = new ImageIcon("src\\Images\\UnitIcons\\SettlerRed.png");
             else if (this.player == 3) Unit = new ImageIcon("src\\Images\\UnitIcons\\SettlerGreen.png");
             else if (this.player == 4) Unit = new ImageIcon("src\\Images\\UnitIcons\\SettlerBlue.png");
             this.setIcon(Unit);
         }
         if (type == 3) {
                  if (this.player == 1) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherPink.png");
-            else if (this.player == 3) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherRed.png");
+            else if (this.player == 2) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherRed.png");
             else if (this.player == 3) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherGreen.png");
             else if (this.player == 4) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherBlue.png");
             this.setIcon(Unit);
