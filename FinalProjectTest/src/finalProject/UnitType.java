@@ -65,6 +65,7 @@ class UnitType {
             if (unit.movement > 0){
                 if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
                      if (unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY){
+                         if (TurnOrder.whoTurn() == unit.player){
                         Globals.unitGrid[unit.x][unit.y] = 0;
                         Globals.unitGrid[newX][newY] = unit.type;
                         FinalProject.units.get(index).movement--;
@@ -72,6 +73,7 @@ class UnitType {
                         FinalProject.units.get(index).y = newY;
                         FinalProject.units.get(index).setLocation(newX*50, newY*50);
                         Visual.LoadUnits(); 
+                            }
                         }                      
                     }                                                                                                                                                                                                                                                                                                                                                                                             
                 }
@@ -85,13 +87,20 @@ class UnitType {
                 if (unit.movement > 0){
                     if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
                         if (unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY) {
+<<<<<<< HEAD
                             Globals.unitGrid[unit.x][unit.y] = 0;
                             Globals.unitGrid[newX][newY] = unit.type;
+=======
+                            if (TurnOrder.whoTurn() == unit.player) {
+                                Globals.unitGrid[unit.x][unit.y] = 0;
+                            Globals.unitGrid[unit.x][unit.y] = unit.type;
+>>>>>>> origin/master
                             FinalProject.units.get(index).movement -= 1;
                             FinalProject.units.get(index).x = newX;
                             FinalProject.units.get(index).y = newY;
                             FinalProject.units.get(index).setLocation(newX*50, newY*50);
-                            Visual.LoadUnits(); 
+                            Visual.LoadUnits();
+                            }
                         } 
                     }
                 }
