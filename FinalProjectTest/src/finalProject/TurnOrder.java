@@ -7,7 +7,7 @@ package finalProject;
 
 /**
  *
- * @author Ben
+ * @author Ben (Tad bit to "organized")
  */
 public class TurnOrder{
     static int numberOfPlayers = FinalProject.play;
@@ -29,8 +29,8 @@ public class TurnOrder{
                      FinalProject.Players.get(1).isTurn = true;
                  }
             else if(player2.isTurn){
-                FinalProject.Players.get(0).isTurn = true;
-                FinalProject.Players.get(1).isTurn = false;
+                     FinalProject.Players.get(0).isTurn = true;
+                     FinalProject.Players.get(1).isTurn = false;
             }
         }
         if(numberOfPlayers == 3){

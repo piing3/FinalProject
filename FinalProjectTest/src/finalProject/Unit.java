@@ -49,7 +49,7 @@ public class Unit extends JLabel{
         if (type == 2){
             this.name = "Settler";
                  if (owner == 1) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\SettlerPink.png");
-            else if (owner == 3) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\SettlerRed.png");
+            else if (owner == 2) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\SettlerRed.png");
             else if (owner == 3) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\SettlerGreen.png");
             else if (owner == 4) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\SettlerBlue.png");
             this.defaultMove = 2;
@@ -60,7 +60,7 @@ public class Unit extends JLabel{
         if (type == 3){
             this.name = "Archer";
                  if (owner == 1) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\ArcherPink.png");
-            else if (owner == 3) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\ArcherRed.png");
+            else if (owner == 2) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\ArcherRed.png");
             else if (owner == 3) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\ArcherGreen.png");
             else if (owner == 4) this.unitIcon = new ImageIcon("src\\Images\\UnitIcons\\ArcherBlue.png");
             this.defaultMove = 2;
@@ -105,6 +105,13 @@ public class Unit extends JLabel{
             else if (this.player == 2) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherRed.png");
             else if (this.player == 3) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherGreen.png");
             else if (this.player == 4) Unit = new ImageIcon("src\\Images\\UnitIcons\\ArcherBlue.png");
+            this.setIcon(Unit);
+        }
+        if (type == 4) {
+                 if (this.player == 1) Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            else if (this.player == 2) Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            else if (this.player == 3) Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
+            else if (this.player == 4) Unit = new ImageIcon("src\\Images\\WarriorUnit1.png");
             this.setIcon(Unit);
         }
         
