@@ -47,6 +47,7 @@ class UserInt {
         static public JLabel unitName; 
         static public JButton unitMove;
         static public JButton unitSettle;
+        static public JButton unitAttack;
         static public JLabel unitIcon;
         
         static public ArrayList<JLabel> productionList = new ArrayList<JLabel>();
@@ -282,6 +283,27 @@ class UserInt {
         unitSettle.setVisible(false);
         unitSettle.setFocusable(false);
         Visual.UnitUI.add(unitSettle);
+           
+        Icon imgAttack = new ImageIcon("src\\Images\\unitSettle.png");
+        unitAttack = new JButton(imgSettle);
+        ActionListener attack = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Icon imgAttack = new ImageIcon("src\\Images\\unitAttack.png");
+                Icon imgAttackSelected = new ImageIcon("src\\Images\\unitAttackSelected.png");
+                if (!Visual.attackingUnit){Visual.movingUnit = true; unitMove.setIcon(imgAttackSelected);}
+                else {Visual.attackingUnit = false; unitMove.setIcon(imgAttack);} 
+                
+            }
+        };
+        unitAttack.addActionListener(attack);
+        unitAttack.setSize(50, 50);
+        unitAttack.setLocation(0, 380);
+        unitAttack.setVisible(false);
+        unitAttack.setFocusable(false);
+        Visual.UnitUI.add(unitAttack);
     }
     public void MakeProductionUI() {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -295,6 +317,7 @@ class UserInt {
         
         productionInfo.setSize(384, 500);
         productionInfo.setLocation(0, 200);
+        //productionInfo.set
     }
     
     public static void visableCityUI(boolean visable){

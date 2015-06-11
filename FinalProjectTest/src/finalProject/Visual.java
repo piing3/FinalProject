@@ -36,6 +36,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     static boolean moveEnabled = true;
     static boolean diselectEnabled = true;
     static boolean movingUnit = false;
+    static boolean attackingUnit = false;
     
     static Boolean menuOpen = false;
     static Menu menu = new Menu();
@@ -250,7 +251,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         int tileY = (getMousePosition().y-25)/50+Map.downOff;
         int cityIndex = FindCity(tileX, tileY);
         int unitIndex = -1; 
-        if (movingUnit == false){
+        if (movingUnit == false && attackingUnit == false){
             unitIndex = UnitType.FindUnit(tileX, tileY);
             if (cityIndex != -1 && diselectEnabled) {
                 UserInt.CityUI(FinalProject.cities.get(cityIndex));
@@ -265,15 +266,21 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                 moveEnabled = true;
             }
         }
-        if (movingUnit){
-            if (UserInt.unit.type != 4){
+        if (movingUnit && attackingUnit == false){
+            int unitX = UserInt.unit.x;//FinalProject.units.get(unitIndex).x;
+            int unitY = UserInt.unit.y;//FinalProject.units.get(unitIndex).y;
+            if (Globals.unitGrid[unitX][unitY] != 4){
                 UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
                 UserInt.updateMoves();
             }
-            if (UserInt.unit.type == 4){
+            if (Globals.unitGrid[unitX][unitY] == 4){
                 UnitType.MoveWater(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
                 UserInt.updateMoves();
             }
+        }
+        if (movingUnit == false && attackingUnit) {
+            int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
+            int index2 = UnitType.FindUnit(tileX, tileY);
         }
     }
     

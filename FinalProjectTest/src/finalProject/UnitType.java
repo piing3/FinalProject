@@ -66,7 +66,7 @@ class UnitType {
                 if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
                      if (unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY){
                         Globals.unitGrid[unit.x][unit.y] = 0;
-                        Globals.unitGrid[unit.x][unit.y] = unit.type;
+                        Globals.unitGrid[newX][newY] = unit.type;
                         FinalProject.units.get(index).movement--;
                         FinalProject.units.get(index).x = newX;
                         FinalProject.units.get(index).y = newY;
@@ -86,7 +86,7 @@ class UnitType {
                     if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
                         if (unit.y + 1 == newY || unit.y -1 ==newY || unit.y == newY) {
                             Globals.unitGrid[unit.x][unit.y] = 0;
-                            Globals.unitGrid[unit.x][unit.y] = unit.type;
+                            Globals.unitGrid[newX][newY] = unit.type;
                             FinalProject.units.get(index).movement -= 1;
                             FinalProject.units.get(index).x = newX;
                             FinalProject.units.get(index).y = newY;
