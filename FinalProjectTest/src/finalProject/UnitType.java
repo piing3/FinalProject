@@ -119,6 +119,9 @@ class UnitType {
     public void AttackMelee(int unitOneIndex, int unitTwoIndex){
         Unit unitOne = FinalProject.units.get(unitOneIndex);
         Unit unitTwo = FinalProject.units.get(unitOneIndex);
+        //if (unitOne.Type == ) {
+       //     
+       // 
         unitTwo.health -= unitOne.Damage;
         
         if (unitTwo.health <= 0) Death(unitTwoIndex);
@@ -127,6 +130,7 @@ class UnitType {
             unitOne.health -= unitTwo.Damage;
             FinalProject.units.get(unitOneIndex).health = unitOne.health;
             if (unitOne.health <= 0) Death(unitOneIndex);
+      //  }
         }
         
     }
@@ -138,7 +142,29 @@ class UnitType {
             FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
         }
     }
-    public void AttackCity(){
-        
+    public void AttackCity(int unitOneIndex, int CityIndex){
+        Unit unit = FinalProject.units.get(unitOneIndex);
+        int cityHealth = FinalProject.cities.get(CityIndex).Health;
+        int cityX = FinalProject.cities.get(CityIndex).x;
+        int cityY = FinalProject.cities.get(CityIndex).y;
+        int cityDamage = FinalProject.cities.get(CityIndex).Damage;
+        if (unit.type == 1){
+            cityHealth -= unit.Damage;
+        }
+        else if(unit.type == 0 || unit.type == 4){
+            cityHealth -= unit.Damage;
+            if (cityHealth <= 0){
+                FinalProject.cities.get(CityIndex).Health -= cityHealth;
+                if(unit.type == 0){
+                    MoveGround(unitOneIndex, cityX, cityY);
+                }
+                else if(unit.type == 4){
+                    MoveWater(unitOneIndex, cityX, cityY);
+                }
+            }
+            else if(cityHealth > -0){
+                FinalProject.units.get(unitOneIndex).health -= cityDamage;
+            }
+        }
     }
 }

@@ -25,11 +25,14 @@ class City extends JLabel{
     public int population = 0;
     public int food = 0;
     public int science = 0;
+    public int Health;
+    public int Damage = 20;
     public String name = "";
     public Person owner;
     public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();
     
     City(int x, int y, int Owner) {
+        this.Health = 100;
         this.x = x;
         this.y = y;
         this.owner = FinalProject.Players.get(Owner);

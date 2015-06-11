@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author Deborah
+ * @author Ben Allen
  */
 public class Unit extends JLabel{
 
