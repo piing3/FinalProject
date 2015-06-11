@@ -70,7 +70,7 @@ public class Unit extends JLabel{
         }
         if (type == 4) {
             this.unitIcon = new ImageIcon("src\\Images\\WarriorUnit1.png");
-            this.defaultMove = 2;
+            this.defaultMove = 4;
             this.health = 60;
             this.Damage = 15;
             System.out.println("boat");
