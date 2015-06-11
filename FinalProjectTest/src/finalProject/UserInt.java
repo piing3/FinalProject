@@ -249,7 +249,7 @@ class UserInt {
                 Icon imgMoveSelected = new ImageIcon("src\\Images\\unitMoveSelected.png");
                 if (!Visual.movingUnit){Visual.movingUnit = true; unitMove.setIcon(imgMoveSelected);}
                 else {Visual.movingUnit = false; unitMove.setIcon(imgMove);}
-                
+
             }
         };
         unitMove.addActionListener(move);
@@ -306,12 +306,7 @@ class UserInt {
         cityScience.setVisible(visable);
         cityName.setVisible(visable);
         jsp.setVisible(visable);
-        for (int i = 0; i < productionList.size(); i++) {
-            productionList.get(i).setVisible(false);
-        }
-        for (int i = 0; i < city.cityBuildObjects.size(); i++) {
-            productionList.get(i).setVisible(visable);
-        }
+        productionInfo.setVisible(visable);
     }
     public static void visableUnitUI(boolean visable){
         unitBack.setVisible(visable);
@@ -330,16 +325,16 @@ class UserInt {
             Icon backroundImage = new ImageIcon("src\\Images\\ProductionBack.png");
             JLabel backround = new JLabel(backroundImage);
             backround.setPreferredSize(new Dimension(365, 150));
-            backround.setVisible(false);
             productionBackrounds.add(backround, 0);
             productionList.add(backround);
             
             Prodution thing = new Prodution(city.cityBuildObjects.get(i));
             JLabel title = new JLabel(thing.name);
             title.setSize(100, 30);
-            title.setLocation(220, 10);
+            //title.setLocation(backround.getX()+220, backround.getY()+10);
             title.setFont(new Font(null, Font.PLAIN, 30));
-            productionInfo.add(title, 0);
+            productionBackrounds.add(title, 0);
+            productionList.add(title);
         }
     }
 }

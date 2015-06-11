@@ -266,8 +266,14 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             }
         }
         if (movingUnit){
-            UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
-            UserInt.updateMoves();
+            if (UserInt.unit.type != 4){
+                UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
+                UserInt.updateMoves();
+            }
+            if (UserInt.unit.type == 4){
+                UnitType.MoveWater(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
+                UserInt.updateMoves();
+            }
         }
     }
     
