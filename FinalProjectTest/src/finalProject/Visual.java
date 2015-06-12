@@ -49,15 +49,9 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     int mouseY2;
     
     public Visual() throws FileNotFoundException {
-        int fullscreen = JOptionPane.showConfirmDialog(null, "Would you like to run in fullscreen?","Fullscreen" , JOptionPane.YES_NO_OPTION);
-        if(fullscreen == 0){
-            this.setExtendedState(this.MAXIMIZED_BOTH);
-        }
-        else{
-            this.setSize(1266, 738);    
-        }
-        
-        this.setResizable(true);
+        this.setSize(1266, 738);    
+
+        this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         width = this.getWidth();
@@ -309,7 +303,9 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         if (movingUnit == false && attackingUnit) {
             int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
             int index2 = UnitType.FindUnit(tileX, tileY);
-            UnitType.AttackMelee(index1, index2);
+            UnitType.AttackMelee(
+                    index1
+                    , index2);
         }
     }
     

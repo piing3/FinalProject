@@ -106,7 +106,6 @@ class City extends JLabel{
                     }
                     if (city.productionItem.isUnit) UnitType.CreateUnit(city.x, city.y, city.productionItem.unitType, Visual.Units);
                     city.productionItem = new Prodution(-1);
-                    Alert alert = new Alert(city.productionItem.name, 0); 
                 }
             }
         }

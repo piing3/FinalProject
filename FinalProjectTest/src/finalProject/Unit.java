@@ -77,7 +77,7 @@ public class Unit extends JLabel{
         }
         movement = defaultMove;
     }
-    public int SetMove(){return this.defaultMove;}
+    public void SetMove(Unit unit){ unit.movement = unit.defaultMove; UserInt.updateMoves();}
     public void Load(int newX, int newY){this.setLocation(newX, newY);}
     public  void setUnit(int type) {
         this.type = type;
