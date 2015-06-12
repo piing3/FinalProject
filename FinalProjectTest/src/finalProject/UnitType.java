@@ -113,24 +113,20 @@ class UnitType {
     }
     public static void ResetUnits(int owner){
         for (int i = 0; i < FinalProject.units.size(); i++) {
-            if (FinalProject.units.get(i).player == owner) FinalProject.units.get(i).SetMove(); 
+            if (FinalProject.units.get(i).player == owner) FinalProject.units.get(i).SetMove(FinalProject.units.get(i)); 
         }
     }
-    public static void AttackMelee(int unitOneIndex, int unitTwoIndex){
+    public void AttackMelee(int unitOneIndex, int unitTwoIndex){
         Unit unitOne = FinalProject.units.get(unitOneIndex);
-        Unit unitTwo = FinalProject.units.get(unitOneIndex);
-        //if (unitOne.Type == ) {
-       //     
-       // 
+        Unit unitTwo = FinalProject.units.get(unitTwoIndex);
         unitTwo.health -= unitOne.Damage;
         
         if (unitTwo.health <= 0) Death(unitTwoIndex);
-        else {
+        else if (unitTwo.type != 3) {
             FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
             unitOne.health -= unitTwo.Damage;
             FinalProject.units.get(unitOneIndex).health = unitOne.health;
             if (unitOne.health <= 0) Death(unitOneIndex);
-      //  }
         }
         
     }

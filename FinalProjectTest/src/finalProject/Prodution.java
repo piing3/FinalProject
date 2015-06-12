@@ -28,8 +28,7 @@ class Prodution {
         number = object;
         if (object == 0){
             name = "Warrior";
-            productionCost = 1;
-            goldCost = 1;
+            productionCost = 6;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "The basic melee unit. Avalable from the start.";
             rebuildable = true;
@@ -38,8 +37,7 @@ class Prodution {
         }
         if (object == 1){
             name = "Archer";
-            productionCost = 1;
-            goldCost = 1;
+            productionCost = 24;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "The basic Ragned unit. Avalable once Barracks is built.";
             rebuildable = true;
@@ -48,8 +46,7 @@ class Prodution {
         }
         if (object == 2){
             name = "Settler";
-            productionCost = 1;
-            goldCost = 1;
+            productionCost = 7;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "Basic unit. able to settle new citys.";
             rebuildable = true;
@@ -58,54 +55,45 @@ class Prodution {
         }
         if (object == 3){
             name = "Boat";
-            productionCost = 1;
-            goldCost = 1;
+            productionCost = 15;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "The basic Naval Unit. Avalable once a Harbor is built.";
             rebuildable = true;
             isUnit = true;
             unitType = 4;
         }
+        if (object == 4){
+            name = "Worker";
+            productionCost = 10;
+            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
+            discription = "Able to work and improve tiles";
+            rebuildable = false;
+        }
         //End of units, add more above if you want to add more units.
         if (object == 25){
             name = "Barracks";
-            productionCost = 1;
-            goldCost = 1;
+            productionCost = 10;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "Building Required to build Ground Units.";
             rebuildable = false;
         }
         if (object == 24){
             name = "Farm";
-            productionCost = 1;
-            goldCost = 1;
+            productionCost = 20;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "Building that provides Bonus food production.";
             rebuildable = false;
         }
         if (object == 23){
             name = "Harbor";
-            productionCost = 1;
-            goldCost = 1;
+            productionCost = 15;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "Building Required to build Navel Units.";
             rebuildable = false;
         }
-        
         if (object == 22){
-            name = "Test";
+            name = "WorkShop";
             productionCost = 3;
-            goldCost = 1;
-            goldChange = 5;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "+5 Gold";
-            rebuildable = false;
-        }
-        
-        if (object == 21){
-            name = "Test2";
-            productionCost = 3;
-            goldCost = 1;
             productionChange = 5;
             icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
             discription = "+5 Production";
