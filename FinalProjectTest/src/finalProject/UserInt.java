@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -23,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import sun.awt.AWTAccessor;
 
 /**
  *
@@ -32,6 +35,7 @@ class UserInt {
     
         public JButton nextTurn;
         public JLabel PlayerTurn;
+        static public JPanel alerts;
         
         static public JButton cityTest = new JButton();
         static public City city = new City();
@@ -98,6 +102,13 @@ class UserInt {
         UIBackround.setSize(200, 200);
         UIBackround.setBackground(Color.GRAY);
         Visual.UI.add(UIBackround);
+        
+        alerts =  new JPanel();
+        alerts.setLocation(Visual.width - 200, 0);
+        alerts.setSize(200, Visual.hight - 200);
+        alerts.setBackground(new Color(255, 255, 255, 51));
+        alerts.setLayout(new BoxLayout(alerts,BoxLayout.Y_AXIS));
+        Visual.UI.add(alerts);
         
         cityTest.setText("Test");
         cityTest.setSize(100,50);
