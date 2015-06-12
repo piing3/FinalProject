@@ -24,6 +24,8 @@ class Tile extends JLabel{
         public int improvement;
         public int movement;
         public Icon tile;
+        public int production;
+        public int food;
         
         public Tile(int i, int j) {
             x = i; y = j;
@@ -37,20 +39,52 @@ class Tile extends JLabel{
             tile = new ImageIcon("src\\Images\\GrassTile1.png");
             this.setIcon(tile);
             movement = 1;
+            production = 1;
+            food = 2;
         }
         if (type == 1){
             tile = new ImageIcon("src\\Images\\DessertTile1.png");
             this.setIcon(tile);
             movement = 1;
+            production = 0;
+            food = 0;
         }
         if (type == 2){
             tile = new ImageIcon("src\\Images\\WaterTile1.png");
             this.setIcon(tile);
             movement = 1;
+            production = 1;
+            food = 1;
         }
         if (type == 3){
             tile = new ImageIcon("src\\Images\\BorderTile1.png");
             this.setIcon(tile);
+            production = -1000;
+            food = -1000;
+        }
+        if (type == 50){
+            tile = new ImageIcon("src\\Images\\FarmTile1.png");
+            this.setIcon(tile);
+            production = 0;
+            food = 4;
+        }
+        if (type == 51){
+            tile = new ImageIcon("src\\Images\\MineTile1.png");
+            this.setIcon(tile);
+            production = 4;
+            food = 0;
+        }
+        if (type == 52){
+            tile = new ImageIcon("src\\Images\\BorderTile1.png");
+            this.setIcon(tile);
+            production = -1000;
+            food = -1000;
+        }
+        if (type == 53){
+            tile = new ImageIcon("src\\Images\\BorderTile1.png");
+            this.setIcon(tile);
+            production = -1000;
+            food = -1000;
         }
         if (type == 100){
             tile = new ImageIcon("src\\Images\\CityTile1.png");

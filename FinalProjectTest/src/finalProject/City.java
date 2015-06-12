@@ -32,6 +32,7 @@ class City extends JLabel{
     public int productionLeft;
     public Prodution productionItem = new Prodution(-1);
     public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();
+    public ArrayList<Integer> BuiltObjects = new ArrayList<Integer>();
     
     City(int x, int y, int Owner) {
         this.Health = 100;
@@ -97,8 +98,6 @@ class City extends JLabel{
             if (city.owner == owner){
                 city.productionLeft -= city.production; 
                 if (city.productionLeft <= 0) {
-                    city.gold += city.productionItem.goldChange;
-                    city.production += city.productionItem.productionChange;
                     if (!city.productionItem.rebuildable) {
                         for (int j = 0; j < city.cityBuildObjects.size(); j++) {
                             if (city.cityBuildObjects.get(j) == city.productionItem.number)  city.cityBuildObjects.remove(j);
@@ -106,6 +105,20 @@ class City extends JLabel{
                     }
                     if (city.productionItem.isUnit) UnitType.CreateUnit(city.x, city.y, city.productionItem.unitType, Visual.Units);
                     city.productionItem = new Prodution(-1);
+                    city.BuiltObjects.add(city.productionItem.number);
+                }
+                city.production = 0;
+                city.food = 0;
+                for (int j = 0; j < city.BuiltObjects.size(); j++) {
+                    city.gold += city.productionItem.goldChange;
+                    city.production += city.productionItem.productionChange;
+                }
+                for (int j = -2; j < 3; j++) {
+                    for (int k = -2; k < 3; k++) {
+                        Tile tile = Map.grid[city.x + j][city.y + k];
+                        city.production += tile.production;
+                        city.food += tile.food;
+                    }
                 }
             }
         }

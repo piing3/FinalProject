@@ -303,9 +303,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         if (movingUnit == false && attackingUnit) {
             int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
             int index2 = UnitType.FindUnit(tileX, tileY);
-            UnitType.AttackMelee(
-                    index1
-                    , index2);
+            UnitType.AttackMelee(index1, index2);
         }
     }
     
