@@ -116,7 +116,7 @@ class UnitType {
             if (FinalProject.units.get(i).player == owner) FinalProject.units.get(i).SetMove(); 
         }
     }
-    public void AttackMelee(int unitOneIndex, int unitTwoIndex){
+    public static void AttackMelee(int unitOneIndex, int unitTwoIndex){
         Unit unitOne = FinalProject.units.get(unitOneIndex);
         Unit unitTwo = FinalProject.units.get(unitOneIndex);
         //if (unitOne.Type == ) {

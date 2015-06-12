@@ -40,7 +40,7 @@ public static int play;
             else if(i == 3) FinalProject.Players.add(new Person(name, i+1, play));
         }
         turnorder.StartTurnOrder();
-        Visual visual = new Visual() {
+       Visual visual = new Visual() {
         
             @Override
             public void keyTyped(KeyEvent e) {
@@ -83,6 +83,10 @@ public static int play;
             }
         };
         visual.setVisible(true);
+        
+                UnitType.CreateUnit(14, 9, 1,Visual.Units);
+                UnitType.CreateUnit(15, 9, 2,Visual.Units);
+                UnitType.CreateUnit(16, 9, 3,Visual.Units);
         }
     }
 }

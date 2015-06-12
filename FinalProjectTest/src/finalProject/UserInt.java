@@ -6,10 +6,12 @@
 package finalProject;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
@@ -19,6 +21,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 /**
  *
@@ -27,6 +31,8 @@ import javax.swing.JScrollPane;
 class UserInt {
     
         public JButton nextTurn;
+        public JLabel PlayerTurn;
+        
         static public JButton cityTest = new JButton();
         static public City city = new City();
         static public Unit unit = new Unit(); 
@@ -37,8 +43,9 @@ class UserInt {
         static public JLabel cityProduction;
         static public JLabel cityName; 
         static public JPanel productionBackrounds = new JPanel();
-        static public JPanel productionInfo = new JPanel();
         static public JScrollPane jsp = new JScrollPane();
+        static public JPanel SelectedProduction = new JPanel(null);
+        static public Prodution selectedProductionItem = new Prodution(-1);
         
         static public JLabel unitBack;
         static public JLabel unitHealth; 
@@ -50,7 +57,13 @@ class UserInt {
         static public JButton unitAttack;
         static public JLabel unitIcon;
         
-        static public ArrayList<JLabel> productionList = new ArrayList<JLabel>();
+        static public ArrayList<JPanel> productionPanelList = new ArrayList<JPanel>();
+        static public ArrayList<JButton> productionButtonList = new ArrayList<JButton>();
+        
+        static public JLabel selectedIcon;
+        static public JLabel selectedTitle;
+        static public JLabel selectedCost;
+        static public JLabel selectedDicription;
     
     UserInt() throws FileNotFoundException{
         
@@ -60,16 +73,31 @@ class UserInt {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TurnOrder.NextTurn();
+                System.out.println(TurnOrder.whoTurn());
+                PlayerTurn.setText(FinalProject.Players.get(TurnOrder.whoTurn()-1).name+"'s Turn");
+                
                 
             }
         };
         nextTurn.addActionListener(actionListener);
         nextTurn.setSize(200, 25); 
         nextTurn.setLocation(Visual.width - 200, Visual.hight - 175);
-        nextTurn.setBackground(Color.gray);
-        nextTurn.setVisible(true);
+        nextTurn.setBackground(Color.orange);
         nextTurn.setFocusable(false);
         Visual.UI.add(nextTurn);
+        
+        PlayerTurn = new JLabel("Test");
+        PlayerTurn.setSize(200, 20);
+        PlayerTurn.setLocation(Visual.width - 200, Visual.hight - 195);
+        PlayerTurn.setHorizontalAlignment(SwingConstants.CENTER);
+        PlayerTurn.setForeground(Color.BLACK);
+        Visual.UI.add(PlayerTurn);
+        
+        JPanel UIBackround = new JPanel();
+        UIBackround.setLocation(Visual.width - 200, Visual.hight - 200);
+        UIBackround.setSize(200, 200);
+        UIBackround.setBackground(Color.GRAY);
+        Visual.UI.add(UIBackround);
         
         cityTest.setText("Test");
         cityTest.setSize(100,50);
@@ -96,6 +124,7 @@ class UserInt {
         city = newCity;
         
         updateProductionList();
+        updateSelectedProduction();
         visableCityUI(true);
         visableUnitUI(false);
         
@@ -128,6 +157,18 @@ class UserInt {
     public static void updateScience() {cityScience.setText(city.science+"");}
     public static void updateFood() {cityFood.setText(city.food+"");}
     public static void updateProduction() {cityProduction.setText(city.production+"");}
+    public static void updateSelectedProduction() {
+        selectedProductionItem = city.productionItem ;
+        int one = city.productionLeft/city.production;
+        if (one <= 0) one = 1;
+        
+        int two = selectedProductionItem.productionCost/city.production;
+        if (two <= 0) two = 1;
+        selectedCost.setText(one+" / "+two);
+        selectedTitle.setText(selectedProductionItem.name+"");
+        selectedDicription.setText(selectedProductionItem.discription+"");
+        selectedIcon.setIcon(selectedProductionItem.icon);
+    }
     
     public static void updateHealth() {unitHealth.setText(unit.health+"");}
     public static void updateStength(){unitStrength.setText(unit.Damage+"");}
@@ -269,7 +310,7 @@ class UserInt {
                 int index = Visual.FindCity(unit.x, unit.y);
                 if (index == -1)
                 {
-                    FinalProject.cities.add(new City(unit.x, unit.y, TurnOrder.whoTurn()));
+                    FinalProject.cities.add(new City(unit.x, unit.y, TurnOrder.whoTurn()-1));
                     int UnitIndex = UnitType.FindUnit(unit.x, unit.y);
                     UnitType.Death(UnitIndex);
                     CityUI(FinalProject.cities.get(Visual.FindCity(unit.x, unit.y)));
@@ -284,8 +325,8 @@ class UserInt {
         unitSettle.setFocusable(false);
         Visual.UnitUI.add(unitSettle);
            
-        Icon imgAttack = new ImageIcon("src\\Images\\unitSettle.png");
-        unitAttack = new JButton(imgSettle);
+        Icon imgAttack = new ImageIcon("src\\Images\\unitAttack.png");
+        unitAttack = new JButton(imgAttack);
         ActionListener attack = new ActionListener() {
 
             @Override
@@ -293,8 +334,8 @@ class UserInt {
 
                 Icon imgAttack = new ImageIcon("src\\Images\\unitAttack.png");
                 Icon imgAttackSelected = new ImageIcon("src\\Images\\unitAttackSelected.png");
-                if (!Visual.attackingUnit){Visual.movingUnit = true; unitMove.setIcon(imgAttackSelected);}
-                else {Visual.attackingUnit = false; unitMove.setIcon(imgAttack);} 
+                if (!Visual.attackingUnit){Visual.attackingUnit = true; unitAttack.setIcon(imgAttackSelected);}
+                else {Visual.attackingUnit = false; Visual.attackingUnit = false;unitAttack.setIcon(imgAttack);} 
                 
             }
         };
@@ -307,7 +348,8 @@ class UserInt {
     }
     public void MakeProductionUI() {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jsp.setSize(new Dimension(384, 500));
+        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        jsp.setSize(new Dimension(384, 350));
         jsp.setLocation(0, 200);
         jsp.setViewportView(productionBackrounds);
         Visual.CityUI.add(jsp,0);
@@ -315,11 +357,47 @@ class UserInt {
         productionBackrounds.setBackground(Color.BLACK);
         productionBackrounds.setLayout(new BoxLayout(productionBackrounds, BoxLayout.Y_AXIS));
         
-        productionInfo.setSize(384, 500);
-        productionInfo.setLocation(0, 200);
-        //productionInfo.set
+        SelectedProduction.setLayout(null);
+        SelectedProduction.setBackground(Color.GRAY);
+        SelectedProduction.setSize(384, 150);
+        SelectedProduction.setLocation(0, 554);
+        SelectedProduction.setVisible(false);
+        Visual.CityUI.add(SelectedProduction,0);
+        
+        Icon backroundImage = new ImageIcon("src\\Images\\ProductionBack.png");
+        JLabel selectedBackround = new JLabel(backroundImage);
+        selectedBackround.setSize(385, 150);
+        selectedBackround.setLocation(0, 0);
+        SelectedProduction.add(selectedBackround, 0);
+        
+        selectedTitle = new JLabel();
+        selectedTitle.setSize(200, 30);
+        selectedTitle.setLocation(220, 10);
+        selectedTitle.setFont(new Font(null, Font.PLAIN, 30));
+        selectedTitle.setForeground(Color.BLACK);
+        SelectedProduction.add(selectedTitle, 0);
+
+        selectedCost = new JLabel();
+        selectedCost.setSize(100, 20);
+        selectedCost.setLocation(325, 50);
+        selectedCost.setFont(new Font(null, Font.PLAIN, 20));
+        selectedCost.setForeground(Color.BLACK);
+        SelectedProduction.add(selectedCost, 0);
+
+        selectedDicription = new JLabel();//ask Wachs how to wrap text
+        selectedDicription.setSize(150, 50);
+        selectedDicription.setLocation(210, 90);
+        selectedDicription.setFont(new Font(null, Font.PLAIN, 15));
+        selectedDicription.setForeground(Color.BLACK);
+        SelectedProduction.add(selectedDicription, 0);
+        
+        selectedIcon = new JLabel();
+        selectedIcon.setSize(150, 150);
+        selectedIcon.setLocation(20, 0);
+        SelectedProduction.add(selectedIcon, 0);
+        
     }
-    
+     
     public static void visableCityUI(boolean visable){
         cityTest.setVisible(visable);
         cityLeft.setVisible(visable);
@@ -329,7 +407,7 @@ class UserInt {
         cityScience.setVisible(visable);
         cityName.setVisible(visable);
         jsp.setVisible(visable);
-        productionInfo.setVisible(visable);
+        SelectedProduction.setVisible(visable); 
     }
     public static void visableUnitUI(boolean visable){
         unitBack.setVisible(visable);
@@ -341,23 +419,82 @@ class UserInt {
         unitIcon.setVisible(visable);
         if (unit.type == 2) unitSettle.setVisible(visable);
         else unitSettle.setVisible(false);
+        
+        if (unit.type == 1) unitAttack.setVisible(visable);
+        else unitAttack.setVisible(false);
     }
-    
     public static void updateProductionList(){
+        productionPanelList.clear();
+        productionBackrounds.removeAll();
         for (int i = 0; i < city.cityBuildObjects.size(); i++) {
+            JPanel productionInfo = new JPanel();
+            productionInfo.setLayout(null);
+            productionInfo.setBackground(Color.BLACK);
+            productionInfo.setPreferredSize(new Dimension(384, 160));
+            productionBackrounds.add(productionInfo);
+            productionPanelList.add(productionInfo);
+            
             Icon backroundImage = new ImageIcon("src\\Images\\ProductionBack.png");
             JLabel backround = new JLabel(backroundImage);
-            backround.setPreferredSize(new Dimension(365, 150));
-            productionBackrounds.add(backround, 0);
-            productionList.add(backround);
+            backround.setSize(385, 150);
+            backround.setLocation(0, 0);
+            productionInfo.add(backround, 0);
             
             Prodution thing = new Prodution(city.cityBuildObjects.get(i));
             JLabel title = new JLabel(thing.name);
-            title.setSize(100, 30);
-            //title.setLocation(backround.getX()+220, backround.getY()+10);
+            title.setSize(200, 30);
+            title.setLocation(220, 10);
             title.setFont(new Font(null, Font.PLAIN, 30));
-            productionBackrounds.add(title, 0);
-            productionList.add(title);
+            title.setForeground(Color.BLACK);
+            productionInfo.add(title, 0);
+            
+            JLabel cost = new JLabel(thing.productionCost+"");
+            cost.setSize(100, 20);
+            cost.setLocation(325, 50);
+            cost.setFont(new Font(null, Font.PLAIN, 20));
+            cost.setForeground(Color.BLACK);
+            productionInfo.add(cost, 0);
+            
+            JLabel dicription = new JLabel(thing.discription);//ask Wachs how to wrap text
+            dicription.setSize(150, 50);
+            dicription.setLocation(210, 90);
+            dicription.setFont(new Font(null, Font.PLAIN, 15));
+            dicription.setForeground(Color.BLACK);
+            productionInfo.add(dicription, 0);
+            
+            JButton select = new JButton("Select");
+            select.setSize(100, 25);
+            select.setLocation(230, 125);
+            select.setForeground(Color.BLACK);
+            select.setBackground(Color.GRAY);
+            select.setFocusable(false);
+            productionInfo.add(select, 0);
+            ActionListener setProduction = new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JButton trigger = (JButton)e.getSource();
+                    for (int i = 0; i < productionPanelList.size(); i++) {
+                        Component[] test = productionPanelList.get(i).getComponents();
+                        for (int j = 0; j < test.length; j++) {
+                            if (test[j] == trigger){
+                                if (selectedProductionItem.number != new Prodution(city.cityBuildObjects.get(i)).number){
+                                    selectedProductionItem = new Prodution(city.cityBuildObjects.get(i));
+                                    city.productionItem = selectedProductionItem;
+                                    city.productionLeft = selectedProductionItem.productionCost;
+                                    updateSelectedProduction();
+                                }
+                            }
+                        } 
+                    }
+                }
+            };
+            select.addActionListener(setProduction);
+            
+            JLabel icon = new JLabel(thing.icon);
+            icon.setSize(150, 150);
+            icon.setLocation(10, 0);
+            productionInfo.add(icon, 0);
         }
     }
 }

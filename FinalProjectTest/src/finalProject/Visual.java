@@ -37,6 +37,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     static boolean diselectEnabled = true;
     static boolean movingUnit = false;
     static boolean attackingUnit = false;
+    static boolean UnitUIOpen = false;
+    static boolean CityUIOpen = false;
     
     static Boolean menuOpen = false;
     static Menu menu = new Menu();
@@ -132,7 +134,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             int index = FindCity(cityX, cityY);
             if (index == -1)
             {
-                FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()));
+                FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()-1));
             } 
             
         }
@@ -253,17 +255,43 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         int unitIndex = -1; 
         if (movingUnit == false && attackingUnit == false){
             unitIndex = UnitType.FindUnit(tileX, tileY);
-            if (cityIndex != -1 && diselectEnabled) {
+            if (unitIndex != -1 && cityIndex != -1) {
+                if (CityUIOpen) {
+                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                    moveEnabled = true;
+                    CityUIOpen = false;
+                    UnitUIOpen = true;
+                }
+                else if (UnitUIOpen) {
+                    UserInt.CityUI(FinalProject.cities.get(cityIndex));
+                    moveEnabled = false;
+                    CityUIOpen = true;
+                    UnitUIOpen = false;
+                }
+                else if (!UnitUIOpen && !CityUIOpen){
+                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                    moveEnabled = true;
+                    CityUIOpen = false;
+                    UnitUIOpen = true;
+                }
+            }
+            else if (cityIndex != -1) {
                 UserInt.CityUI(FinalProject.cities.get(cityIndex));
                 moveEnabled = false;
+                CityUIOpen = true;
+                UnitUIOpen = false;
             }
-            else if (unitIndex != -1 && diselectEnabled) {
+            else if (unitIndex != -1) {
                 UserInt.UnitUI(FinalProject.units.get(unitIndex));
                 moveEnabled = true;
+                CityUIOpen = false;
+                UnitUIOpen = true;
             }
-            if (cityIndex == -1 && unitIndex == -1 && diselectEnabled) {
+            if (cityIndex == -1 && unitIndex == -1) {
                 UserInt.NormalUI(); 
                 moveEnabled = true;
+                CityUIOpen = false;
+                UnitUIOpen = false;
             }
         }
         if (movingUnit && attackingUnit == false){
@@ -281,6 +309,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         if (movingUnit == false && attackingUnit) {
             int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
             int index2 = UnitType.FindUnit(tileX, tileY);
+            UnitType.AttackMelee(index1, index2);
         }
     }
     
@@ -306,7 +335,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         }
         return result;
     } 
-    
+   
     
 }
 

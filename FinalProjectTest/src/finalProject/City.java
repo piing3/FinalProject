@@ -20,15 +20,17 @@ class City extends JLabel{
     
     public int x;
     public int y;
-    public int production = 0;
+    public int production = 1;
     public int gold = 0;
-    public int population = 0;
-    public int food = 0;
+    public int population = 1;
+    public int food = 1;
     public int science = 0;
     public int Health;
     public int Damage = 20;
     public String name = "";
     public Person owner;
+    public int productionLeft;
+    public Prodution productionItem = new Prodution(-1);
     public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();
     
     City(int x, int y, int Owner) {
@@ -88,4 +90,24 @@ class City extends JLabel{
     public int getFood(City city){
         return city.food;
     }  
+    
+    public static void updateProduction(Person owner){
+        for (int i = 0; i < FinalProject.cities.size(); i++) {
+            City city = FinalProject.cities.get(i);
+            if (city.owner == owner){
+                city.productionLeft -= city.production; 
+                if (city.productionLeft <= 0) {
+                    city.gold += city.productionItem.goldChange;
+                    city.production += city.productionItem.productionChange;
+                    if (!city.productionItem.rebuildable) {
+                        for (int j = 0; j < city.cityBuildObjects.size(); j++) {
+                            if (city.cityBuildObjects.get(j) == city.productionItem.number)  city.cityBuildObjects.remove(j);
+                        }
+                    }
+                    if (city.productionItem.isUnit) UnitType.CreateUnit(city.x, city.y, city.productionItem.unitType, Visual.Units);
+                    city.productionItem = new Prodution(-1);
+                }
+            }
+        }
+    }
 }

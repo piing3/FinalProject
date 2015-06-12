@@ -35,6 +35,8 @@ class Person {
         buildObjects.add(25);
         buildObjects.add(24);
         buildObjects.add(23);
+        buildObjects.add(22);
+        buildObjects.add(21);
     }
     
     public static void MakeSettlers(){

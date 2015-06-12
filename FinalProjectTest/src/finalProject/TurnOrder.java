@@ -27,10 +27,12 @@ public class TurnOrder{
                  if(player1.isTurn){
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
+                     City.updateProduction(FinalProject.Players.get(1));
                  }
             else if(player2.isTurn){
                      FinalProject.Players.get(0).isTurn = true;
                      FinalProject.Players.get(1).isTurn = false;
+                     City.updateProduction(FinalProject.Players.get(0));//Ben, copy this to the other ones
             }
         }
         if(numberOfPlayers == 3){
