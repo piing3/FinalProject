@@ -105,7 +105,7 @@ class UnitType {
     }
     }
     public static void Death(int index){
-        Unit unit =/*>:(*/ FinalProject.units.get(index);
+        Unit unit = FinalProject.units.get(index);
         Globals.unitGrid[unit.x][unit.y] = -1;
         unit.setUnit(Globals.unitGrid[unit.x][unit.y]);
         FinalProject.units.remove(index);
@@ -116,29 +116,39 @@ class UnitType {
             if (FinalProject.units.get(i).player == owner) FinalProject.units.get(i).SetMove(FinalProject.units.get(i)); 
         }
     }
-    public void AttackMelee(int unitOneIndex, int unitTwoIndex){
+    public static void Attack(int unitOneIndex, int unitTwoIndex){
         Unit unitOne = FinalProject.units.get(unitOneIndex);
         Unit unitTwo = FinalProject.units.get(unitTwoIndex);
-        unitTwo.health -= unitOne.Damage;
+        if (unitOne.type != 3) {
+                if (unitOne.x + 1 == unitTwo.x || unitOne.x -1 == unitTwo.x || unitOne.x == unitTwo.x){
+                     if (unitOne.y + 1 == unitTwo.y || unitOne.y -1 == unitTwo.y || unitOne.y == unitTwo.y){
+                            unitTwo.health -= unitOne.Damage;
+                            if (unitTwo.health <= 0) Death(unitTwoIndex);
+                            if (unitTwo.type != 3) {
+                            FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
+                            unitOne.health -= unitTwo.Damage;
+                            FinalProject.units.get(unitOneIndex).health = unitOne.health;
+                            if (unitOne.health <= 0) Death(unitOneIndex); 
+                                }
+                            }
+                        }
         
-        if (unitTwo.health <= 0) Death(unitTwoIndex);
-        else if (unitTwo.type != 3) {
-            FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
-            unitOne.health -= unitTwo.Damage;
-            FinalProject.units.get(unitOneIndex).health = unitOne.health;
-            if (unitOne.health <= 0) Death(unitOneIndex);
         }
-        
-    }
-    public void AttackRange(int unitTwoIndex){
-        Unit unitTwo = FinalProject.units.get(unitTwoIndex);
-        unitTwo.health -= unitTwo.Damage;
+        else if (unitOne.type == 3) {
+            if (unitOne.x + 2 >= unitTwo.x || unitOne.x -2 >= unitTwo.x || unitOne.x >= unitTwo.x){
+                     if (unitOne.y + 2 >= unitTwo.y || unitOne.y - 2 >= unitTwo.y || unitOne.y >= unitTwo.y){
+                            unitTwo.health -= unitTwo.Damage;
+                                }
+                        }
         if (unitTwo.health <= 0) Death(unitTwoIndex);
         else{
             FinalProject.units.get(unitTwoIndex).health = unitTwo.health;
         }
+        
+        }
+        
     }
-    public void AttackCity(int unitOneIndex, int CityIndex){
+    public static void AttackCity(int unitOneIndex, int CityIndex){
         Unit unit = FinalProject.units.get(unitOneIndex);
         int cityHealth = FinalProject.cities.get(CityIndex).Health;
         int cityX = FinalProject.cities.get(CityIndex).x;
