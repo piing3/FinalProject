@@ -40,7 +40,7 @@ class Tile extends JLabel{
             this.setIcon(tile);
             movement = 1;
             production = 1;
-            food = 2;
+            food = 1;
         }
         if (type == 1){
             tile = new ImageIcon("src\\Images\\DessertTile1.png");
@@ -53,25 +53,25 @@ class Tile extends JLabel{
             tile = new ImageIcon("src\\Images\\WaterTile1.png");
             this.setIcon(tile);
             movement = 1;
-            production = 1;
+            production = 0;
             food = 1;
         }
         if (type == 3){
             tile = new ImageIcon("src\\Images\\BorderTile1.png");
             this.setIcon(tile);
-            production = -1000;
-            food = -1000;
+            production = 0;
+            food = 0;
         }
         if (type == 50){
             tile = new ImageIcon("src\\Images\\FarmTile1.png");
             this.setIcon(tile);
             production = 0;
-            food = 4;
+            food = 3;
         }
         if (type == 51){
             tile = new ImageIcon("src\\Images\\MineTile1.png");
             this.setIcon(tile);
-            production = 4;
+            production = 3;
             food = 0;
         }
         if (type == 52){

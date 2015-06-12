@@ -25,12 +25,11 @@ import javax.swing.JOptionPane;
  */
 abstract class Visual extends JFrame implements KeyListener, MouseMotionListener, MouseListener  {
     static Container tiles;
+    static Container Units;
     static Container UI;
     static Container CityUI;
     static Container ProdutionUI;
     static Container UnitUI;
-    static Container citiesContainer;
-    static Container Units;
     static int width; 
     static int hight;
     static boolean moveEnabled = true;
@@ -57,14 +56,12 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         width = this.getWidth();
         hight = this.getHeight();
         
-        CityUI = this.getContentPane();
-        ProdutionUI = this.getContentPane();
-        UnitUI = this.getContentPane();
-        Units = this.getContentPane();
         tiles = this.getContentPane();
+        Units = this.getContentPane();
         UI = this.getContentPane();
-        citiesContainer = this.getContentPane();
-              
+        UnitUI = this.getContentPane();
+        CityUI = this.getContentPane();
+        ProdutionUI = this.getContentPane();  
         
         this.addKeyListener(this);
         this.addMouseMotionListener(this);
@@ -72,43 +69,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         
         UserInt userInt = new UserInt();
         Map map = new Map();
-        
-        
-        
-//        
-//        this.addMouseListener(new MouseAdapter() { 
-////            public void mousePressed(MouseEvent e) {
-////                mouseDown(e);
-////            }        
-////            public void mouseReleased(MouseEvent e) {
-////                mouseUp(e);
-////            }
-//            public void mouseDragged(MouseEvent e) {
-//                mouseDrag(e);
-//            }            
-//        });
-        
-        
     }
-    
-//    private void mouseDown(MouseEvent e)  {
-//        System.out.println("down");
-//    }
-//    
-//    private void mouseUp(MouseEvent e)  {
-//        System.out.println("up");
-//    }
-//    
-//    private void mouseDrag(MouseEvent e)  {
-//        System.out.println("drag");
-//    }
-//    
-//}
-
-
-    
-    
-    
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 27){
@@ -183,6 +144,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         for (int i = 0; i < Map.x; i++){
                 for (int j = 0; j < Map.y; j++){
                     Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
+                    Map.borderGrid[i][j].setBorder(Map.borderType[i + Map.rightOff][j + Map.downOff]);
 
                 }
             }
@@ -201,43 +163,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
             }
         }
     }
-
-//    /*@Override
-//    public void mouseDragged(MouseEvent e) {
-//        mouseY1 = 0;
-//        mouseY2 = 0;
-//        
-//        int rawPos = getMousePosition().x;
-//        double intpos = ((double)rawPos)/50;
-//        int pos = (int)intpos;
-//        mouseX2 = pos;
-//        
-////        mouseX2 = getMousePosition().x/50;
-//        //mouseY2 = getMousePosition().y/50;
-//        if ((mouseX2 - mouseX1) > 0/*||Map.rightOff != (128-Map.x)*/) Map.rightOff++;
-//        if ((mouseX2 - mouseX1) < 0/*||Map.rightOff != 0*/) Map.rightOff--;
-//        if ((mouseY2 - mouseY1) > 0/*||Map.downOff != (72-Map.y)*/) Map.downOff++;
-//        if ((mouseY2 - mouseY1) < 0/*||Map.downOff != 0*/) Map.downOff--;
-//        System.out.println("right = "+Map.rightOff+", down = "+Map.downOff);
-//        
-//        for (int i = 0; i < Map.x; i++){
-//                for (int j = 0; j < Map.y; j++){
-//                    Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
-//
-//                }
-//            }
-//    }
-//
     @Override
     public void mousePressed(MouseEvent e) {
-        
-//        int rawPos = getMousePosition().x;
-//        double intpos = ((double)rawPos)/50;
-//        int pos = (int)intpos;
-//        mouseX1 = pos;
-//        
-//        mouseX1 = getMousePosition().x/50;
-//        mouseY1 = getMousePosition().y/50;
     }
 
     @Override
@@ -303,16 +230,12 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         if (movingUnit == false && attackingUnit) {
             int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
             int index2 = UnitType.FindUnit(tileX, tileY);
-            UnitType.AttackMelee(index1, index2);
+            UnitType.Attack(index1, index2);
         }
     }
     
      @Override
     public void mouseReleased(MouseEvent e) {
-//        int rawPos = getMousePosition().x;
-//        double intpos = ((double)rawPos)/50;
-//        int pos = (int)intpos;
-//        mouseX1 = pos;
     }
 
     public static int FindCity(int x, int y){

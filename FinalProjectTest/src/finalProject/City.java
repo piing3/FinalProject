@@ -22,8 +22,9 @@ class City extends JLabel{
     public int y;
     public int production = 1;
     public int gold = 0;
-    public int population = 1;
-    public int food = 1;
+    public int population = 3;
+    public int food = 0;
+    public int growthLeft;
     public int science = 0;
     public int Health;
     public int Damage = 20;
@@ -54,6 +55,18 @@ class City extends JLabel{
         for (int i = 0; i < this.owner.buildObjects.size(); i++) {//Outputs lots of errors if FinalProject.play = 0
             this.cityBuildObjects.add(this.owner.buildObjects.get(i));
         }
+        for (int i = -2; i < 3; i++) {
+            for (int j = -2; j < 3; j++) {
+                Tile tile = Map.grid[this.x + i][this.y + j];
+                this.production += tile.production;
+                this.food += tile.food;
+                Map.borderGrid[this.x + i][this.y + j].setBorder(1);
+                Map.borderType[this.x + i][this.y + j] = TurnOrder.whoTurn();
+                Visual.redrawMap();
+            }
+        }
+        this.food /= 2;
+        this.production /= 2;
     }
     City() {
     }
@@ -107,11 +120,16 @@ class City extends JLabel{
                     city.productionItem = new Prodution(-1);
                     city.BuiltObjects.add(city.productionItem.number);
                 }
+                city.growthLeft -= city.food;
+                if (city.growthLeft <= 0) {
+                    city.population++;
+                    city.growthLeft = city.population*3;
+                }
                 city.production = 0;
                 city.food = 0;
                 for (int j = 0; j < city.BuiltObjects.size(); j++) {
-                    city.gold += city.productionItem.goldChange;
-                    city.production += city.productionItem.productionChange;
+                    city.gold += new Prodution(city.BuiltObjects.get(j)).goldChange;
+                    city.production += new Prodution(city.BuiltObjects.get(j)).productionChange;
                 }
                 for (int j = -2; j < 3; j++) {
                     for (int k = -2; k < 3; k++) {
@@ -120,6 +138,10 @@ class City extends JLabel{
                         city.food += tile.food;
                     }
                 }
+                city.food -= city.population;
+                city.production += city.population/2;
+                city.production /= 2;
+                city.food /= 2;
             }
         }
     }

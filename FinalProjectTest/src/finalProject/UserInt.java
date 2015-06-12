@@ -35,7 +35,6 @@ class UserInt {
     
         public JButton nextTurn;
         public JLabel PlayerTurn;
-        static public JPanel alerts;
         
         static public JButton cityTest = new JButton();
         static public City city = new City();
@@ -90,7 +89,7 @@ class UserInt {
         nextTurn.setFocusable(false);
         Visual.UI.add(nextTurn);
         
-        PlayerTurn = new JLabel("Test");
+        PlayerTurn = new JLabel(FinalProject.Players.get(TurnOrder.whoTurn()-1).name+"'s Turn");;
         PlayerTurn.setSize(200, 20);
         PlayerTurn.setLocation(Visual.width - 200, Visual.hight - 195);
         PlayerTurn.setHorizontalAlignment(SwingConstants.CENTER);
@@ -102,13 +101,6 @@ class UserInt {
         UIBackround.setSize(200, 200);
         UIBackround.setBackground(Color.GRAY);
         Visual.UI.add(UIBackround);
-        
-        alerts =  new JPanel();
-        alerts.setLocation(Visual.width - 200, 0);
-        alerts.setSize(200, Visual.hight - 200);
-        alerts.setBackground(new Color(255, 255, 255, 51));
-        alerts.setLayout(new BoxLayout(alerts,BoxLayout.Y_AXIS));
-        Visual.UI.add(alerts);
         
         cityTest.setText("Test");
         cityTest.setSize(100,50);
@@ -143,7 +135,7 @@ class UserInt {
         updateGold();
         updateProduction();
         updateScience();
-        cityName.setText(city.name);
+        updateCityName();
         
     }
     public static void UnitUI(Unit newUnit){   
@@ -168,6 +160,7 @@ class UserInt {
     public static void updateScience() {cityScience.setText(city.science+"");}
     public static void updateFood() {cityFood.setText(city.food+"");}
     public static void updateProduction() {cityProduction.setText(city.production+"");}
+    public static void updateCityName() {cityName.setText(city.name+" ("+city.population+")");}
     public static void updateSelectedProduction() {
         selectedProductionItem = city.productionItem ;
         int one = city.productionLeft/city.production;
@@ -250,7 +243,7 @@ class UserInt {
         unitBack.setLocation(0, 490);
         unitBack.setVisible(false);
         unitBack.setFocusable(false);
-        Visual.UnitUI.add(unitBack);
+        Visual.UnitUI.add(unitBack,0);
         
         unitIcon = new JLabel();
         unitIcon.setSize(200,200);
@@ -310,7 +303,7 @@ class UserInt {
         unitMove.setLocation(0, 440);
         unitMove.setVisible(false);
         unitMove.setFocusable(false);
-        Visual.UnitUI.add(unitMove);
+        Visual.UnitUI.add(unitMove,0);
            
         Icon imgSettle = new ImageIcon("src\\Images\\unitSettle.png");
         unitSettle = new JButton(imgSettle);
@@ -334,7 +327,7 @@ class UserInt {
         unitSettle.setLocation(0, 380);
         unitSettle.setVisible(false);
         unitSettle.setFocusable(false);
-        Visual.UnitUI.add(unitSettle);
+        Visual.UnitUI.add(unitSettle,0);
            
         Icon imgAttack = new ImageIcon("src\\Images\\unitAttack.png");
         unitAttack = new JButton(imgAttack);
@@ -355,7 +348,7 @@ class UserInt {
         unitAttack.setLocation(0, 380);
         unitAttack.setVisible(false);
         unitAttack.setFocusable(false);
-        Visual.UnitUI.add(unitAttack);
+        Visual.UnitUI.add(unitAttack,0);
     }
     public void MakeProductionUI() {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

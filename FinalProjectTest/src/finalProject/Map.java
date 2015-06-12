@@ -24,6 +24,8 @@ class Map {
     static  int downOff = 0, rightOff = 0;//Down and Right offsets, used for moving map.
     
     static Tile[][] grid;
+    static Border[][] borderGrid;
+    static int[][] borderType;
     static int[][] tileType;
     
     Map() throws FileNotFoundException{
@@ -35,12 +37,15 @@ class Map {
         
         tileType  = new int[128][72];
         grid  = new Tile[128][72];
+        borderGrid  = new Border[128][72];
+        borderType  = new int[128][72];
         Visual.tiles.setLayout(null);
         
         File temp = new File("src\\finalProject\\Map.txt");
         Scanner s = new Scanner(temp);
         for (int j = 0; j <= 71; j++){
             for (int i = 0; i <= 127; i++){
+                borderType[i][j] = 0;
                 tileType[i][j] = s.nextInt();
             }
         }
@@ -51,6 +56,10 @@ class Map {
                 grid[i][j] = new Tile(i, j);
                 grid[i][j].setTile(tileType[i][j]);
                 Visual.tiles.add(grid[i][j]);
+                
+                borderGrid[i][j] = new Border(i, j);
+                borderGrid[i][j].setBorder(borderType[i][j]);
+                Visual.tiles.add(borderGrid[i][j],0);
                 
             }
         }

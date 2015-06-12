@@ -82,11 +82,12 @@ public static int play;
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
+        
+        UnitType.CreateUnit(14, 9, 1,Visual.Units);
+        UnitType.CreateUnit(15, 9, 2,Visual.Units);
+        UnitType.CreateUnit(16, 9, 3,Visual.Units);
         visual.setVisible(true);
         
-                UnitType.CreateUnit(14, 9, 1,Visual.Units);
-                UnitType.CreateUnit(15, 9, 2,Visual.Units);
-                UnitType.CreateUnit(16, 9, 3,Visual.Units);
         }
     }
 }
