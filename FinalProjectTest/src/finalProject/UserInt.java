@@ -163,11 +163,13 @@ class UserInt {
     public static void updateCityName() {cityName.setText(city.name+" ("+city.population+")");}
     public static void updateSelectedProduction() {
         selectedProductionItem = city.productionItem ;
+        double oneRaw = city.productionLeft/city.production;
         int one = city.productionLeft/city.production;
-        if (one <= 0) one = 1;
+        if (oneRaw > one) one++; 
         
         int two = selectedProductionItem.productionCost/city.production;
-        if (two <= 0) two = 1;
+        double twoRaw = selectedProductionItem.productionCost/city.production;
+        if (twoRaw > two) two++; 
         selectedCost.setText(one+" / "+two);
         selectedTitle.setText(selectedProductionItem.name+"");
         selectedDicription.setText(selectedProductionItem.discription+"");

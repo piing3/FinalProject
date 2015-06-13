@@ -58,15 +58,15 @@ class City extends JLabel{
         for (int i = -2; i < 3; i++) {
             for (int j = -2; j < 3; j++) {
                 Tile tile = Map.grid[this.x + i][this.y + j];
-                this.production += tile.production;
-                this.food += tile.food;
+                //this.production += tile.production;
+                //this.food += tile.food;
                 Map.borderGrid[this.x + i][this.y + j].setBorder(1);
                 Map.borderType[this.x + i][this.y + j] = TurnOrder.whoTurn();
                 Visual.redrawMap();
             }
         }
-        this.food /= 2;
-        this.production /= 2;
+        //this.food /= 2;
+        //this.production /= 2;
     }
     City() {
     }
@@ -117,19 +117,22 @@ class City extends JLabel{
                         }
                     }
                     if (city.productionItem.isUnit) UnitType.CreateUnit(city.x, city.y, city.productionItem.unitType, Visual.Units);
-                    city.productionItem = new Prodution(-1);
                     city.BuiltObjects.add(city.productionItem.number);
+                    city.productionItem = new Prodution(-1);
                 }
                 city.growthLeft -= city.food;
                 if (city.growthLeft <= 0) {
                     city.population++;
                     city.growthLeft = city.population*3;
                 }
-                city.production = 0;
-                city.food = 0;
+                
+                city.production = 1;
+                city.food = 1;
+                
                 for (int j = 0; j < city.BuiltObjects.size(); j++) {
                     city.gold += new Prodution(city.BuiltObjects.get(j)).goldChange;
                     city.production += new Prodution(city.BuiltObjects.get(j)).productionChange;
+                    System.out.println(new Prodution(city.BuiltObjects.get(j)).name);
                 }
                 for (int j = -2; j < 3; j++) {
                     for (int k = -2; k < 3; k++) {
@@ -140,8 +143,6 @@ class City extends JLabel{
                 }
                 city.food -= city.population;
                 city.production += city.population/2;
-                city.production /= 2;
-                city.food /= 2;
             }
         }
     }
