@@ -22,8 +22,6 @@ class Person {
     public int startY;
     
     public Person(String name, int playerNumber, int players) {
-        //Random spawn = new Random();
-        //startX = spawn.nextInt(126)+1;
        
         this.name = name;
         this.PlayerNumber = playerNumber;

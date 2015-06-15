@@ -5,6 +5,8 @@
  */
 package finalProject;
 
+import java.util.Random;
+
 /**
  *
  * @author Ben (Tad bit to "organized")
@@ -21,6 +23,7 @@ public class TurnOrder{
             return result;
     }
     public static void NextTurn(){
+        FinalProject.turnNumber++;
         if(numberOfPlayers == 2){
              Person player1 =       FinalProject.Players.get(0);
              Person player2 =       FinalProject.Players.get(1);
@@ -28,13 +31,31 @@ public class TurnOrder{
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
                      City.updateProduction(FinalProject.Players.get(1));
-                     UnitType.ResetUnits(1);
+                     UnitType.ResetUnits(whoTurn());
+                     if (FinalProject.turnNumber <= 1){
+                        Random startPos = new Random();
+                        int startX;
+                        int startY;
+                        do{
+                            startX = startPos.nextInt(126);
+                            startY = startPos.nextInt(72);
+                        }while(Map.grid[startX][startY].tileType == 2);
+                        UnitType.CreateUnit(startX, startY, 1,Visual.Units);//make units
+                        UnitType.CreateUnit(startX + 1, startY, 2,Visual.Units);
+                        int index = UnitType.FindUnit(whoTurn());
+                        if (FinalProject.units.get(index).x > Map.x)Map.rightOff = FinalProject.units.get(startX).x - (Map.x/2);
+                        else Map.downOff = FinalProject.units.get(startX).x;
+                        if (FinalProject.units.get(index).y > Map.y)Map.downOff = FinalProject.units.get(startY).y - (Map.y/2);
+                        else Map.rightOff = FinalProject.units.get(startY).y; 
+                        Visual.redrawMap();
+                        Visual.LoadUnits();
+                     }
                  }
-            else if(player2.isTurn){
+            else if(player2.isTurn){  
                      FinalProject.Players.get(0).isTurn = true;
                      FinalProject.Players.get(1).isTurn = false;
                      City.updateProduction(FinalProject.Players.get(0));//Ben, copy this to the other ones
-                    UnitType.ResetUnits(0);
+                     UnitType.ResetUnits(whoTurn());
             }
         }
         if(numberOfPlayers == 3){
@@ -76,15 +97,15 @@ public class TurnOrder{
                      FinalProject.Players.get(0).isTurn = true;
             }
         }
+        int index = UnitType.FindUnit(whoTurn());
+        if (FinalProject.units.get(index).x > Map.x)Map.rightOff = FinalProject.units.get(index).x - (Map.x/2);
+        else Map.downOff = FinalProject.units.get(index).x;
+        if (FinalProject.units.get(index).y > Map.y)Map.downOff = FinalProject.units.get(index).y - (Map.y/2);
+        else Map.rightOff = FinalProject.units.get(index).y; 
+        Visual.redrawMap();
+        Visual.LoadUnits();
     }
     public void StartTurnOrder(){
         FinalProject.Players.get(0).isTurn = true;
     }
-    public void StarNextTurn(){
-        int player = whoTurn();
-        UnitType.ResetUnits(player);
-        //Davin add the rest of stuff for production and stuff.
-
-    }
-    
 }
