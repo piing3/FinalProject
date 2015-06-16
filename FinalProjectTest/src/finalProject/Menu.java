@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
+import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,30 +28,33 @@ import org.w3c.dom.events.MouseEvent;
  * 
  * A container that will open when the "escape" key is pressed
  */
-class Menu extends JFrame implements KeyListener{
+class Menu extends JFrame{
     
-    private JButton btnExit;
-    private Container container;
-    private JButton close;
+    private JButton btnExit;//exit button
+    private Container container;//the button container
+    private JButton close;//close button
     
     public Menu(){
-        container = this.getContentPane();
-        this.setVisible(false);
-        this.getContentPane().setBackground(new Color(148, 65, 167, 255));
-        this.setAlwaysOnTop(true);
-        btnExit = new JButton("Exit");
+        container = this.getContentPane();// initalizes container
+        this.setVisible(false);//make form visable
+        Random r = new Random();
+        this.getContentPane().setBackground(new Color(r.nextInt(254), r.nextInt(254), r.nextInt(254)));//set a random backround color
+        this.setAlwaysOnTop(true);//make it infront of other form
+        this.setLayout(null);
+        this.setTitle("Menu");
+        this.setUndecorated(true);//remove borders and top bar
+        this.setResizable(false);//lock it in place
+        this.setBounds(500, 25, 300, 600);
+        
+        btnExit = new JButton("Exit");//make the exit button 
         btnExit.setBackground(Color.red);
         btnExit.setForeground(Color.white);
-        this.setLayout(null);
         btnExit.setSize(100, 50);
         btnExit.setLocation(100, 100);
         container.add(btnExit); 
-        this.setTitle("Menu");
-        this.setUndecorated(true);
-        this.setResizable(false);
-        this.setBounds(500, 25, 300, 600);
         
-        close = new JButton("Close");
+        
+        close = new JButton("Close");//make the close button
         close.setSize(100, 50);
         close.setLocation(100, 500);
         close.setBackground(Color.gray);
@@ -63,7 +67,7 @@ class Menu extends JFrame implements KeyListener{
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
-        };
+        };//exit event and add
         btnExit.addActionListener(exit);
         
         ActionListener closeMenu = new ActionListener() {
@@ -73,30 +77,7 @@ class Menu extends JFrame implements KeyListener{
                 Visual.menu.setVisible(false);
                 Visual.menuOpen = false;
             }
-        };
+        };//close event and add
         close.addActionListener(closeMenu);
-        
-        
-        
     }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if (e.getKeyCode() == 27){
-            Visual.menu.setVisible(false);
-            Visual.menuOpen = false; 
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

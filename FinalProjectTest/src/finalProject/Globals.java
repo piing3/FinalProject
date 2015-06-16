@@ -5,10 +5,10 @@
 package finalProject;
 
 /**
- *
+ *Used to store some commonly used globals(severely underused)
+ * 
  * @author b.allen
  */
 public class Globals {
-    public static int unitGrid[][];
-    public static int unitLocation[][];
+    public static int unitGrid[][];//the grid that stores unit positions
 }

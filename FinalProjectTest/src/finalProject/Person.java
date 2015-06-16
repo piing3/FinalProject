@@ -9,24 +9,25 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
+ *Controls and stores info on the players
+ * 
  * @author Ben
  */
 class Person {
-    String name;
-    public int PlayerNumber;
-    public boolean isTurn;
-    public int players;
-    public ArrayList<Integer> buildObjects = new ArrayList<Integer>();
-    public int startX;
-    public int startY;
+    String name;//the entered name
+    public int PlayerNumber;//the players index
+    public boolean isTurn;// stores if it's their turn
+    public int players = FinalProject.play;//the amount of players playing
+    public ArrayList<Integer> buildObjects = new ArrayList<Integer>();// the list of unlocked builds for the player
+    public int startX;//their starting x
+    public int startY;//their starting y
     
-    public Person(String name, int playerNumber, int players) {
+    public Person(String name, int playerNumber) {
        
-        this.name = name;
-        this.PlayerNumber = playerNumber;
-        this.players = players;
-        buildObjects.add(0);
+        this.name = name;//stores their name
+        this.PlayerNumber = playerNumber;//stores their playerNumber
+        
+        buildObjects.add(0);//adds all avalable builds to the player's list
         buildObjects.add(1);
         buildObjects.add(3);
         buildObjects.add(2);
@@ -34,18 +35,10 @@ class Person {
         buildObjects.add(24);
         buildObjects.add(23);
         buildObjects.add(22);
-        buildObjects.add(21);
     }
     
     public static void MakeSettlers(){
-        if (FinalProject.units.isEmpty()){
-            Globals.unitGrid  = new int[128][72];
-            for (int i = 0; i < Globals.unitGrid.length; i++) {
-                for (int j = 0; j < Globals.unitGrid[i].length; j++) {
-                    Globals.unitGrid[i][j] = 0;
-                }
-            }
-        }
+
         for (int i = 0; i < FinalProject.play; i++) {
             Random r = new Random();
             int startX = r.nextInt(126)+1;

@@ -42,13 +42,15 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     static Boolean menuOpen = false;
     static Menu menu = new Menu();
     
+    static int downOff = 0, rightOff = 0;//Down and Right offsets, used for moving map.
+    
     int mouseX1;
     int mouseX2;
     int mouseY1;
     int mouseY2;
     
     public Visual() throws FileNotFoundException {
-        this.setSize(1266, 738);    
+        this.setSize(1256, 728);    
 
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -62,6 +64,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         UnitUI = this.getContentPane();
         CityUI = this.getContentPane();
         ProdutionUI = this.getContentPane();  
+        
+        Visual.tiles.setLayout(null);
         
         this.addKeyListener(this);
         this.addMouseMotionListener(this);
@@ -84,8 +88,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         }
         
         if (e.getKeyCode() == 81){
-            int cityX = (getMousePosition().x-25)/50+Map.rightOff;
-            int cityY = (getMousePosition().y-25)/50+Map.downOff;
+            int cityX = (getMousePosition().x-25)/50+rightOff;
+            int cityY = (getMousePosition().y-25)/50+downOff;
             int index = FindCity(cityX, cityY);
             if (index == -1)
             {
@@ -95,8 +99,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         }
         
         if (e.getKeyCode() == 87){
-            int unitX = (getMousePosition().x-25)/50+Map.rightOff;
-            int unitY = (getMousePosition().y-25)/50+Map.downOff;
+            int unitX = (getMousePosition().x-25)/50+rightOff;
+            int unitY = (getMousePosition().y-25)/50+downOff;
             int index = UnitType.FindUnit(unitX, unitY);
             if (index == -1)
             {
@@ -108,31 +112,31 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         if(moveEnabled){
             
             if (e.getKeyCode() == 38){//up
-                if (Map.downOff != 0){
-                    Map.downOff--;
+                if (downOff != 0){
+                    downOff--;
                 }
                 redrawMap();
                 LoadUnits();
             }
             if (e.getKeyCode() == 37){//left
-                if (Map.rightOff != 0){
-                    Map.rightOff--;
+                if (rightOff != 0){
+                    rightOff--;
                 }
                 redrawMap();
                 LoadUnits();
             }
             if (e.getKeyCode() == 40){//down
 
-                if (Map.downOff != (72-Map.y)){
-                    Map.downOff++;    
+                if (downOff != (72-Map.y)){
+                    downOff++;    
                 }
                 redrawMap();
                 LoadUnits();
             }
             if (e.getKeyCode() == 39){//right
 
-                if (Map.rightOff != (128-Map.x)){
-                    Map.rightOff++;    
+                if (rightOff != (128-Map.x)){
+                    rightOff++;    
                 }
                 redrawMap();
                 LoadUnits();
@@ -143,8 +147,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     public static void redrawMap(){
         for (int i = 0; i < Map.x; i++){
                 for (int j = 0; j < Map.y; j++){
-                    Map.grid[i][j].setTile(Map.tileType[i + Map.rightOff][j + Map.downOff]);
-                    Map.borderGrid[i][j].setBorder(Map.borderType[i + Map.rightOff][j + Map.downOff]);
+                    Map.grid[i][j].setTile(Map.tileType[i + rightOff][j + downOff]);
+                    Map.borderGrid[i][j].setBorder(Map.borderType[i + rightOff][j + downOff]);
 
                 }
             }
@@ -156,7 +160,7 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
                     int index = UnitType.FindUnit(i,j);
                     Unit unit = FinalProject.units.get(index);
                     if (unit.x == i&& unit.y == j){
-                        unit.setLocation((i- Map.rightOff)*50, (j- Map.downOff)*50);
+                        unit.setLocation((i- rightOff)*50, (j- downOff)*50);
                         unit.setUnit(Globals.unitGrid[i/* + Map.downOff*/][j/* + Map.rightOff*/]);
                     }
                 }
@@ -170,8 +174,8 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
     @Override
     public void mouseClicked(MouseEvent e) {
             
-        int tileX = (getMousePosition().x-25)/50+Map.rightOff;
-        int tileY = (getMousePosition().y-25)/50+Map.downOff;
+        int tileX = (getMousePosition().x-25)/50+rightOff;
+        int tileY = (getMousePosition().y-25)/50+downOff;
         int cityIndex = FindCity(tileX, tileY);
         int unitIndex = -1; 
         if (movingUnit == false && attackingUnit == false && 

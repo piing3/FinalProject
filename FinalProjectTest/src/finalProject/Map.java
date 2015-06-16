@@ -11,55 +11,52 @@ import java.util.Scanner;
 import javax.swing.JLabel;
 
 /**
+ * used for the tile grid and some related mechanics
  *
  * @author Davin
  */
 class Map {
     
-    boolean menuOpen = false;
-    private JLabel tile; 
+    static int x,y;//the width and height of the display, in tiles
     
-    static int x,y;
-    final int size = 30;
-    static  int downOff = 0, rightOff = 0;//Down and Right offsets, used for moving map.
+    static Tile[][] grid;//the storage for the tile grid
+    static Border[][] borderGrid;//the storage for the border grid
+    static int[][] borderType;//the types for the border grid
+    static int[][] tileType;//the types for the tile grid
     
-    static Tile[][] grid;
-    static Border[][] borderGrid;
-    static int[][] borderType;
-    static int[][] tileType;
+    final int WIDTH = 128;//the grid width and height
+    final int HEIGHT = 72;
     
     Map() throws FileNotFoundException{
         
 
-        x = Visual.width/50;//25;
-        y = Visual.hight/50;//14;
-        System.out.println(x+", "+y);
+        x = Visual.width/50;//makes the displays width and height
+        y = Visual.hight/50;
         
-        tileType  = new int[128][72];
-        grid  = new Tile[128][72];
-        borderGrid  = new Border[128][72];
-        borderType  = new int[128][72];
-        Visual.tiles.setLayout(null);
-        
-        File temp = new File("src\\finalProject\\Map.txt");
+        tileType  = new int[WIDTH][HEIGHT];//intializes all the grids
+        grid  = new Tile[WIDTH][HEIGHT];
+        borderGrid  = new Border[WIDTH][HEIGHT];
+        borderType  = new int[WIDTH][HEIGHT];
+                
+        File temp = new File("src\\finalProject\\Map.txt");//reads the map and stores it in tileType, also sets all borderType to 0
         Scanner s = new Scanner(temp);
-        for (int j = 0; j <= 71; j++){
-            for (int i = 0; i <= 127; i++){
+        for (int j = 0; j <= HEIGHT-1; j++){
+            for (int i = 0; i <= WIDTH-1; i++){
                 borderType[i][j] = 0;
                 tileType[i][j] = s.nextInt();
             }
         }
         s.close(); 
         
-        for (int i = rightOff; i < 127; i++){
-            for (int j = downOff; j < 71; j++){
-                grid[i][j] = new Tile(i, j);
-                grid[i][j].setTile(tileType[i][j]);
-                Visual.tiles.add(grid[i][j]);
+        for (int i = Visual.rightOff; i < WIDTH-1; i++){
+            for (int j = Visual.downOff; j < HEIGHT-1; j++){
+                grid[i][j] = new Tile(i, j);//creates all the tiles
+                grid[i][j].setTile(tileType[i][j]);//sets the type of all tiles
+                Visual.tiles.add(grid[i][j]);//adds the tiles to the tile container
                 
-                borderGrid[i][j] = new Border(i, j);
-                borderGrid[i][j].setBorder(borderType[i][j]);
-                Visual.tiles.add(borderGrid[i][j],0);
+                borderGrid[i][j] = new Border(i, j);//creates all the borders
+                borderGrid[i][j].setBorder(borderType[i][j]);//sets the type of all borders
+                Visual.tiles.add(borderGrid[i][j],0);//adds the borders to the tile container
                 
             }
         }

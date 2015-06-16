@@ -30,7 +30,7 @@ public class TurnOrder{
                  if(player1.isTurn){
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
-                     City.updateProduction(FinalProject.Players.get(1));
+                     City.updateCity(FinalProject.Players.get(1));
                      UnitType.ResetUnits(whoTurn());
                      if (FinalProject.turnNumber == 1){
                         TurnOrder.spawnStart();
@@ -39,7 +39,7 @@ public class TurnOrder{
             else if(player2.isTurn){  
                      FinalProject.Players.get(0).isTurn = true;
                      FinalProject.Players.get(1).isTurn = false;
-                     City.updateProduction(FinalProject.Players.get(0));//Ben, copy this to the other ones
+                     City.updateCity(FinalProject.Players.get(0));//Ben, copy this to the other ones
                      UnitType.ResetUnits(whoTurn());
             }
         }
@@ -98,10 +98,10 @@ public class TurnOrder{
             }
         }
         int index = UnitType.FindUnit(whoTurn());
-        if (FinalProject.units.get(index).x > Map.x)Map.rightOff = FinalProject.units.get(index).x - (Map.x/2);
-        else Map.downOff = FinalProject.units.get(index).x;
-        if (FinalProject.units.get(index).y > Map.y)Map.downOff = FinalProject.units.get(index).y - (Map.y/2);
-        else Map.rightOff = FinalProject.units.get(index).y; 
+        if (FinalProject.units.get(index).x > Map.x)Visual.rightOff = FinalProject.units.get(index).x - (Map.x/2);
+        else Visual.downOff = FinalProject.units.get(index).x;
+        if (FinalProject.units.get(index).y > Map.y)Visual.downOff = FinalProject.units.get(index).y - (Map.y/2);
+        else Visual.rightOff = FinalProject.units.get(index).y; 
         Visual.redrawMap();
         Visual.LoadUnits();
     }
@@ -126,10 +126,10 @@ public class TurnOrder{
         }while(loopPass == false);
         UnitType.CreateUnit(startX, startY, 1,Visual.Units);//make units
         UnitType.CreateUnit(startX + 1, startY, 2,Visual.Units);
-        if (startX > Map.x)Map.rightOff = startX - (Map.x/2);
-        else {Map.rightOff = 0;}
-        if (startY > Map.y)Map.downOff = startY - (Map.y/2);
-        else{ Map.downOff = 0;}
+        if (startX > Map.x)Visual.rightOff = startX - (Map.x/2);
+        else {Visual.rightOff = 0;}
+        if (startY > Map.y)Visual.downOff = startY - (Map.y/2);
+        else{ Visual.downOff = 0;}
         Visual.redrawMap();
         Visual.LoadUnits();
     }
