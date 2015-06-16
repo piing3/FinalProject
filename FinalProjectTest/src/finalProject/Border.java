@@ -13,40 +13,44 @@ import javax.swing.JLabel;
 /**
  *
  * @author Davin
+ * 
+ * Currently used for city borders but could be used for other, unimplemented borders 
  */
 class Border extends JLabel{
 
     
-        public int x;
+        public int x;//XY of the border
         public int y;
-        public int borderType;
-        public Icon icon;
+        public int borderType;//Type of border
         
-        public Border(int i, int j) {
-            x = i; y = j;
-            this.setSize(50, 50);
+        public Border(int x, int y) {
+            this.x = x; this.y = y;//stores grid location
+            this.setSize(50, 50);//set bounds
             this.setLocation((x * 50), (y * 50));
         }
-   
+   /**
+    * Used to set the tile to the given type(color)
+    * 
+    * @param type: The number used to set the border image
+    */
    public void setBorder(int type){
-       if (type == 0){
+       if (type == 0){ //clear icon for this border  
            this.setIcon(null);
        }
-       if (type == 1){
-           icon = new ImageIcon("src\\Images\\PinkBorder.png");
-           this.setIcon(icon);
-           System.out.println("");
-       }
-       if (type == 2){
-           icon = new ImageIcon("src\\Images\\RedBorder.png");
+       if (type == 1){//pink
+           Icon icon = new ImageIcon("src\\Images\\PinkBorder.png");
            this.setIcon(icon);
        }
-       if (type == 3){
-           icon = new ImageIcon("src\\Images\\GreenBorder.png");
+       if (type == 2){//red
+           Icon icon = new ImageIcon("src\\Images\\RedBorder.png");
            this.setIcon(icon);
        }
-       if (type == 4){
-           icon = new ImageIcon("src\\Images\\BlueBorder.png");
+       if (type == 3){//green
+           Icon icon = new ImageIcon("src\\Images\\GreenBorder.png");
+           this.setIcon(icon);
+       }
+       if (type == 4){//blue
+           Icon icon = new ImageIcon("src\\Images\\BlueBorder.png");
            this.setIcon(icon);
        }
    } 

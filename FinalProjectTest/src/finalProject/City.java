@@ -13,46 +13,45 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
+ * Used to store the info about each city
+ * and does most of the city logic
  *
  * @author Davin
  */
 class City extends JLabel{
     
-    public int x;
+    public int x;//location
     public int y;
-    public int production = 1;
+    
+    public int production = 1;//city info 
     public int gold = 0;
     public int population = 3;
     public int food = 0;
-    public int growthLeft;
-    public int science = 0;
-    public int Health;
+    
+    public int growthLeft;//used for adding population
+    public int productionLeft;//used for building things
+    public Prodution productionItem = new Prodution(-1);//the item being built
+    
+    public int Health = 100;//city combat numbers, unused
     public int Damage = 20;
-    public String name = "";
-    public Person owner;
-    public int productionLeft;
-    public Prodution productionItem = new Prodution(-1);
-    public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();
-    public ArrayList<Integer> BuiltObjects = new ArrayList<Integer>();
+    
+    public String name = "";//city name
+    public Person owner;//city owner
+    
+    public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();//can be built objects 
+    public ArrayList<Integer> BuiltObjects = new ArrayList<Integer>();//built objects 
     
     City(int x, int y, int Owner) {
-        this.Health = 100;
-        this.x = x;
+        this.x = x;//stores location
         this.y = y;
-        this.owner = FinalProject.Players.get(Owner);
-        cityBuildObjects = new ArrayList<Integer>();
-        if(Tile.getTileType(Map.grid[x][y]) != 2 && Tile.getTileType(Map.grid[x][y]) != 3){
-            Icon tile = new ImageIcon("src\\Images\\CityTile1.png");
-            this.setIcon(tile);
-            this.setSize(50, 50);
-            this.setSize(50, 50);
-            this.setLocation(x*50, y*50);
-            Map.grid[x][y].setTile(100);
-            Map.tileType[x][y] = 100;
-            Visual.redrawMap();
-            name = JOptionPane.showInputDialog("Name this city");
-        } 
-        for (int i = 0; i < this.owner.buildObjects.size(); i++) {//Outputs lots of errors if FinalProject.play = 0
+        this.owner = FinalProject.Players.get(Owner);//stores owner
+        
+        Map.tileType[x][y] = 100;//sets the grid location to a city...
+        Visual.redrawMap();//... and redraws the map
+        
+        name = JOptionPane.showInputDialog("Name this city");//name the city
+            
+        for (int i = 0; i < this.owner.buildObjects.size(); i++) {
             this.cityBuildObjects.add(this.owner.buildObjects.get(i));
         }
         for (int i = -2; i < 3; i++) {
@@ -78,10 +77,7 @@ class City extends JLabel{
     }  
     public void setProduction(City city, int newProduction){
         city.production = newProduction;
-    }  
-    public void setScience(City city, int newScience){
-        city.science = newScience;
-    }  
+    }   
     public void setPopulation(City city, int newPopulation){
         city.population = newPopulation;
     }  
@@ -94,9 +90,6 @@ class City extends JLabel{
     }  
     public int getProduction(City city){
         return city.production;
-    }  
-    public int getScience(City city){
-        return city.science;
     }  
     public int getPopulation(City city){
         return city.population;
@@ -127,7 +120,7 @@ class City extends JLabel{
                 }
                 
                 city.production = 1;
-                city.food = 1;
+                city.food = 0;
                 
                 for (int j = 0; j < city.BuiltObjects.size(); j++) {
                     city.gold += new Prodution(city.BuiltObjects.get(j)).goldChange;

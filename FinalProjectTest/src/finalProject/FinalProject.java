@@ -47,62 +47,38 @@ public static int turnNumber = 0;
         
             @Override//extra key events here to make visual neater
             public void keyTyped(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };        
+        TurnOrder.spawnStart();//spawn player one
         visual.setVisible(true);//make display visable
-        Random startPos = new Random();
-        int startX;
-        int startY;
-        do{
-            startX = startPos.nextInt(126);
-            startY = startPos.nextInt(72);
-        }while(Map.grid[startX][startY].tileType == 2);
-        UnitType.CreateUnit(startX, startY, 1,Visual.Units);//make units
-        UnitType.CreateUnit(startX + 1, startY, 2,Visual.Units);
-        if (FinalProject.units.get(index).x > Map.x)Map.rightOff = FinalProject.units.get(startX).x - (Map.x/2);
-        else Map.downOff = FinalProject.units.get(startX).x;
-        if (FinalProject.units.get(index).y > Map.y)Map.downOff = FinalProject.units.get(startY).y - (Map.y/2);
-        else Map.rightOff = FinalProject.units.get(startY).y; 
-        Visual.redrawMap();
-        Visual.LoadUnits();
-
-        
         }
     }
 }

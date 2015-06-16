@@ -32,23 +32,8 @@ public class TurnOrder{
                      FinalProject.Players.get(1).isTurn = true;
                      City.updateProduction(FinalProject.Players.get(1));
                      UnitType.ResetUnits(whoTurn());
-                     if (FinalProject.turnNumber <= 1){
-                        Random startPos = new Random();
-                        int startX;
-                        int startY;
-                        do{
-                            startX = startPos.nextInt(126);
-                            startY = startPos.nextInt(72);
-                        }while(Map.grid[startX][startY].tileType == 2);
-                        UnitType.CreateUnit(startX, startY, 1,Visual.Units);//make units
-                        UnitType.CreateUnit(startX + 1, startY, 2,Visual.Units);
-                        int index = UnitType.FindUnit(whoTurn());
-                        if (FinalProject.units.get(index).x > Map.x)Map.rightOff = FinalProject.units.get(startX).x - (Map.x/2);
-                        else Map.downOff = FinalProject.units.get(startX).x;
-                        if (FinalProject.units.get(index).y > Map.y)Map.downOff = FinalProject.units.get(startY).y - (Map.y/2);
-                        else Map.rightOff = FinalProject.units.get(startY).y; 
-                        Visual.redrawMap();
-                        Visual.LoadUnits();
+                     if (FinalProject.turnNumber == 1){
+                        TurnOrder.spawnStart();
                      }
                  }
             else if(player2.isTurn){  
@@ -65,10 +50,16 @@ public class TurnOrder{
                  if(player1.isTurn){
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
+                     if (FinalProject.turnNumber == 1){
+                        TurnOrder.spawnStart();
+                     }
                  }
             else if(player2.isTurn){
                      FinalProject.Players.get(1).isTurn = false;
                      FinalProject.Players.get(2).isTurn = true;
+                     if (FinalProject.turnNumber == 2){
+                        TurnOrder.spawnStart();
+                     }
             }
             else if(player3.isTurn){
                      FinalProject.Players.get(2).isTurn = false;
@@ -83,14 +74,23 @@ public class TurnOrder{
                  if(player1.isTurn){
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
+                     if (FinalProject.turnNumber == 1){
+                        TurnOrder.spawnStart();
+                     }
                  }
             else if(player2.isTurn){
                      FinalProject.Players.get(1).isTurn = false;
                      FinalProject.Players.get(2).isTurn = true;
+                     if (FinalProject.turnNumber == 2){
+                        TurnOrder.spawnStart();
+                     }
             }
             else if(player3.isTurn){
                      FinalProject.Players.get(2).isTurn = false;
                      FinalProject.Players.get(3).isTurn = true;
+                     if (FinalProject.turnNumber == 3){
+                        TurnOrder.spawnStart();
+                     }
             }
             else if(player4.isTurn){
                      FinalProject.Players.get(3).isTurn = false;
@@ -102,6 +102,34 @@ public class TurnOrder{
         else Map.downOff = FinalProject.units.get(index).x;
         if (FinalProject.units.get(index).y > Map.y)Map.downOff = FinalProject.units.get(index).y - (Map.y/2);
         else Map.rightOff = FinalProject.units.get(index).y; 
+        Visual.redrawMap();
+        Visual.LoadUnits();
+    }
+
+    public static void spawnStart() {
+        Random startPos = new Random();
+        int startX;
+        int startY;
+        boolean loopPass = false;
+        do{
+            startX = startPos.nextInt(126);
+            startY = startPos.nextInt(70);
+            loopPass = true; 
+            if (Map.grid[startX][startY].tileType == 2) loopPass = false;
+            if (13 > startX || startX > 115) loopPass = false;
+            if (7 > startY || startY > 65) loopPass = false;
+            for (int i = -5; i < 5; i++) {
+                for (int j = -5; j < 5; j++) {
+                    if(UnitType.FindUnit(startX + i, startY + j) != -1) loopPass = false; 
+                }
+            }
+        }while(loopPass == false);
+        UnitType.CreateUnit(startX, startY, 1,Visual.Units);//make units
+        UnitType.CreateUnit(startX + 1, startY, 2,Visual.Units);
+        if (startX > Map.x)Map.rightOff = startX - (Map.x/2);
+        else {Map.rightOff = 0;}
+        if (startY > Map.y)Map.downOff = startY - (Map.y/2);
+        else{ Map.downOff = 0;}
         Visual.redrawMap();
         Visual.LoadUnits();
     }

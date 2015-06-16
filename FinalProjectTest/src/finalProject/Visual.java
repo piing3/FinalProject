@@ -174,7 +174,9 @@ abstract class Visual extends JFrame implements KeyListener, MouseMotionListener
         int tileY = (getMousePosition().y-25)/50+Map.downOff;
         int cityIndex = FindCity(tileX, tileY);
         int unitIndex = -1; 
-        if (movingUnit == false && attackingUnit == false){
+        if (movingUnit == false && attackingUnit == false && 
+                Tile.getTileType(Map.grid[tileX][tileY]) != 2 && Tile.getTileType(Map.grid[tileX][tileY]) != 3){
+            
             unitIndex = UnitType.FindUnit(tileX, tileY);
             if (unitIndex != -1 && cityIndex != -1) {
                 if (CityUIOpen) {

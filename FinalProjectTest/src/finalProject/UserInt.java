@@ -134,7 +134,6 @@ class UserInt {
         updateFood();
         updateGold();
         updateProduction();
-        updateScience();
         updateCityName();
         
     }
@@ -157,7 +156,6 @@ class UserInt {
     }
     
     public static void updateGold() {cityGold.setText(city.gold+"");}
-    public static void updateScience() {cityScience.setText(city.science+"");}
     public static void updateFood() {cityFood.setText(city.food+"");}
     public static void updateProduction() {cityProduction.setText(city.production+"");}
     public static void updateCityName() {cityName.setText(city.name+" ("+city.population+")");}
