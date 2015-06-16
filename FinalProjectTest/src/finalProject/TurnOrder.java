@@ -8,11 +8,15 @@ package finalProject;
 import java.util.Random;
 
 /**
- *
+ *Handles most of the turn related mechanics 
+ * 
  * @author Ben (Tad bit to "organized")
  */
 public class TurnOrder{
-    static int numberOfPlayers = FinalProject.play;
+    /**
+     * Determines which players turn it currently is
+     * @return the current players id
+     */
     public static int whoTurn(){
         int result = -1;
 
@@ -22,28 +26,32 @@ public class TurnOrder{
             else  if (FinalProject.Players.get(3).isTurn) result = 4;
             return result;
     }
+    /**
+     * advances the game logic to the next players turn
+     */
     public static void NextTurn(){
-        FinalProject.turnNumber++;
-        if(numberOfPlayers == 2){
-             Person player1 =       FinalProject.Players.get(0);
-             Person player2 =       FinalProject.Players.get(1);
-                 if(player1.isTurn){
+        FinalProject.turnNumber++;//increment counter
+        
+        if(FinalProject.play == 2){//if two players...(currently locked on this)
+             Person player1 =       FinalProject.Players.get(0);//store player 1
+             Person player2 =       FinalProject.Players.get(1);//store player 2
+                 if(player1.isTurn){//if player 1's turn, change to player 2's 
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
-                     City.updateCity(FinalProject.Players.get(1));
-                     UnitType.ResetUnits(whoTurn());
-                     if (FinalProject.turnNumber == 1){
+                     City.updateCity(FinalProject.Players.get(1));//call the updateCity mechanic
+                     UnitType.ResetUnits(whoTurn());//reset player 2's units
+                     if (FinalProject.turnNumber == 1){//if it's players 2 first turn, spawn units
                         TurnOrder.spawnStart();
                      }
                  }
-            else if(player2.isTurn){  
+            else if(player2.isTurn){ //if player 2's turn, change to player 1's 
                      FinalProject.Players.get(0).isTurn = true;
                      FinalProject.Players.get(1).isTurn = false;
-                     City.updateCity(FinalProject.Players.get(0));//Ben, copy this to the other ones
-                     UnitType.ResetUnits(whoTurn());
+                     City.updateCity(FinalProject.Players.get(0));
+                     UnitType.ResetUnits(whoTurn());//reset player 1's units
             }
         }
-        if(numberOfPlayers == 3){
+        if(FinalProject.play == 3){//same as above
              Person player1 =       FinalProject.Players.get(0);
              Person player2 =       FinalProject.Players.get(1);
              Person player3 =       FinalProject.Players.get(2);
@@ -66,7 +74,7 @@ public class TurnOrder{
                      FinalProject.Players.get(0).isTurn = true;
             }
         }
-        if(numberOfPlayers == 4){
+        if(FinalProject.play == 4){//same as above
              Person player1 =       FinalProject.Players.get(0);
              Person player2 =       FinalProject.Players.get(1);
              Person player3 =       FinalProject.Players.get(2);
@@ -97,7 +105,8 @@ public class TurnOrder{
                      FinalProject.Players.get(0).isTurn = true;
             }
         }
-        int index = UnitType.FindUnit(whoTurn());
+        
+        int index = UnitType.FindUnit(whoTurn());//repositions the map to a unit of the current turn
         if (FinalProject.units.get(index).x > Map.x)Visual.rightOff = FinalProject.units.get(index).x - (Map.x/2);
         else Visual.downOff = FinalProject.units.get(index).x;
         if (FinalProject.units.get(index).y > Map.y)Visual.downOff = FinalProject.units.get(index).y - (Map.y/2);
@@ -105,35 +114,34 @@ public class TurnOrder{
         Visual.redrawMap();
         Visual.LoadUnits();
     }
-
+    /**
+     *spawns in a settler and warrior at a random location
+     */
     public static void spawnStart() {
-        Random startPos = new Random();
-        int startX;
-        int startY;
-        boolean loopPass = false;
+        Random startPos = new Random();//random
+        int startX;//x pos
+        int startY;//y pos
+        boolean loopPass = false;// conditon to be met
         do{
-            startX = startPos.nextInt(126);
+            startX = startPos.nextInt(126);//set both to a random location
             startY = startPos.nextInt(70);
-            loopPass = true; 
-            if (Map.grid[startX][startY].tileType == 2) loopPass = false;
-            if (13 > startX || startX > 115) loopPass = false;
+            loopPass = true;
+            if (Map.grid[startX][startY].tileType == 2) loopPass = false;//if location is water
+            if (13 > startX || startX > 115) loopPass = false;//if too close to edges
             if (7 > startY || startY > 65) loopPass = false;
-            for (int i = -5; i < 5; i++) {
-                for (int j = -5; j < 5; j++) {
-                    if(UnitType.FindUnit(startX + i, startY + j) != -1) loopPass = false; 
+            for (int i = -10; i < 10; i++) {
+                for (int j = -10; j < 10; j++) {
+                    if(UnitType.FindUnit(startX + i, startY + j) != -1) loopPass = false;//if too close to other player
                 }
             }
         }while(loopPass == false);
         UnitType.CreateUnit(startX, startY, 1,Visual.Units);//make units
         UnitType.CreateUnit(startX + 1, startY, 2,Visual.Units);
-        if (startX > Map.x)Visual.rightOff = startX - (Map.x/2);
+        if (startX > Map.x)Visual.rightOff = startX - (Map.x/2);//move view to new location
         else {Visual.rightOff = 0;}
         if (startY > Map.y)Visual.downOff = startY - (Map.y/2);
         else{ Visual.downOff = 0;}
         Visual.redrawMap();
         Visual.LoadUnits();
-    }
-    public void StartTurnOrder(){
-        FinalProject.Players.get(0).isTurn = true;
     }
 }

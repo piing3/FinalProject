@@ -11,87 +11,81 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- *
+ *Controls the info and most of the mechanics around the terrain tiles
+ * 
  * @author Davin
  */
 class Tile extends JLabel{
 
     
-        public int x;
+        public int x;//tile's location
         public int y;
-        public int tileType;
-        public int owner;
-        public int improvement;
-        public int movement;
-        public Icon tile;
-        public int production;
-        public int food;
+        public int tileType;//the tile's type
+        public int improvement;//what improvement is on the tile(unimplemented)
+        public int movement;//the movement cost of the tile
+        public int production;//the production given by the tile
+        public int food;//the food given by the tile
         
         public Tile(int i, int j) {
-            x = i; y = j;
-            this.setSize(50, 50);
+            x = i; y = j;//stores location
+            this.setSize(50, 50);//sets bounds
             this.setLocation((x * 50), (y * 50));
         }
-
+    /**
+     * sets the tile to the given type
+     * @param type: the new type of the tile 
+     */
     public void setTile(int type) {
-        tileType = type;
-        if (type == 0 ){
-            tile = new ImageIcon("src\\Images\\GrassTile1.png");
+        tileType = type;//stores new type
+        if (type == 0 ){//grass
+            Icon tile = new ImageIcon("src\\Images\\GrassTile1.png");
             this.setIcon(tile);
             movement = 1;
             production = 1;
             food = 1;
         }
-        if (type == 1){
-            tile = new ImageIcon("src\\Images\\DessertTile1.png");
+        if (type == 1){//dessert
+            Icon tile = new ImageIcon("src\\Images\\DessertTile1.png");
             this.setIcon(tile);
             movement = 1;
             production = 0;
             food = 0;
         }
-        if (type == 2){
-            tile = new ImageIcon("src\\Images\\WaterTile1.png");
+        if (type == 2){//water
+            Icon tile = new ImageIcon("src\\Images\\WaterTile1.png");
             this.setIcon(tile);
             movement = 1;
             production = 0;
             food = 1;
         }
-        if (type == 3){
-            tile = new ImageIcon("src\\Images\\BorderTile1.png");
+        if (type == 3){//border
+            Icon tile = new ImageIcon("src\\Images\\BorderTile1.png");
             this.setIcon(tile);
             production = 0;
             food = 0;
         }
-        if (type == 50){
-            tile = new ImageIcon("src\\Images\\FarmTile1.png");
+        if (type == 50){//farm improvement
+            Icon tile = new ImageIcon("src\\Images\\FarmTile1.png");
             this.setIcon(tile);
             production = 0;
             food = 3;
         }
-        if (type == 51){
-            tile = new ImageIcon("src\\Images\\MineTile1.png");
+        if (type == 51){//mine improvement
+            Icon tile = new ImageIcon("src\\Images\\MineTile1.png");
             this.setIcon(tile);
             production = 3;
             food = 0;
         }
-        if (type == 52){
-            tile = new ImageIcon("src\\Images\\BorderTile1.png");
-            this.setIcon(tile);
-            production = -1000;
-            food = -1000;
-        }
-        if (type == 53){
-            tile = new ImageIcon("src\\Images\\BorderTile1.png");
-            this.setIcon(tile);
-            production = -1000;
-            food = -1000;
-        }
-        if (type == 100){
-            tile = new ImageIcon("src\\Images\\CityTile1.png");
+        if (type == 100){//city
+            Icon tile = new ImageIcon("src\\Images\\CityTile1.png");
             this.setIcon(tile);
         }
     }
-   static int getTileType(Tile tile) {
+    /**
+     * get the type id of tile 
+     * @return the type id  
+     */
+    static public int getTileType(Tile tile) {
       return tile.tileType;
    }
 }

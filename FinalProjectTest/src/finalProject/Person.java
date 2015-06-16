@@ -31,22 +31,10 @@ class Person {
         buildObjects.add(1);
         buildObjects.add(3);
         buildObjects.add(2);
+        buildObjects.add(4);
         buildObjects.add(25);
         buildObjects.add(24);
         buildObjects.add(23);
         buildObjects.add(22);
-    }
-    
-    public static void MakeSettlers(){
-
-        for (int i = 0; i < FinalProject.play; i++) {
-            Random r = new Random();
-            int startX = r.nextInt(126)+1;
-            int startY = r.nextInt(70)+1;
-            FinalProject.units.add(new Unit(startX, startY, 2,Visual.Units, i+1));
-            Globals.unitGrid[startX][startY] = 2;
-            Visual.LoadUnits();
-        }
-
     }
 }

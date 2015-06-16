@@ -42,7 +42,7 @@ public static int turnNumber = 0;//current turn number
             else if(i == 2) FinalProject.Players.add(new Person(name, i+1));
             else if(i == 3) FinalProject.Players.add(new Person(name, i+1));
         }
-        turnorder.StartTurnOrder();//begin turns
+        FinalProject.Players.get(0).isTurn = true;//begin turns
        Visual visual = new Visual() {
         
             @Override//extra key events here to make Visual neater
@@ -51,10 +51,6 @@ public static int turnNumber = 0;//current turn number
 
             @Override
             public void keyReleased(KeyEvent e) {
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
             }
 
             @Override
@@ -71,10 +67,6 @@ public static int turnNumber = 0;//current turn number
 
             @Override
             public void mouseExited(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
             }
         };        
         TurnOrder.spawnStart();//spawn player one

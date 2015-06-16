@@ -28,15 +28,15 @@ import javax.swing.border.Border;
 import sun.awt.AWTAccessor;
 
 /**
- *
+ *handles all user interface mechanics
  * @author Davin
  */
 class UserInt {
     
-        public JButton nextTurn;
+        public JButton nextTurn;//normal ui components
         public JLabel PlayerTurn;
         
-        static public JButton cityTest = new JButton();
+        static public JButton cityTest = new JButton();//city ui components
         static public City city = new City();
         static public Unit unit = new Unit(); 
         static public JLabel cityLeft;
@@ -49,8 +49,12 @@ class UserInt {
         static public JScrollPane jsp = new JScrollPane();
         static public JPanel SelectedProduction = new JPanel(null);
         static public Prodution selectedProductionItem = new Prodution(-1);
+        static public JLabel selectedIcon;
+        static public JLabel selectedTitle;
+        static public JLabel selectedCost;
+        static public JLabel selectedDicription;
         
-        static public JLabel unitBack;
+        static public JLabel unitBack;//unit ui components 
         static public JLabel unitHealth; 
         static public JLabel unitStrength; 
         static public JLabel unitMoves; 
@@ -60,17 +64,14 @@ class UserInt {
         static public JButton unitAttack;
         static public JLabel unitIcon;
         
-        static public ArrayList<JPanel> productionPanelList = new ArrayList<JPanel>();
+        static public ArrayList<JPanel> productionPanelList = new ArrayList<JPanel>();//production lists
         static public ArrayList<JButton> productionButtonList = new ArrayList<JButton>();
         
-        static public JLabel selectedIcon;
-        static public JLabel selectedTitle;
-        static public JLabel selectedCost;
-        static public JLabel selectedDicription;
+
     
     UserInt() throws FileNotFoundException{
         
-        nextTurn = new JButton("Next Turn");
+        nextTurn = new JButton("Next Turn");//make nextTurn button
         ActionListener actionListener = new ActionListener() {
 
             @Override
@@ -89,47 +90,34 @@ class UserInt {
         nextTurn.setFocusable(false);
         Visual.UI.add(nextTurn);
         
-        PlayerTurn = new JLabel(FinalProject.Players.get(TurnOrder.whoTurn()-1).name+"'s Turn");;
+        PlayerTurn = new JLabel(FinalProject.Players.get(TurnOrder.whoTurn()-1).name+"'s Turn");//make playerTurn label 
         PlayerTurn.setSize(200, 20);
         PlayerTurn.setLocation(Visual.width - 200, Visual.hight - 195);
         PlayerTurn.setHorizontalAlignment(SwingConstants.CENTER);
         PlayerTurn.setForeground(Color.BLACK);
         Visual.UI.add(PlayerTurn);
         
-        JPanel UIBackround = new JPanel();
+        JPanel UIBackround = new JPanel();//make UIBackround
         UIBackround.setLocation(Visual.width - 200, Visual.hight - 200);
         UIBackround.setSize(200, 200);
         UIBackround.setBackground(Color.GRAY);
         Visual.UI.add(UIBackround);
         
-        cityTest.setText("Test");
-        cityTest.setSize(100,50);
-        cityTest.setLocation(0,0);
-        cityTest.setVisible(false);
-        cityTest.setFocusable(false);
-        ActionListener test = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                city.gold = 10;
-                System.out.println(city.getGold(city));
-                updateGold();
-                
-            }
-        };
-        cityTest.addActionListener(test);
-        //Visual.CityUI.add(cityTest);
-        
-        MakeCityUI();
-        MakeUnitUI();
+        MakeCityUI();//make the city ui
+        MakeUnitUI();//make the unit ui
 
         }
+    /**
+     * opens the city UI of the given city
+     * @param newCity: the city to open
+     */
     public static void CityUI(City newCity){        
         city = newCity;
         
         updateProductionList();
         updateSelectedProduction();
-        visableCityUI(true);
-        visableUnitUI(false);
+        visibleCityUI(true);
+        visibleUnitUI(false);
         
         updateFood();
         updateGold();
@@ -137,11 +125,15 @@ class UserInt {
         updateCityName();
         
     }
+    /**
+     * open the unit UI of the given unit
+     * @param newUnit: the unit to open 
+     */
     public static void UnitUI(Unit newUnit){   
         unit = newUnit;
         
-        visableCityUI(false);        
-        visableUnitUI(true);
+        visibleCityUI(false);        
+        visibleUnitUI(true);
         
         updateHealth();
         updateStength();
@@ -149,16 +141,22 @@ class UserInt {
         updateIcon();
         unitName.setText(unit.name);
     }
+    /**
+     * closes city and unit UI
+     */
     public static void NormalUI(){        
-        visableCityUI(false);
-        visableUnitUI(false);
+        visibleCityUI(false);
+        visibleUnitUI(false);
         
     }
     
-    public static void updateGold() {cityGold.setText(city.gold+"");}
-    public static void updateFood() {cityFood.setText(city.food+"");}
-    public static void updateProduction() {cityProduction.setText(city.production+"");}
-    public static void updateCityName() {cityName.setText(city.name+" ("+city.population+")");}
+    public static void updateGold() {cityGold.setText(city.gold+"");}//updates the cityGold label
+    public static void updateFood() {cityFood.setText(city.food+"");}//updates the cityFood label
+    public static void updateProduction() {cityProduction.setText(city.production+"");}//updates the cityProduction label
+    public static void updateCityName() {cityName.setText(city.name+" ("+city.population+")");}//updates the cityName label
+    /**
+     * changes which object is being shown below the production menu
+     */
     public static void updateSelectedProduction() {
         selectedProductionItem = city.productionItem ;
         double oneRaw = city.productionLeft/city.production;
@@ -174,11 +172,14 @@ class UserInt {
         selectedIcon.setIcon(selectedProductionItem.icon);
     }
     
-    public static void updateHealth() {unitHealth.setText(unit.health+"");}
-    public static void updateStength(){unitStrength.setText(unit.Damage+"");}
-    public static void updateMoves(){unitMoves.setText(unit.movement+"");}
-    public static void updateIcon(){unitIcon.setIcon(unit.unitIcon);}
-
+    public static void updateHealth() {unitHealth.setText(unit.health+"");}//updates the unitHealth label
+    public static void updateStength(){unitStrength.setText(unit.Damage+"");}//updates the unitStrength label
+    public static void updateMoves(){unitMoves.setText(unit.movement+"");}//updates the unitMoves label
+    public static void updateIcon(){unitIcon.setIcon(unit.unitIcon);}//updates the unitIcon label
+    
+    /**
+     * creates all the city UI elements
+     */
     public void MakeCityUI(){
         
         Icon leftBack = new ImageIcon("src\\Images\\CityLeft.png");
@@ -236,6 +237,9 @@ class UserInt {
         Visual.CityUI.add(cityName, 0);
         MakeProductionUI();
     }
+    /**
+     * makes all the unit UI elements
+     */
     public void MakeUnitUI(){
         Icon unitBackround = new ImageIcon("src\\Images\\UnitBackround.png");
         unitBack = new JLabel(unitBackround);
@@ -350,6 +354,9 @@ class UserInt {
         unitAttack.setFocusable(false);
         Visual.UnitUI.add(unitAttack,0);
     }
+    /**
+     * makes all the production UI elements(part of city UI)
+     */
     public void MakeProductionUI() {
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -401,32 +408,42 @@ class UserInt {
         SelectedProduction.add(selectedIcon, 0);
         
     }
-     
-    public static void visableCityUI(boolean visable){
-        cityTest.setVisible(visable);
-        cityLeft.setVisible(visable);
-        cityFood.setVisible(visable);
-        cityGold.setVisible(visable);
-        cityProduction.setVisible(visable);
-        cityScience.setVisible(visable);
-        cityName.setVisible(visable);
-        jsp.setVisible(visable);
-        SelectedProduction.setVisible(visable); 
+    /**
+     * sets all the city UI elements to the given visibility 
+     * @param visable:the given visibility 
+     */
+    public static void visibleCityUI(boolean visible){
+        cityTest.setVisible(visible);
+        cityLeft.setVisible(visible);
+        cityFood.setVisible(visible);
+        cityGold.setVisible(visible);
+        cityProduction.setVisible(visible);
+        cityScience.setVisible(visible);
+        cityName.setVisible(visible);
+        jsp.setVisible(visible);
+        SelectedProduction.setVisible(visible); 
     }
-    public static void visableUnitUI(boolean visable){
-        unitBack.setVisible(visable);
-        unitHealth.setVisible(visable);
-        unitStrength.setVisible(visable);
-        unitMoves.setVisible(visable);
-        unitMove.setVisible(visable);
-        unitName.setVisible(visable);
-        unitIcon.setVisible(visable);
-        if (unit.type == 2) unitSettle.setVisible(visable);
+    /**
+     * sets all the unit UI elements to the given visibility 
+     * @param visable:the given visibility 
+     */
+    public static void visibleUnitUI(boolean visible){
+        unitBack.setVisible(visible);
+        unitHealth.setVisible(visible);
+        unitStrength.setVisible(visible);
+        unitMoves.setVisible(visible);
+        unitMove.setVisible(visible);
+        unitName.setVisible(visible);
+        unitIcon.setVisible(visible);
+        if (unit.type == 2) unitSettle.setVisible(visible);
         else unitSettle.setVisible(false);
         
-        if (unit.type == 1) unitAttack.setVisible(visable);
+        if (unit.type == 1) unitAttack.setVisible(visible);
         else unitAttack.setVisible(false);
     }
+    /**
+     * updates the city UI's list of build objects
+     */
     public static void updateProductionList(){
         productionPanelList.clear();
         productionBackrounds.removeAll();
